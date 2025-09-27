@@ -22,7 +22,7 @@ const About = () => {
     {
       name: "Mike Johnson", 
       role: "Technical Lead",
-      bio: "Full-stack architect specializing in modern web technologies and AI integration."
+      bio: "Full-stack architect specializing in modern web technologies and scalable solutions."
     }
   ];
 
@@ -37,7 +37,7 @@ const About = () => {
     },
     {
       phase: "Build",
-      details: ["AI-accelerated development", "Component-based architecture", "Performance optimization", "Cross-browser testing"]
+      details: ["Modern development practices", "Component-based architecture", "Performance optimization", "Cross-browser testing"]
     },
     {
       phase: "QA",
@@ -60,17 +60,17 @@ const About = () => {
         <div className="max-w-4xl mx-auto px-6">
           <SectionHeader 
             title="About Aura Designs"
-            description="We're a small studio that combines AI tools with senior product thinking to deliver polished websites quickly."
+            description="We're a small studio that combines modern development tools with senior product thinking to deliver polished websites quickly."
             centered
           />
           
           <div className="prose prose-lg max-w-none text-center space-y-6">
             <p className="text-xl text-muted-foreground leading-relaxed">
               Founded on the belief that every business deserves a exceptional digital presence, 
-              Aura Designs bridges the gap between cutting-edge AI tools and thoughtful design strategy.
+              Aura Designs bridges the gap between cutting-edge development tools and thoughtful design strategy.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We leverage platforms like Lovable and Cursor to deliver what traditionally took weeks 
+              We leverage modern development platforms and tools to deliver what traditionally took weeks 
               in just days, without compromising on quality or user experience. Our approach combines 
               rapid prototyping with battle-tested design principles to create websites that not only 
               look great but drive real business results.
@@ -88,7 +88,7 @@ const About = () => {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 To democratize high-quality web design by making professional, 
                 conversion-focused websites accessible to businesses of all sizes 
-                through AI-accelerated workflows and transparent pricing.
+                through streamlined workflows and transparent pricing.
               </p>
               
               <h3 className="text-xl font-semibold mb-4">Our Values</h3>

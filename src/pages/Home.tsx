@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Target, Shield, Code2, Users, Rocket, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/auralogo-transparentbg.png';
 
 const Home = () => {
   const trustedLogos = [
@@ -10,8 +11,8 @@ const Home = () => {
   const valueProps = [
     {
       icon: <Zap className="h-12 w-12 text-accent mb-4" />,
-      title: "AI-Accelerated Delivery",
-      description: "Ship fast with Lovable + Cursor. Weeks of work delivered in days through intelligent automation and proven workflows."
+      title: "Rapid Delivery",
+      description: "Ship fast with modern development tools. Weeks of work delivered in days through streamlined workflows and proven methodologies."
     },
     {
       icon: <Target className="h-12 w-12 text-accent mb-4" />,
@@ -39,7 +40,7 @@ const Home = () => {
     {
       number: "02", 
       title: "Design & Build",
-      description: "Rapid prototyping and development with AI tools"
+      description: "Rapid prototyping and development with modern tools"
     },
     {
       number: "03",
@@ -60,7 +61,7 @@ const Home = () => {
                 <span className="gradient-text"> — Fast.</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Aura Designs creates high-performing websites for small businesses and professionals using AI-accelerated workflows.
+                Aura Designs creates high-performing websites for small businesses and professionals using modern development workflows.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild className="btn-hero">
@@ -76,10 +77,13 @@ const Home = () => {
             </div>
 
             <div className="relative">
-              <div className="w-96 h-96 mx-auto relative">
+              <div className="w-[600px] h-[600px] mx-auto relative flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute inset-8 bg-gradient-to-r from-accent to-secondary rounded-full opacity-80"></div>
-                <div className="absolute inset-16 bg-background rounded-full border-4 border-white/20"></div>
+                <img 
+                  src={logo} 
+                  alt="Aura Designs Logo" 
+                  className="relative z-10 w-[550px] h-[550px] object-contain"
+                />
               </div>
             </div>
           </div>

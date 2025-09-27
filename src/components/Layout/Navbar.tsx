@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logo from '@/assets/aura-logo.png';
+import logo from '@/assets/auralogo-transparentbg.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <img src={logo} alt="Aura Designs" className="h-10 w-10" />
+            <img src={logo} alt="Aura Designs" className="h-10 w-auto" />
             <span className="font-bold text-xl text-foreground">Aura Designs</span>
           </Link>
 

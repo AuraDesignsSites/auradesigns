@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail } from 'lucide-react';
-import logo from '@/assets/aura-logo.png';
+import logo from '@/assets/auralogo-transparentbg.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -21,11 +21,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <img src={logo} alt="Aura Designs" className="h-8 w-8" />
+              <img src={logo} alt="Aura Designs" className="h-8 w-auto" />
               <span className="font-bold text-lg">Aura Designs</span>
             </div>
             <p className="text-muted-foreground max-w-xs">
-              Creating high-performing websites for small businesses and professionals using AI-accelerated workflows.
+              Creating high-performing websites for small businesses and professionals using modern development workflows.
             </p>
             <div className="flex items-center space-x-2 text-muted-foreground">
               <Mail className="h-4 w-4" />
