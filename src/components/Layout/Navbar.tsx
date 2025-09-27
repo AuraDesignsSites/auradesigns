@@ -26,7 +26,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img src={logo} alt="Aura Designs" className="h-10 w-auto" />
-            <span className="font-bold text-xl text-foreground">Aura Designs</span>
+            <span className="font-normal text-xl text-foreground">Aura Designs</span>
           </Link>
 
           {/* Desktop Navigation */}

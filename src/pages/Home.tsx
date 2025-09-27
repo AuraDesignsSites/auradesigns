@@ -77,12 +77,12 @@ const Home = () => {
             </div>
 
             <div className="relative">
-              <div className="w-[600px] h-[600px] mx-auto relative flex items-center justify-center">
+              <div className="w-full max-w-[500px] h-[400px] mx-auto relative flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-full blur-3xl animate-pulse"></div>
                 <img 
                   src={logo} 
                   alt="Aura Designs Logo" 
-                  className="relative z-10 w-[550px] h-[550px] object-contain"
+                  className="relative z-10 w-full max-w-[450px] h-auto object-contain animate-spin-slow"
                 />
               </div>
             </div>

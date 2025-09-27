@@ -22,7 +22,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <img src={logo} alt="Aura Designs" className="h-8 w-auto" />
-              <span className="font-bold text-lg">Aura Designs</span>
+              <span className="font-normal text-lg">Aura Designs</span>
             </div>
             <p className="text-muted-foreground max-w-xs">
               Creating high-performing websites for small businesses and professionals using modern development workflows.
