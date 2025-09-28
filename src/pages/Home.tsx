@@ -22,42 +22,42 @@ const Home = () => {
 
   const capabilities = [
     {
-      icon: <Code2 className="h-6 w-6" />,
+      icon: <Code2 className="h-8 w-8 text-white" />,
       title: "Modern Tech Stack",
       description: "React, Next.js, TypeScript"
     },
     {
-      icon: <Target className="h-6 w-6" />,
+      icon: <Target className="h-8 w-8 text-white" />,
       title: "Performance First",
       description: "Lightning fast loading"
     },
     {
-      icon: <Shield className="h-6 w-6" />,
+      icon: <Shield className="h-8 w-8 text-white" />,
       title: "Secure by Design",
       description: "Enterprise-grade security"
     },
     {
-      icon: <Globe className="h-6 w-6" />,
+      icon: <Globe className="h-8 w-8 text-white" />,
       title: "Mobile Responsive",
       description: "Perfect on all devices"
     },
     {
-      icon: <Zap className="h-6 w-6" />,
+      icon: <Zap className="h-8 w-8 text-white" />,
       title: "SEO Optimized",
       description: "Search engine ready"
     },
     {
-      icon: <Rocket className="h-6 w-6" />,
+      icon: <Rocket className="h-8 w-8 text-white" />,
       title: "Scalable Architecture",
       description: "Grows with your business"
     },
     {
-      icon: <Heart className="h-6 w-6" />,
+      icon: <Heart className="h-8 w-8 text-white" />,
       title: "User Experience",
       description: "Intuitive and engaging"
     },
     {
-      icon: <Star className="h-6 w-6" />,
+      icon: <Star className="h-8 w-8 text-white" />,
       title: "Quality Code",
       description: "Clean and maintainable"
     }
@@ -185,12 +185,12 @@ const Home = () => {
             <div className="flex animate-scroll space-x-6">
               {[...capabilities, ...capabilities].map((capability, index) => (
                 <div key={index} className="group flex-shrink-0">
-                  <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-soft hover:shadow-medium transition-all duration-300 group-hover:-translate-y-1 w-52 h-40 flex flex-col justify-center">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-xl mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-soft hover:shadow-medium transition-all duration-300 group-hover:-translate-y-1 w-56 h-52 flex flex-col">
+                    <div className="w-16 h-16 bg-gradient-primary rounded-2xl shadow-lg mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       {capability.icon}
                     </div>
-                    <div className="text-lg font-semibold text-foreground mb-2 text-center leading-tight">{capability.title}</div>
-                    <div className="text-sm text-muted-foreground text-center leading-relaxed">{capability.description}</div>
+                    <div className="text-lg font-semibold text-foreground mb-2 text-center leading-tight h-12 flex items-center justify-center">{capability.title}</div>
+                    <div className="text-sm text-muted-foreground text-center leading-relaxed h-16 flex items-center justify-center">{capability.description}</div>
                   </div>
                 </div>
               ))}
