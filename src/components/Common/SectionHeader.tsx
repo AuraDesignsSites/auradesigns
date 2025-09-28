@@ -17,7 +17,7 @@ const SectionHeader = ({ title, subtitle, description, centered = false }: Secti
         {title}
       </h2>
       {description && (
-        <p className="text-lg text-muted-foreground max-w-2xl">
+        <p className={`text-lg text-muted-foreground ${centered ? 'max-w-2xl mx-auto' : 'max-w-2xl'}`}>
           {description}
         </p>
       )}

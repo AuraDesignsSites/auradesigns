@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import logo from '@/assets/auralogo-transparentbg.png';
 
 const Footer = () => {
@@ -27,29 +27,36 @@ const Footer = () => {
             <p className="text-muted-foreground max-w-xs">
               Creating high-performing websites for small businesses and professionals using modern development workflows.
             </p>
-            <div className="flex items-center space-x-2 text-muted-foreground">
-              <Mail className="h-4 w-4" />
-              <a href="mailto:auradesigns.team@gmail.com" className="hover:text-primary transition-colors">
-                auradesigns.team@gmail.com
-              </a>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2 text-muted-foreground">
+                <Mail className="h-4 w-4" />
+                <a href="mailto:auradesigns.team@gmail.com" className="hover:text-primary transition-colors">
+                  auradesigns.team@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center space-x-2 text-muted-foreground">
+                <Phone className="h-4 w-4" />
+                <a href="tel:+1-555-123-4567" className="hover:text-primary transition-colors">
+                  (555) 123-4567
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <div className="grid grid-cols-2 gap-x-1 gap-y-2">
               {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact */}

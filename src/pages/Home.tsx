@@ -2,8 +2,24 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Target, Shield, Code2, Users, Rocket, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/auralogo-transparentbg.png';
+import { useState, useEffect } from 'react';
 
 const Home = () => {
+  const [currentSlogan, setCurrentSlogan] = useState(0);
+  const slogans = ['Modern', 'Fast', 'Secure'];
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlogan((prev) => {
+        const next = (prev + 1) % slogans.length;
+        console.log('Changing slogan to:', slogans[next]);
+        return next;
+      });
+    }, 3000); // Change every 3 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
+
   const trustedLogos = [
     "TechCorp", "InnovateLab", "GrowthCo", "StartupXYZ"
   ];
@@ -58,7 +74,7 @@ const Home = () => {
             <div className="fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 Design. Build. Launch
-                <span className="gradient-text"> — Fast.</span>
+                <span className="gradient-text"> — <span key={currentSlogan} className="inline-block opacity-100 transition-opacity duration-1000 ease-in-out">{slogans[currentSlogan]}</span>.</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 Aura Designs creates high-performing websites for small businesses and professionals using modern development workflows.

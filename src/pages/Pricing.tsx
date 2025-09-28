@@ -167,26 +167,45 @@ const Pricing = () => {
       </section>
 
       {/* FAQ */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="section-padding bg-gradient-subtle">
+        <div className="max-w-5xl mx-auto px-6">
           <SectionHeader 
             title="Frequently Asked Questions"
             description="Everything you need to know about our process, timelines, and what's included."
             centered
           />
           
-          <Accordion type="single" collapsible className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="card-soft border-none">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
+              <div key={index} className="group">
+                <Accordion type="multiple" collapsible>
+                  <AccordionItem value={`item-${index}`} className="border-none">
+                    <AccordionTrigger className="group-hover:bg-white/50 transition-all duration-300 rounded-xl p-6 text-left font-semibold hover:no-underline bg-white/30 backdrop-blur-sm border border-white/20 shadow-soft">
+                      <span className="text-foreground group-hover:text-primary transition-colors">
+                        {faq.question}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6 pt-2">
+                      <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 border border-white/20 shadow-soft">
+                        <p className="text-muted-foreground leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             ))}
-          </Accordion>
+          </div>
+          
+          <div className="text-center mt-12">
+            <div className="inline-flex items-center space-x-2 bg-white/50 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20 shadow-soft">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-muted-foreground">
+                Still have questions? We're here to help!
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 

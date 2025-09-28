@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Clock, CheckCircle, ArrowRight } from 'lucide-react';
+import { Mail, Clock, CheckCircle, ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -72,7 +72,7 @@ const Contact = () => {
       <section className="section-padding">
         <div className="max-w-4xl mx-auto px-6">
           <SectionHeader 
-            title="Let's Build Something Great Together"
+            title="Let's Create Something Amazing"
             description="Ready to transform your digital presence? Tell us about your project and we'll get back to you within 24 hours."
             centered
           />
@@ -104,6 +104,27 @@ const Contact = () => {
                       >
                         hello@auradesigns.studio
                       </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <Phone className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="font-medium">Call us directly</p>
+                      <a 
+                        href="tel:+1-555-123-4567" 
+                        className="text-primary hover:underline"
+                      >
+                        (555) 123-4567
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <Clock className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="font-medium">Business Hours</p>
+                      <p className="text-muted-foreground">Monday - Friday: 9:00 AM - 5:00 PM EST</p>
                     </div>
                   </div>
                 </div>
