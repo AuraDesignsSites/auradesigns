@@ -1,216 +1,132 @@
-import { useState } from 'react';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Rocket, Star, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import SectionHeader from '@/components/Common/SectionHeader';
 
 const Projects = () => {
-  const [filter, setFilter] = useState('All');
-
-  const filters = ['All', 'E-commerce', 'Portfolio', 'SaaS', 'Clinic', 'Trades', 'Coach'];
-
-  const projects = [
-    {
-      id: 1,
-      title: "Elite Fitness Studio",
-      category: "Coach",
-      tags: ["Health", "Booking", "E-commerce"],
-      image: "/api/placeholder/600/400",
-      description: "Modern fitness studio website with class booking system and membership management.",
-      problem: "Local fitness studio needed an online presence to compete with larger chains and streamline bookings.",
-      approach: "Created a conversion-focused site with integrated booking system and member portal.",
-      outcome: "300% increase in online bookings, 85% reduction in phone inquiries.",
-      metrics: {
-        conversions: "+300%",
-        lighthouse: "96",
-        lcp: "0.9s"
-      },
-      tech: ["Next.js", "Tailwind CSS", "Stripe", "Vercel"]
-    },
-    {
-      id: 2,
-      title: "Premier Dental Care",
-      category: "Clinic", 
-      tags: ["Healthcare", "Appointments", "Local SEO"],
-      image: "/api/placeholder/600/400",
-      description: "Professional dental practice website with appointment booking and patient resources.",
-      problem: "Outdated website wasn't converting visitors and appointment process was inefficient.",
-      approach: "Redesigned with patient journey in mind, streamlined appointment booking, local SEO optimization.",
-      outcome: "200% increase in appointment requests, #1 local search ranking.",
-      metrics: {
-        conversions: "+200%", 
-        lighthouse: "98",
-        lcp: "0.7s"
-      },
-      tech: ["Next.js", "Tailwind CSS", "Calendly", "Vercel"]
-    },
-    {
-      id: 3,
-      title: "Artisan Home Builder", 
-      category: "Trades",
-      tags: ["Construction", "Portfolio", "Lead Gen"],
-      image: "/api/placeholder/600/400",
-      description: "Custom home builder showcase with project portfolio and lead generation system.",
-      problem: "Needed to showcase high-end custom homes and capture qualified leads effectively.",
-      approach: "Built immersive portfolio experience with detailed project galleries and smart lead forms.",
-      outcome: "150% increase in qualified leads, 60% faster project inquiry process.",
-      metrics: {
-        conversions: "+150%",
-        lighthouse: "94", 
-        lcp: "1.1s"
-      },
-      tech: ["Next.js", "Tailwind CSS", "Sanity CMS", "Vercel"]
-    },
-    {
-      id: 4,
-      title: "TechStart Analytics",
-      category: "SaaS",
-      tags: ["B2B", "Dashboard", "Integrations"], 
-      image: "/api/placeholder/600/400",
-      description: "SaaS analytics platform with interactive dashboards and API integrations.",
-      problem: "Startup needed professional website to establish credibility with enterprise customers.",
-      approach: "Created sophisticated marketing site with interactive demos and clear value proposition.",
-      outcome: "400% increase in trial signups, 50% improvement in sales qualification rate.",
-      metrics: {
-        conversions: "+400%",
-        lighthouse: "95",
-        lcp: "1.0s" 
-      },
-      tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"]
-    },
-    {
-      id: 5,
-      title: "Creative Designer Portfolio",
-      category: "Portfolio",
-      tags: ["Creative", "Animation", "Showcase"],
-      image: "/api/placeholder/600/400", 
-      description: "Interactive portfolio for creative professional with smooth animations and case studies.",
-      problem: "Designer needed portfolio that reflected their creative skills and attracted premium clients.",
-      approach: "Designed immersive experience with subtle animations and detailed project breakdowns.",
-      outcome: "250% increase in client inquiries, 40% higher average project value.",
-      metrics: {
-        conversions: "+250%",
-        lighthouse: "93",
-        lcp: "1.2s"
-      },
-      tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"]
-    },
-    {
-      id: 6,
-      title: "Urban Fashion Store", 
-      category: "E-commerce",
-      tags: ["Retail", "Shopify", "Mobile-first"],
-      image: "/api/placeholder/600/400",
-      description: "Mobile-first e-commerce store for urban fashion brand with seamless checkout.",
-      problem: "Fashion startup needed e-commerce site that worked flawlessly on mobile devices.",
-      approach: "Mobile-first design with optimized product discovery and streamlined checkout process.",
-      outcome: "180% increase in mobile conversions, 65% improvement in checkout completion.",
-      metrics: {
-        conversions: "+180%",
-        lighthouse: "97", 
-        lcp: "0.8s"
-      },
-      tech: ["Shopify", "Liquid", "Tailwind CSS", "Shopify Plus"]
-    }
-  ];
-
-  const filteredProjects = filter === 'All' ? projects : projects.filter(p => p.category === filter);
-
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="section-padding">
-        <div className="max-w-4xl mx-auto px-6">
-          <SectionHeader 
-            title="Our Work"
-            description="Real projects, real results. See how we've helped businesses transform their digital presence."
-            centered
-          />
+      {/* Hero Section */}
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-indigo-900 to-purple-900">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          {/* Shooting Stars */}
+          <div className="shooting-star" style={{ top: '20%', left: '10%', animationDelay: '0s' }}></div>
+          <div className="shooting-star" style={{ top: '40%', left: '20%', animationDelay: '2s' }}></div>
+          <div className="shooting-star" style={{ top: '60%', left: '15%', animationDelay: '4s' }}></div>
+          <div className="shooting-star" style={{ top: '30%', left: '80%', animationDelay: '1s' }}></div>
+          <div className="shooting-star" style={{ top: '70%', left: '85%', animationDelay: '3s' }}></div>
+          <div className="shooting-star" style={{ top: '50%', left: '90%', animationDelay: '5s' }}></div>
+          
+          {/* Background Stars */}
+          <div className="bg-star" style={{ top: '10%', left: '5%' }}></div>
+          <div className="bg-star" style={{ top: '25%', left: '25%' }}></div>
+          <div className="bg-star" style={{ top: '15%', left: '45%' }}></div>
+          <div className="bg-star" style={{ top: '35%', left: '65%' }}></div>
+          <div className="bg-star" style={{ top: '20%', left: '85%' }}></div>
+          <div className="bg-star" style={{ top: '45%', left: '10%' }}></div>
+          <div className="bg-star" style={{ top: '65%', left: '30%' }}></div>
+          <div className="bg-star" style={{ top: '55%', left: '50%' }}></div>
+          <div className="bg-star" style={{ top: '75%', left: '70%' }}></div>
+          <div className="bg-star" style={{ top: '85%', left: '90%' }}></div>
+          
+          {/* Nebula Effects */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
-      </section>
 
-      {/* Filter Bar */}
-      <section className="pb-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {filters.map((filterItem) => (
-              <Button
-                key={filterItem}
-                variant={filter === filterItem ? "default" : "outline"}
-                onClick={() => setFilter(filterItem)}
-                className={filter === filterItem ? "bg-primary text-primary-foreground" : ""}
-              >
-                {filterItem}
-              </Button>
-            ))}
-          </div>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Main Title */}
+            <div className="mb-8">
+              <h1 className="text-6xl md:text-7xl font-bold mb-8 text-white leading-tight">
+                <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Projects
+                </span>
+              </h1>
+              <div className="flex items-center justify-center space-x-2 mb-6">
+                <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+                <span className="text-cyan-300 font-medium text-lg">
+                  Something amazing is coming soon
+                </span>
+              </div>
+            </div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <div key={project.id} className="card-soft group cursor-pointer hover:scale-105 transition-all duration-300">
-                <div className="aspect-video bg-gradient-subtle rounded-xl mb-4 flex items-center justify-center">
-                  <div className="text-4xl font-bold text-muted-foreground/30">{project.title.split(' ').map(w => w[0]).join('')}</div>
+            {/* Coming Soon Card */}
+            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl relative overflow-hidden max-w-2xl mx-auto mb-12">
+              {/* Glassmorphism Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
+              
+              <div className="relative z-10">
+                {/* Rocket Icon */}
+                <div className="flex justify-center mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
+                    <Rocket className="w-10 h-10 text-white" />
+                  </div>
                 </div>
                 
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {project.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
+                {/* Coming Soon Text */}
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                  Coming Soon
+                </h2>
+                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                  We're working on something spectacular. Our portfolio of amazing projects will be here soon, showcasing the incredible work we've done for our clients.
+                </p>
+                
+                {/* Features Preview */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Star className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-white font-semibold mb-2">Real Results</h3>
+                    <p className="text-slate-400 text-sm">See actual performance metrics and client success stories</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Sparkles className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-white font-semibold mb-2">Diverse Portfolio</h3>
+                    <p className="text-slate-400 text-sm">From e-commerce to SaaS, see our range of expertise</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <ArrowRight className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-white font-semibold mb-2">Case Studies</h3>
+                    <p className="text-slate-400 text-sm">Detailed breakdowns of our process and approach</p>
+                  </div>
                 </div>
                 
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{project.description}</p>
-                
-                <div className="grid grid-cols-3 gap-4 mb-4 text-center">
-                  <div>
-                    <div className="text-lg font-bold text-primary">{project.metrics.conversions}</div>
-                    <div className="text-xs text-muted-foreground">Conversions</div>
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-primary">{project.metrics.lighthouse}</div>
-                    <div className="text-xs text-muted-foreground">Lighthouse</div>
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-primary">{project.metrics.lcp}</div>
-                    <div className="text-xs text-muted-foreground">LCP</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1">
-                    {project.tech.slice(0, 2).map((tech, techIndex) => (
-                      <span key={techIndex} className="text-xs bg-muted px-2 py-1 rounded">
-                        {tech}
-                      </span>
-                    ))}
-                    {project.tech.length > 2 && (
-                      <span className="text-xs text-muted-foreground">+{project.tech.length - 2}</span>
-                    )}
-                  </div>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                {/* CTA Button */}
+                <div className="flex justify-center">
+                  <Button asChild className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 flex items-center space-x-2">
+                    <Link to="/contact">
+                      <span>Get Notified When Ready</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* CTA */}
-      <section className="section-padding bg-muted/30">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to join our success stories?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Let's discuss how we can create similar results for your business.
-          </p>
-          <Button asChild size="lg" className="btn-hero">
-            <a href="/contact">
-              Start Your Project
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-          </Button>
+            {/* Additional Info */}
+            <div className="text-center">
+              <p className="text-slate-400 text-lg mb-6">
+                In the meantime, check out our services or get in touch to discuss your project
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <Button asChild variant="outline" className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-6 py-3 rounded-xl">
+                  <Link to="/services">View Services</Link>
+                </Button>
+                <Button asChild variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400/10 px-6 py-3 rounded-xl">
+                  <Link to="/about">About Us</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
