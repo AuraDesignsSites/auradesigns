@@ -434,6 +434,31 @@
   animation: spin-slow-reverse 20s linear infinite;
 }
 
+/* Cool Text Animation */
+@keyframes text-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cool-text-animation {
+  background: linear-gradient(45deg, #06b6d4, #8b5cf6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-enter 0.6s ease-out;
+  display: inline-block;
+}
+
 /* Background Stars */
 .bg-star {
   position: absolute;
@@ -466,7 +491,7 @@
 .bg-star-19 { top: 72%; left: 85%; animation-delay: 1.9s; }
 .bg-star-20 { top: 92%; left: 72%; animation-delay: 2.4s; }
 
-/* Cursor Glow Effect */
+/* Cursor Glow Effect - Hero Section Only */
 .cursor-glow {
   position: relative;
   cursor: none;
@@ -474,31 +499,42 @@
 
 .cursor-glow::before {
   content: '';
-  position: fixed;
+  position: absolute;
   top: var(--mouse-y, 0);
   left: var(--mouse-x, 0);
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1000;
+  z-index: 1;
   transform: translate(-50%, -50%);
-  transition: all 0.1s ease;
+  transition: all 0.15s ease;
+  opacity: 0;
+  filter: blur(20px);
+}
+
+.cursor-glow:hover::before {
   opacity: 1;
 }
 
 .cursor-glow::after {
   content: '';
-  position: fixed;
+  position: absolute;
   top: var(--mouse-y, 0);
   left: var(--mouse-x, 0);
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.8) 0%, rgba(6, 182, 212, 0.4) 50%, transparent 100%);
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.6) 0%, rgba(139, 92, 246, 0.3) 50%, transparent 100%);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1001;
+  z-index: 2;
   transform: translate(-50%, -50%);
   transition: all 0.1s ease;
+  opacity: 0;
+  filter: blur(8px);
+}
+
+.cursor-glow:hover::after {
+  opacity: 1;
 }

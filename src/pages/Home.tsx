@@ -15,20 +15,37 @@ const Home = () => {
         console.log('Changing slogan to:', slogans[next]);
         return next;
       });
-    }, 3000); // Change every 3 seconds
+    }, 2000); // Change every 2 seconds
     
     return () => clearInterval(interval);
   }, []);
 
-  // Cursor glow effect
+  // Cursor glow effect - Hero section only
   useEffect(() => {
+    const heroSection = document.querySelector('.cursor-glow');
+    if (!heroSection) return;
+
     const handleMouseMove = (e: MouseEvent) => {
-      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
-      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      const rect = heroSection.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      heroSection.style.setProperty('--mouse-x', x + 'px');
+      heroSection.style.setProperty('--mouse-y', y + 'px');
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
+    const handleMouseLeave = () => {
+      heroSection.style.setProperty('--mouse-x', '-100px');
+      heroSection.style.setProperty('--mouse-y', '-100px');
+    };
+
+    heroSection.addEventListener('mousemove', handleMouseMove);
+    heroSection.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      heroSection.removeEventListener('mousemove', handleMouseMove);
+      heroSection.removeEventListener('mouseleave', handleMouseLeave);
+    };
   }, []);
 
   const capabilities = [
@@ -202,12 +219,12 @@ const Home = () => {
               <div className="mb-4">
                 <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 text-white text-sm font-medium backdrop-blur-sm">
                   <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
-                  Launching Digital Dreams
+                  Crafting Digital Excellence
                 </span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white">
                 Design. Build. Launch
-                <span className="gradient-text"> — <span key={currentSlogan} className="inline-block opacity-100 transition-opacity duration-1000 ease-in-out">{slogans[currentSlogan]}</span>.</span>
+                <span className="gradient-text"> — <span key={currentSlogan} className="cool-text-animation">{slogans[currentSlogan]}</span></span>
               </h1>
               <p className="text-xl text-white/90 mb-8 leading-relaxed">
                 Aura Designs creates high-performing websites for small businesses and professionals using modern development workflows.
@@ -219,8 +236,8 @@ const Home = () => {
                     <Rocket className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="btn-ghost border-cyan-500/30 text-white hover:bg-cyan-500/10 hover:border-cyan-400/50">
-                  <Link to="/projects">Explore Galaxy</Link>
+                <Button asChild variant="outline" className="btn-ghost border-cyan-400/70 text-white bg-cyan-500/20 hover:bg-cyan-500/30 hover:border-cyan-300/80">
+                  <Link to="/projects">Learn More</Link>
                 </Button>
               </div>
             </div>
