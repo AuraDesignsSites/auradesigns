@@ -20,6 +20,17 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Cursor glow effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const capabilities = [
     {
       icon: <Code2 className="h-8 w-8 text-white" />,
@@ -131,39 +142,118 @@ const Home = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-subtle">
-        <div className="max-w-7xl mx-auto px-6 py-24">
+      {/* Space-Themed Hero Section */}
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-black via-teal-900 to-purple-900 cursor-glow">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          {/* Shooting Stars */}
+          <div className="shooting-star shooting-star-1"></div>
+          <div className="shooting-star shooting-star-2"></div>
+          <div className="shooting-star shooting-star-3"></div>
+          <div className="shooting-star shooting-star-4"></div>
+          <div className="shooting-star shooting-star-5"></div>
+          
+          {/* Background Stars */}
+          <div className="bg-star bg-star-1"></div>
+          <div className="bg-star bg-star-2"></div>
+          <div className="bg-star bg-star-3"></div>
+          <div className="bg-star bg-star-4"></div>
+          <div className="bg-star bg-star-5"></div>
+          <div className="bg-star bg-star-6"></div>
+          <div className="bg-star bg-star-7"></div>
+          <div className="bg-star bg-star-8"></div>
+          <div className="bg-star bg-star-9"></div>
+          <div className="bg-star bg-star-10"></div>
+          <div className="bg-star bg-star-11"></div>
+          <div className="bg-star bg-star-12"></div>
+          <div className="bg-star bg-star-13"></div>
+          <div className="bg-star bg-star-14"></div>
+          <div className="bg-star bg-star-15"></div>
+          <div className="bg-star bg-star-16"></div>
+          <div className="bg-star bg-star-17"></div>
+          <div className="bg-star bg-star-18"></div>
+          <div className="bg-star bg-star-19"></div>
+          <div className="bg-star bg-star-20"></div>
+          
+          {/* Floating Particles */}
+          <div className="particle particle-1"></div>
+          <div className="particle particle-2"></div>
+          <div className="particle particle-3"></div>
+          <div className="particle particle-4"></div>
+          <div className="particle particle-5"></div>
+          <div className="particle particle-6"></div>
+          <div className="particle particle-7"></div>
+          <div className="particle particle-8"></div>
+          
+          {/* Nebula Effect */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-teal-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          
+          {/* Purple Splashes */}
+          <div className="absolute top-1/3 left-1/2 w-72 h-72 bg-gradient-to-r from-purple-500/15 to-pink-500/15 rounded-full blur-3xl animate-pulse delay-500"></div>
+          <div className="absolute bottom-1/3 left-1/6 w-56 h-56 bg-gradient-to-r from-violet-500/12 to-purple-500/12 rounded-full blur-3xl animate-pulse delay-1500"></div>
+          <div className="absolute top-2/3 right-1/6 w-48 h-48 bg-gradient-to-r from-purple-500/18 to-indigo-500/18 rounded-full blur-3xl animate-pulse delay-2500"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="fade-in">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              <div className="mb-4">
+                <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 text-white text-sm font-medium backdrop-blur-sm">
+                  <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
+                  Launching Digital Dreams
+                </span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white">
                 Design. Build. Launch
                 <span className="gradient-text"> — <span key={currentSlogan} className="inline-block opacity-100 transition-opacity duration-1000 ease-in-out">{slogans[currentSlogan]}</span>.</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-xl text-white/90 mb-8 leading-relaxed">
                 Aura Designs creates high-performing websites for small businesses and professionals using modern development workflows.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild className="btn-hero">
+                <Button asChild className="btn-hero bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-600 hover:to-violet-700 border-0 text-white shadow-lg hover:shadow-xl transition-all duration-300">
                   <Link to="/contact">
-                    Get Started
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    Launch Your Project
+                    <Rocket className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="btn-ghost">
-                  <Link to="/projects">See Projects</Link>
+                <Button asChild variant="outline" className="btn-ghost border-cyan-500/30 text-white hover:bg-cyan-500/10 hover:border-cyan-400/50">
+                  <Link to="/projects">Explore Galaxy</Link>
                 </Button>
               </div>
             </div>
 
             <div className="relative">
               <div className="w-full max-w-[500px] h-[400px] mx-auto relative flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-full blur-3xl animate-pulse"></div>
-                <img 
-                  src={logo} 
-                  alt="Aura Designs Logo" 
-                  className="relative z-10 w-full max-w-[450px] h-auto object-contain animate-spin-slow"
-                />
+                {/* Orbital Rings */}
+                <div className="absolute inset-0 border border-teal-500/20 rounded-full animate-spin-slow"></div>
+                <div className="absolute inset-4 border border-purple-500/20 rounded-full animate-spin-slow-reverse"></div>
+                <div className="absolute inset-8 border border-cyan-500/20 rounded-full animate-spin-slow"></div>
+                
+                {/* Central Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-500/30 to-cyan-500/30 rounded-full blur-2xl animate-pulse"></div>
+                <div className="absolute inset-4 bg-gradient-to-r from-purple-500/20 to-violet-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+                
+                {/* Logo with Space Effects */}
+                <div className="relative z-10 group">
+                  <img 
+                    src={logo} 
+                    alt="Aura Designs Logo" 
+                    className="w-full max-w-[450px] h-auto object-contain animate-float"
+                  />
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500/0 to-purple-500/0 rounded-full blur-xl group-hover:from-teal-500/20 group-hover:to-purple-500/20 transition-all duration-500"></div>
+                </div>
+                
+                {/* Floating Stars around logo */}
+                <div className="absolute top-8 left-8 w-2 h-2 bg-white rounded-full animate-twinkle"></div>
+                <div className="absolute top-16 right-12 w-1 h-1 bg-cyan-300 rounded-full animate-twinkle delay-500"></div>
+                <div className="absolute bottom-20 left-16 w-1.5 h-1.5 bg-teal-300 rounded-full animate-twinkle delay-1000"></div>
+                <div className="absolute bottom-12 right-8 w-1 h-1 bg-purple-300 rounded-full animate-twinkle delay-1500"></div>
+                <div className="absolute top-1/2 left-4 w-1 h-1 bg-yellow-300 rounded-full animate-twinkle delay-2000"></div>
+                <div className="absolute top-1/3 right-4 w-1.5 h-1.5 bg-violet-300 rounded-full animate-twinkle delay-2500"></div>
               </div>
             </div>
           </div>
@@ -192,8 +282,8 @@ const Home = () => {
                     <div className="text-lg font-semibold text-foreground mb-2 text-center leading-tight h-12 flex items-center justify-center">{capability.title}</div>
                     <div className="text-sm text-muted-foreground text-center leading-relaxed h-16 flex items-center justify-center">{capability.description}</div>
                   </div>
-                </div>
-              ))}
+              </div>
+            ))}
             </div>
           </div>
         </div>
@@ -302,8 +392,8 @@ const Home = () => {
                     {/* Decorative Elements */}
                     <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
                   </div>
-                </div>
-              ))}
+              </div>
+            ))}
             </div>
           </div>
         </div>
@@ -353,17 +443,17 @@ const Home = () => {
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Let's Build Something <span className="text-accent">Amazing</span>
-            </h2>
+          </h2>
             <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
               Your digital transformation starts with a single conversation. Let's create a website that not only looks incredible but drives real business growth.
-            </p>
+          </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-2xl font-semibold">
-                <Link to="/contact">
+          <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-2xl font-semibold">
+            <Link to="/contact">
                   Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
               <Button asChild size="lg" className="bg-white/20 text-white hover:bg-white/30 border border-white/30 px-8 py-4 rounded-2xl font-semibold">
                 <Link to="/projects">View Our Work</Link>
               </Button>
