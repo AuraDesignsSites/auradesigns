@@ -7,7 +7,9 @@ import saturnImage from '@/assets/saturn.png';
 
 const About = () => {
   const [visibleTimelineItems, setVisibleTimelineItems] = useState<number[]>([]);
+  const [saturnPosition, setSaturnPosition] = useState({ scale: 1, x: 0, y: 0, opacity: 0.2 });
   const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const heroSectionRef = useRef<HTMLDivElement>(null);
 
 
   const team = [
@@ -82,12 +84,70 @@ const About = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Saturn scroll animation
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroSectionRef.current) return;
+
+      const section = heroSectionRef.current;
+      const sectionRect = section.getBoundingClientRect();
+      const sectionTop = sectionRect.top;
+      const sectionHeight = sectionRect.height;
+      const windowHeight = window.innerHeight;
+      
+      // Start animation when section is 80% visible (earlier trigger)
+      const triggerPoint = windowHeight * 0.8; // Start when section top is at 80% of viewport height
+      
+      if (sectionTop > triggerPoint) {
+        // Reset to initial position when section is still mostly visible
+        setSaturnPosition({ scale: 1, x: 0, y: 0, opacity: 0.2 });
+        return;
+      }
+      
+      // Calculate scroll progress from trigger point to completely past section
+      const scrollFromTrigger = Math.max(0, triggerPoint - sectionTop);
+      const maxScroll = triggerPoint + sectionHeight; // Total scroll distance
+      const scrollProgress = Math.min(1, scrollFromTrigger / maxScroll);
+      
+      let newPosition = { scale: 1, x: 0, y: 0, opacity: 0.2 };
+      
+      if (scrollProgress < 0.3) {
+        // Phase 1: Zoom in (starts earlier)
+        const phaseProgress = scrollProgress / 0.3;
+        newPosition.scale = 1 + (1.5 * phaseProgress); // Scale from 1 to 2.5
+        newPosition.x = 0;
+        newPosition.y = 0;
+        newPosition.opacity = 0.2 + (0.3 * phaseProgress); // Increase opacity
+      } else {
+        // Phase 2: Move left and down, then fade out
+        const phaseProgress = (scrollProgress - 0.3) / 0.7;
+        newPosition.scale = 2.5; // Keep zoomed in
+        newPosition.x = -300 * phaseProgress; // Move left
+        newPosition.y = 200 * phaseProgress; // Move down
+        newPosition.opacity = 0.5 - (0.5 * phaseProgress); // Fade out
+      }
+      
+      setSaturnPosition(newPosition);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Space-Themed Hero Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-indigo-900 to-purple-900">
+      <section ref={heroSectionRef} className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-indigo-900 to-purple-900">
         {/* Saturn in top right */}
-        <div className="absolute top-8 right-8 w-48 h-48 opacity-20">
+        <div 
+          className="absolute top-8 right-8 w-48 h-48 transition-all duration-300 ease-out"
+          style={{
+            transform: `scale(${saturnPosition.scale}) translate(${saturnPosition.x}px, ${saturnPosition.y}px)`,
+            opacity: saturnPosition.opacity
+          }}
+        >
           <img 
             src={saturnImage} 
             alt="Saturn"
@@ -102,6 +162,9 @@ const About = () => {
           <div className="shooting-star shooting-star-3"></div>
           <div className="shooting-star shooting-star-4"></div>
           <div className="shooting-star shooting-star-5"></div>
+          <div className="shooting-star shooting-star-6"></div>
+          <div className="shooting-star shooting-star-7"></div>
+          <div className="shooting-star shooting-star-8"></div>
           
           {/* Background Stars */}
           <div className="bg-star bg-star-1"></div>
@@ -116,6 +179,24 @@ const About = () => {
           <div className="bg-star bg-star-10"></div>
           <div className="bg-star bg-star-11"></div>
           <div className="bg-star bg-star-12"></div>
+          <div className="bg-star bg-star-13"></div>
+          <div className="bg-star bg-star-14"></div>
+          <div className="bg-star bg-star-15"></div>
+          <div className="bg-star bg-star-16"></div>
+          <div className="bg-star bg-star-17"></div>
+          <div className="bg-star bg-star-18"></div>
+          <div className="bg-star bg-star-19"></div>
+          <div className="bg-star bg-star-20"></div>
+          <div className="bg-star bg-star-21"></div>
+          <div className="bg-star bg-star-22"></div>
+          <div className="bg-star bg-star-23"></div>
+          <div className="bg-star bg-star-24"></div>
+          <div className="bg-star bg-star-25"></div>
+          <div className="bg-star bg-star-26"></div>
+          <div className="bg-star bg-star-27"></div>
+          <div className="bg-star bg-star-28"></div>
+          <div className="bg-star bg-star-29"></div>
+          <div className="bg-star bg-star-30"></div>
           
           {/* Nebula Effects */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -144,7 +225,7 @@ const About = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" className="border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
+              <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
                 <Link to="/projects">See Our Work</Link>
               </Button>
             </div>
