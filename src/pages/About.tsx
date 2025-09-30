@@ -3,76 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
+import saturnImage from '@/assets/saturn.png';
 
 const About = () => {
-  const [animatedStats, setAnimatedStats] = useState({
-    projects: 0,
-    satisfaction: 0,
-    delivery: 0,
-    response: 0
-  });
-  const [isVisible, setIsVisible] = useState(false);
-  const statsRef = useRef<HTMLDivElement>(null);
+  const [visibleTimelineItems, setVisibleTimelineItems] = useState<number[]>([]);
+  const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          animateStats();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
-    return () => {
-      if (statsRef.current) {
-        observer.unobserve(statsRef.current);
-      }
-    };
-  }, [isVisible]);
-
-  const animateStats = () => {
-    const targets = {
-      projects: 50,
-      satisfaction: 100,
-      delivery: 98,
-      response: 24
-    };
-
-    const duration = 2000;
-    const steps = 60;
-    const stepDuration = duration / steps;
-
-    let step = 0;
-    const timer = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      
-      setAnimatedStats({
-        projects: Math.floor(targets.projects * progress),
-        satisfaction: Math.floor(targets.satisfaction * progress),
-        delivery: Math.floor(targets.delivery * progress),
-        response: Math.floor(targets.response * progress)
-      });
-
-      if (step >= steps) {
-        clearInterval(timer);
-        setAnimatedStats(targets);
-      }
-    }, stepDuration);
-  };
-
-  const stats = [
-    { number: animatedStats.projects, label: "Projects Delivered", icon: <Rocket className="h-6 w-6" />, suffix: "+" },
-    { number: animatedStats.satisfaction, label: "Client Satisfaction", icon: <Heart className="h-6 w-6" />, suffix: "%" },
-    { number: animatedStats.delivery, label: "On-Time Delivery", icon: <Target className="h-6 w-6" />, suffix: "%" },
-    { number: animatedStats.response, label: "Response Time", icon: <Zap className="h-6 w-6" />, suffix: "h" }
-  ];
 
   const team = [
     {
@@ -119,10 +55,45 @@ const About = () => {
     }
   ];
 
+  // Timeline animation effect
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = parseInt(entry.target.getAttribute('data-timeline-index') || '0');
+          if (entry.isIntersecting) {
+            setVisibleTimelineItems(prev => 
+              prev.includes(index) ? prev : [...prev, index]
+            );
+          } else {
+            setVisibleTimelineItems(prev => 
+              prev.filter(item => item !== index)
+            );
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    timelineRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Space-Themed Hero Section */}
       <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-indigo-900 to-purple-900">
+        {/* Saturn in top right */}
+        <div className="absolute top-8 right-8 w-48 h-48 opacity-20">
+          <img 
+            src={saturnImage} 
+            alt="Saturn"
+            className="w-full h-full object-contain"
+          />
+        </div>
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -179,27 +150,6 @@ const About = () => {
             </div>
           </div>
           
-          {/* Animated Stats Grid */}
-          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl relative overflow-hidden">
-                  {/* Glassmorphism Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white shadow-lg">
-                      {stat.icon}
-                    </div>
-                    <div className="text-4xl font-bold text-white mb-3">
-                      {stat.number}{stat.suffix}
-                    </div>
-                    <div className="text-lg font-semibold text-cyan-300">{stat.label}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -275,8 +225,8 @@ const About = () => {
                     {/* Decorative Elements */}
                     <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
                   </div>
-                </div>
-              ))}
+                  </div>
+                ))}
             </div>
             
             {/* Central Connecting Element with Dividers */}
@@ -333,7 +283,7 @@ const About = () => {
                       {/* Content */}
                       <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
                       <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
-                    </div>
+                  </div>
                     
                     {/* Decorative Elements */}
                     <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
@@ -428,99 +378,77 @@ const About = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Animated Vertical Timeline */}
+          <div className="max-w-2xl mx-auto">
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-teal-500"></div>
+              
+              {/* Timeline Items */}
+              <div className="space-y-12">
             {process.map((phase, index) => (
-              <div key={index} className="group">
-                <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 h-full flex flex-col relative overflow-hidden">
-                  {/* Glassmorphism Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
-                  
-                  {/* Glow Effect on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  <div className="relative z-10 flex flex-col h-full">
-                    <div className="flex items-center space-x-4 mb-6 flex-shrink-0">
-                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-500 shadow-lg">
-                        {index + 1}
-                      </div>
-                      <h3 className="text-2xl font-bold text-white">{phase.phase}</h3>
+                  <div 
+                    key={index} 
+                    ref={(el) => (timelineRefs.current[index] = el)}
+                    data-timeline-index={index}
+                    className={`relative group transition-all duration-1000 ${
+                      visibleTimelineItems.includes(index) 
+                        ? 'opacity-100 translate-x-0' 
+                        : 'opacity-0 translate-x-8'
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 200}ms`
+                    }}
+                  >
+                    {/* Timeline Node */}
+                    <div className="absolute left-6 w-4 h-4 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full border-4 border-slate-900 shadow-lg z-10 group-hover:scale-125 transition-transform duration-300">
+                      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full animate-pulse"></div>
                     </div>
-                    <ul className="space-y-3 flex-grow">
-                      {phase.details.map((detail, detailIndex) => (
-                        <li key={detailIndex} className="flex items-start space-x-3 text-slate-300">
-                          <CheckCircle className="h-5 w-5 text-cyan-400 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm leading-relaxed">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    
+                    {/* Content Card */}
+                    <div className="ml-16 bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 relative overflow-hidden">
+                      {/* Glassmorphism Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
+                      
+                      {/* Glow Effect on Hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      <div className="relative z-10">
+                        {/* Phase Header */}
+                        <div className="flex items-center space-x-4 mb-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-500 shadow-lg">
+                    {index + 1}
                   </div>
+                          <h3 className="text-2xl font-bold text-white">{phase.phase}</h3>
                 </div>
+                        
+                        {/* Phase Details */}
+                        <ul className="space-y-3">
+                  {phase.details.map((detail, detailIndex) => (
+                            <li key={detailIndex} className="flex items-start space-x-3 text-slate-300">
+                              <CheckCircle className="h-5 w-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-sm leading-relaxed">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+                      </div>
+                      
+                      {/* Decorative Elements */}
+                      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    </div>
+                    
+                    {/* Connecting Arrow (except for last item) */}
+                    {index < process.length - 1 && (
+                      <div className="absolute left-7 top-20 w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-cyan-500/50"></div>
+                    )}
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA - Space Theme */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-purple-900 to-slate-900">
-        {/* Space Background Elements */}
-        <div className="absolute inset-0">
-          {/* Shooting Stars */}
-          <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-twinkle"></div>
-          <div className="absolute top-40 right-32 w-1 h-1 bg-purple-400 rounded-full animate-twinkle delay-1000"></div>
-          <div className="absolute top-60 left-1/3 w-1 h-1 bg-teal-400 rounded-full animate-twinkle delay-2000"></div>
-          <div className="absolute top-32 right-1/4 w-1 h-1 bg-violet-400 rounded-full animate-twinkle delay-500"></div>
-          
-          {/* Nebula Effects */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-        
-        <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl relative overflow-hidden">
-            {/* Glassmorphism Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
-            
-            <div className="relative z-10">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-                <Rocket className="h-5 w-5 text-cyan-400 animate-pulse" />
-                <span className="text-sm font-medium text-cyan-300">Ready to Launch?</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
-                Ready to Start Your <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Journey?</span>
-              </h2>
-              <p className="text-xl text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-                Let's transform your digital presence together. Every great website starts with a conversation.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-6 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
-                  <Link to="/contact">
-                    Start Your Project
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" className="border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
-                  <Link to="/projects">View Our Work</Link>
-                </Button>
-              </div>
-              <div className="mt-10 flex justify-center items-center space-x-8 text-slate-400">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">Free Consultation</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">24/7 Support</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">Money-Back Guarantee</span>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 };

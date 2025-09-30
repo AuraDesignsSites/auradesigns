@@ -6,6 +6,7 @@ import logo from '@/assets/auralogo-transparentbg.png';
 import tempWebImage from '@/assets/temp-web.png';
 import realEstateImage from '@/assets/realestate-webmock.png';
 import moonImage from '@/assets/moon.png';
+import shroomsImage from '@/assets/shrooms.png';
 
 const Services = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
@@ -252,7 +253,7 @@ const Services = () => {
                       }`}
                     >
                       <img 
-                        src={index === 0 ? realEstateImage : tempWebImage} 
+                        src={index === 0 ? realEstateImage : index === 1 ? shroomsImage : tempWebImage} 
                         alt={service.title}
                         className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"
                       />
