@@ -9,7 +9,7 @@ const Home = () => {
   const slogans = ['Modern', 'Fast', 'Secure'];
   const [animatedNumbers, setAnimatedNumbers] = useState({
     conversion: 0,
-    weeks: 0,
+    weeks: "1-2",
     satisfaction: 0,
     mobile: 0
   });
@@ -56,7 +56,7 @@ const Home = () => {
   const animateNumbers = () => {
     const targets = {
       conversion: 40,
-      weeks: 2,
+      weeks: "1-2", // Keep this static
       satisfaction: 98,
       mobile: 100
     };
@@ -72,7 +72,7 @@ const Home = () => {
       
       setAnimatedNumbers({
         conversion: Math.floor(targets.conversion * progress),
-        weeks: Math.floor(targets.weeks * progress),
+        weeks: "1-2", // Always keep this static
         satisfaction: Math.floor(targets.satisfaction * progress),
         mobile: Math.floor(targets.mobile * progress)
       });
@@ -502,8 +502,8 @@ const Home = () => {
                     {/* Decorative Elements */}
                     <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
                   </div>
-                </div>
-              ))}
+              </div>
+            ))}
             </div>
           </div>
         </div>
@@ -548,19 +548,16 @@ const Home = () => {
               else if (index === 3) displayNumber = `${animatedNumbers.mobile}%`;
               
               return (
-                <div key={index} className="group text-center h-full">
-                  <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 h-full flex flex-col relative overflow-hidden group-hover:-translate-y-2">
+                <div key={index} className="text-center h-full">
+                  <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl h-full flex flex-col relative overflow-hidden">
                     {/* Glassmorphism Effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
                     
-                    {/* Glow Effect on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
                     <div className="relative z-10">
-                      <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 flex-shrink-0 shadow-lg">
+                      <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white flex-shrink-0 shadow-lg">
                         {metric.icon}
                       </div>
-                      <div className="text-5xl font-bold text-white mb-3 flex-shrink-0 animate-pulse">
+                      <div className="text-5xl font-bold text-white mb-3 flex-shrink-0">
                         {displayNumber}
                       </div>
                       <div className="text-lg font-semibold text-cyan-300 mb-4 flex-shrink-0">{metric.label}</div>
@@ -601,18 +598,18 @@ const Home = () => {
               </div>
               <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
                 Let's Build Something <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Amazing</span>
-              </h2>
+          </h2>
               <p className="text-xl text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
                 Your digital transformation starts with a single conversation. Let's create a website that not only looks incredible but drives real business growth.
-              </p>
+          </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-6 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
-                  <Link to="/contact">
+            <Link to="/contact">
                     Start Your Project
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" className="border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+                <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm hover:bg-cyan-500/10 hover:border-cyan-400">
                   <Link to="/projects">View Our Work</Link>
                 </Button>
               </div>

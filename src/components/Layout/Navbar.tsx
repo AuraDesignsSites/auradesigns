@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,7 +6,17 @@ import logo from '@/assets/auralogo-transparentbg.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 90);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -26,7 +36,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={logo} alt="Aura Designs" className="h-12 w-auto" />
-            <span className="font-normal text-xl text-foreground">Aura Designs</span>
+            <span className={`font-normal text-xl transition-colors ${isScrolled ? 'text-white' : 'text-foreground'}`}>Aura Designs</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -36,7 +46,7 @@ const Navbar = () => {
                 key={link.href}
                 to={link.href}
                 className={`font-medium transition-colors hover:text-primary ${
-                  isActive(link.href) ? 'text-primary' : 'text-muted-foreground'
+                  isActive(link.href) ? 'text-primary' : isScrolled ? 'text-white' : 'text-muted-foreground'
                 }`}
               >
                 {link.label}
@@ -71,7 +81,7 @@ const Navbar = () => {
                   key={link.href}
                   to={link.href}
                   className={`font-medium transition-colors hover:text-primary ${
-                    isActive(link.href) ? 'text-primary' : 'text-muted-foreground'
+                    isActive(link.href) ? 'text-primary' : isScrolled ? 'text-white' : 'text-muted-foreground'
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
