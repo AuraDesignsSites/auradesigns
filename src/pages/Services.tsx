@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { useState, useEffect, useRef } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
 import tempWebImage from '@/assets/temp-web.png';
+import realEstateImage from '@/assets/realestate-webmock.png';
+import moonImage from '@/assets/moon.png';
 
 const Services = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
@@ -193,6 +195,7 @@ const Services = () => {
           <div className="absolute top-48 left-1/3 w-1 h-1 bg-teal-300 rounded-full animate-twinkle delay-2000"></div>
           <div className="absolute top-24 right-1/3 w-1 h-1 bg-violet-300 rounded-full animate-twinkle delay-500"></div>
           
+          
           {/* Nebula Effects */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -204,8 +207,18 @@ const Services = () => {
               <Layers className="h-5 w-5 text-cyan-400 animate-pulse" />
               <span className="text-sm font-medium text-cyan-300">Our Services</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
-              Complete <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Digital Solutions</span>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white relative">
+              Complete <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent relative">
+                Digital Solutions
+                {/* Moon behind Solutions */}
+                <div className="absolute -top-8 -right-8 w-32 h-32 opacity-15 animate-levitate">
+                  <img 
+                    src={moonImage} 
+                    alt="Moon"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </span>
             </h2>
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
               From concept to launch, we deliver comprehensive web solutions that transform your business and delight your customers.
@@ -239,7 +252,7 @@ const Services = () => {
                       }`}
                     >
                       <img 
-                        src={tempWebImage} 
+                        src={index === 0 ? realEstateImage : tempWebImage} 
                         alt={service.title}
                         className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"
                       />

@@ -763,6 +763,28 @@
   }
 }
 
+@keyframes levitate {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    transform: translateX(10px) translateY(-10px);
+  }
+  50% {
+    transform: translateX(0px) translateY(-15px);
+  }
+  75% {
+    transform: translateX(-10px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+.animate-levitate {
+  animation: levitate 4s ease-in-out infinite;
+}
+
 /* Cursor Glow Effect - Hero Section Only */
 .cursor-glow {
   position: relative;
