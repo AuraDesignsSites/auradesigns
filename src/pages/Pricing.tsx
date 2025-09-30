@@ -1,72 +1,19 @@
 import { Link } from 'react-router-dom';
-import { Check, ArrowRight, Star, Sparkles, Rocket, Zap, Target, Heart, Clock, Award, TrendingUp, Shield, Globe, Users } from 'lucide-react';
+import { Check, ArrowRight, Star, Award, Globe, Plus, Minus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { useState, useEffect, useRef } from 'react';
-import logo from '@/assets/auralogo-transparentbg.png';
+import { useState } from 'react';
 
 const Pricing = () => {
-  const [animatedStats, setAnimatedStats] = useState({
-    projects: 0,
-    satisfaction: 0,
-    delivery: 0,
-    support: 0
-  });
-  const [isVisible, setIsVisible] = useState(false);
-  const statsRef = useRef<HTMLDivElement>(null);
+  const [openItems, setOpenItems] = useState<string[]>([]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          animateStats();
-        }
-      },
-      { threshold: 0.3 }
+  const toggleItem = (value: string) => {
+    setOpenItems(prev => 
+      prev.includes(value) 
+        ? prev.filter(item => item !== value)
+        : [...prev, value]
     );
-
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
-    return () => {
-      if (statsRef.current) {
-        observer.unobserve(statsRef.current);
-      }
-    };
-  }, [isVisible]);
-
-  const animateStats = () => {
-    const targets = {
-      projects: 50,
-      satisfaction: 100,
-      delivery: 98,
-      support: 24
-    };
-
-    const duration = 2000;
-    const steps = 60;
-    const stepDuration = duration / steps;
-
-    let step = 0;
-    const timer = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      
-      setAnimatedStats({
-        projects: Math.floor(targets.projects * progress),
-        satisfaction: Math.floor(targets.satisfaction * progress),
-        delivery: Math.floor(targets.delivery * progress),
-        support: Math.floor(targets.support * progress)
-      });
-
-      if (step >= steps) {
-        clearInterval(timer);
-        setAnimatedStats(targets);
-      }
-    }, stepDuration);
   };
 
   const pricingPlans = [
@@ -163,90 +110,6 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Space-Themed Hero Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-indigo-900 to-purple-900">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          {/* Shooting Stars */}
-          <div className="shooting-star shooting-star-1"></div>
-          <div className="shooting-star shooting-star-2"></div>
-          <div className="shooting-star shooting-star-3"></div>
-          <div className="shooting-star shooting-star-4"></div>
-          <div className="shooting-star shooting-star-5"></div>
-          
-          {/* Background Stars */}
-          <div className="bg-star bg-star-1"></div>
-          <div className="bg-star bg-star-2"></div>
-          <div className="bg-star bg-star-3"></div>
-          <div className="bg-star bg-star-4"></div>
-          <div className="bg-star bg-star-5"></div>
-          <div className="bg-star bg-star-6"></div>
-          <div className="bg-star bg-star-7"></div>
-          <div className="bg-star bg-star-8"></div>
-          <div className="bg-star bg-star-9"></div>
-          <div className="bg-star bg-star-10"></div>
-          <div className="bg-star bg-star-11"></div>
-          <div className="bg-star bg-star-12"></div>
-          
-          {/* Nebula Effects */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-              <Sparkles className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">Simple, Transparent Pricing</span>
-            </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-8 text-white leading-tight">
-              Clear, One-Time Build Pricing
-            </h1>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12">
-              No hidden fees, no surprises. Choose the plan that fits your needs and get started today.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-6 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
-                <Link to="/contact">
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" className="border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
-                <Link to="/projects">View Our Work</Link>
-              </Button>
-            </div>
-          </div>
-          
-          {/* Animated Stats Grid */}
-          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: animatedStats.projects, label: "Projects Delivered", icon: <Rocket className="h-6 w-6" />, suffix: "+" },
-              { number: animatedStats.satisfaction, label: "Client Satisfaction", icon: <Heart className="h-6 w-6" />, suffix: "%" },
-              { number: animatedStats.delivery, label: "On-Time Delivery", icon: <Target className="h-6 w-6" />, suffix: "%" },
-              { number: animatedStats.support, label: "Response Time", icon: <Zap className="h-6 w-6" />, suffix: "h" }
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl relative overflow-hidden">
-                  {/* Glassmorphism Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white shadow-lg">
-                      {stat.icon}
-                    </div>
-                    <div className="text-4xl font-bold text-white mb-3">
-                      {stat.number}{stat.suffix}
-                    </div>
-                    <div className="text-lg font-semibold text-cyan-300">{stat.label}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Pricing Cards - Space Theme */}
       <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -267,7 +130,7 @@ const Pricing = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
               <Award className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">Choose Your Plan</span>
+              <span className="text-sm font-medium text-cyan-300">Simple, Transparent Pricing</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
               Pricing <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Plans</span>
@@ -289,7 +152,7 @@ const Pricing = () => {
                   </div>
                 )}
                 
-                <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 h-full flex flex-col relative overflow-hidden group-hover:-translate-y-2">
+                <div className={`bg-white/10 backdrop-blur-md rounded-3xl p-8 border shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 h-full flex flex-col relative overflow-hidden group-hover:-translate-y-2 ${plan.popular ? 'border-2 border-cyan-400 shadow-cyan-500/30' : 'border border-white/20'}`}>
                   {/* Glassmorphism Effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
                   
@@ -318,7 +181,7 @@ const Pricing = () => {
                         asChild 
                         className={`w-full ${plan.popular 
                           ? 'bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105' 
-                          : 'border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 px-8 py-4 rounded-2xl font-semibold backdrop-blur-sm'
+                          : 'bg-gradient-to-r from-slate-600/40 to-slate-500/40 hover:from-slate-600/60 hover:to-slate-500/60 text-slate-200 border border-slate-400/40 hover:border-slate-300 px-8 py-4 rounded-2xl font-semibold backdrop-blur-sm transition-all duration-300 hover:shadow-lg'
                         }`}
                       >
                         <Link to="/contact">
@@ -382,27 +245,40 @@ const Pricing = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {faqs.map((faq, index) => (
-              <div key={index} className="group">
-                <Accordion type="multiple" collapsible>
-                  <AccordionItem value={`item-${index}`} className="border-none">
-                    <AccordionTrigger className="group-hover:bg-white/10 transition-all duration-300 rounded-2xl p-6 text-left font-semibold hover:no-underline bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-cyan-500/20">
-                      <span className="text-white group-hover:text-cyan-300 transition-colors">
+          <div className="space-y-4">
+            {faqs.map((faq, index) => {
+              const itemValue = `item-${index}`;
+              const isOpen = openItems.includes(itemValue);
+              
+              return (
+                <div key={index} className="group">
+                  <div className="group-hover:bg-white/10 transition-all duration-300 rounded-2xl p-4 bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-cyan-500/20">
+                    <button
+                      onClick={() => toggleItem(itemValue)}
+                      className="w-full flex items-center justify-between text-left"
+                    >
+                      <span className="text-white group-hover:text-cyan-300 transition-colors text-sm font-medium">
                         {faq.question}
                       </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="px-6 pb-6 pt-2">
-                      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl">
-                        <p className="text-slate-300 leading-relaxed">
+                      <div className="flex-shrink-0 ml-4">
+                        {isOpen ? (
+                          <Minus className="h-4 w-4 text-cyan-400" />
+                        ) : (
+                          <Plus className="h-4 w-4 text-cyan-400" />
+                        )}
+                      </div>
+                    </button>
+                    {isOpen && (
+                      <div className="mt-4 pt-4 border-t border-white/20">
+                        <p className="text-slate-300 leading-relaxed text-sm">
                           {faq.answer}
                         </p>
                       </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-            ))}
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
           
           <div className="text-center mt-16">
@@ -411,84 +287,26 @@ const Pricing = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
               
               <div className="relative z-10">
-                <div className="inline-flex items-center space-x-2 mb-4">
+                <div className="flex items-center justify-center space-x-2 mb-6">
                   <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                   <span className="text-cyan-300 font-medium">
                     Still have questions? We're here to help!
                   </span>
                 </div>
-                <Button asChild className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
-                  <Link to="/contact">
-                    Contact Us
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
+                <div className="flex justify-center">
+                  <Button asChild className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
+                    <Link to="/contact">
+                      Contact Us
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA - Space Theme */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
-        {/* Space Background Elements */}
-        <div className="absolute inset-0">
-          {/* Subtle Stars */}
-          <div className="absolute top-16 left-16 w-1 h-1 bg-cyan-300 rounded-full animate-twinkle"></div>
-          <div className="absolute top-32 right-24 w-1 h-1 bg-purple-300 rounded-full animate-twinkle delay-1000"></div>
-          <div className="absolute top-48 left-1/3 w-1 h-1 bg-teal-300 rounded-full animate-twinkle delay-2000"></div>
-          <div className="absolute top-24 right-1/3 w-1 h-1 bg-violet-300 rounded-full animate-twinkle delay-500"></div>
-          
-          {/* Nebula Effects */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-        
-        <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl relative overflow-hidden">
-            {/* Glassmorphism Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
-            
-            <div className="relative z-10">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-                <Rocket className="h-5 w-5 text-cyan-400 animate-pulse" />
-                <span className="text-sm font-medium text-cyan-300">Ready to Launch?</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
-                Ready to Get <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Started?</span>
-              </h2>
-              <p className="text-xl text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-                Join hundreds of businesses who've transformed their digital presence with Aura Designs.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-6 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
-                  <Link to="/contact">
-                    Start Your Project
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" className="border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
-                  <Link to="/projects">View Our Work</Link>
-                </Button>
-              </div>
-              <div className="mt-10 flex justify-center items-center space-x-8 text-slate-400">
-                <div className="flex items-center space-x-2">
-                  <Check className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">Free Consultation</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Check className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">24/7 Support</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Check className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">Money-Back Guarantee</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
