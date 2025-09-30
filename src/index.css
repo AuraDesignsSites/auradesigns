@@ -118,6 +118,112 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Montserrat', system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Ensure hero section starts from top */
+  .hero-section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Make sure hero background extends behind navbar */
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(135deg, #000000 0%, #0f172a 25%, #1e293b 50%, #581c87 75%, #000000 100%);
+    z-index: -1;
+  }
+  
+  /* Space-themed section transitions */
+  .space-section {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Enhanced glassmorphism for space theme */
+  .space-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Space-themed hover effects */
+  .space-hover {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .space-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+  }
+  
+  /* Improved text contrast for accessibility */
+  .space-text-primary {
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .space-text-secondary {
+    color: #cbd5e1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .space-text-accent {
+    color: #06b6d4;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Text blur fade effect */
+  .text-blur-fade {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .text-blur-fade::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 60%,
+      rgba(15, 23, 42, 0.3) 80%,
+      rgba(15, 23, 42, 0.8) 90%,
+      rgba(15, 23, 42, 1) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .text-blur-fade::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to left,
+      transparent 0%,
+      transparent 60%,
+      rgba(15, 23, 42, 0.3) 80%,
+      rgba(15, 23, 42, 0.8) 90%,
+      rgba(15, 23, 42, 1) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
   }
 
   /* Typography Hierarchy */
@@ -197,7 +303,24 @@
   
   /* Glassy Navbar */
   .navbar-glass {
-    @apply bg-background/80 backdrop-blur-md border-b border-border/50;
+    background: transparent !important;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid hsl(259 30% 80% / 0.2);
+    box-shadow: none !important;
+  }
+  
+  /* Override any Tailwind background classes */
+  nav.navbar-glass {
+    background: transparent !important;
+  }
+  
+  /* Force transparency on all possible selectors */
+  nav[class*="navbar-glass"] {
+    background: transparent !important;
+  }
+  
+  .fixed.top-0 {
+    background: transparent !important;
   }
   
   /* Card Styles */

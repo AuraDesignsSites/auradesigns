@@ -20,17 +20,17 @@ const Navbar = () => {
   const isActive = (href: string) => location.pathname === href;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 navbar-glass">
+    <nav className="fixed top-0 left-0 right-0 z-50 navbar-glass" style={{ background: 'transparent' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <img src={logo} alt="Aura Designs" className="h-10 w-auto" />
+          <Link to="/" className="flex items-center space-x-2">
+            <img src={logo} alt="Aura Designs" className="h-12 w-auto" />
             <span className="font-normal text-xl text-foreground">Aura Designs</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

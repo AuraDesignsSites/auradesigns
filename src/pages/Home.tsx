@@ -2,11 +2,19 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Target, Shield, Code2, Users, Rocket, CheckCircle, Star, TrendingUp, Clock, Award, Sparkles, Heart, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/auralogo-transparentbg.png';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Home = () => {
   const [currentSlogan, setCurrentSlogan] = useState(0);
   const slogans = ['Modern', 'Fast', 'Secure'];
+  const [animatedNumbers, setAnimatedNumbers] = useState({
+    conversion: 0,
+    weeks: 0,
+    satisfaction: 0,
+    mobile: 0
+  });
+  const [isVisible, setIsVisible] = useState(false);
+  const metricsRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,6 +27,62 @@ const Home = () => {
     
     return () => clearInterval(interval);
   }, []);
+
+  // Animated numbers effect
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isVisible) {
+            setIsVisible(true);
+            animateNumbers();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (metricsRef.current) {
+      observer.observe(metricsRef.current);
+    }
+
+    return () => {
+      if (metricsRef.current) {
+        observer.unobserve(metricsRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  const animateNumbers = () => {
+    const targets = {
+      conversion: 40,
+      weeks: 2,
+      satisfaction: 98,
+      mobile: 100
+    };
+
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      
+      setAnimatedNumbers({
+        conversion: Math.floor(targets.conversion * progress),
+        weeks: Math.floor(targets.weeks * progress),
+        satisfaction: Math.floor(targets.satisfaction * progress),
+        mobile: Math.floor(targets.mobile * progress)
+      });
+
+      if (step >= steps) {
+        clearInterval(timer);
+        setAnimatedNumbers(targets);
+      }
+    }, stepDuration);
+  };
 
   // Cursor glow effect - Hero section only
   useEffect(() => {
@@ -158,9 +222,9 @@ const Home = () => {
   ];
 
   return (
-    <div>
+    <div style={{ margin: 0, padding: 0 }}>
       {/* Space-Themed Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-black via-teal-900 to-purple-900 cursor-glow">
+      <section className="hero-section min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-black via-teal-900 to-purple-900 cursor-glow" style={{ paddingTop: '0', marginTop: '0', position: 'relative', zIndex: '1' }}>
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -213,7 +277,7 @@ const Home = () => {
           <div className="absolute top-2/3 right-1/6 w-48 h-48 bg-gradient-to-r from-purple-500/18 to-indigo-500/18 rounded-full blur-3xl animate-pulse delay-2500"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 py-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 py-24 relative z-10" style={{ paddingTop: '100px' }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="fade-in">
               <div className="mb-4">
@@ -278,26 +342,31 @@ const Home = () => {
       </section>
 
       {/* Tech Stack & Capabilities Carousel */}
-      <section className="py-12 bg-gradient-subtle relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-secondary/5"></div>
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold">
-              Powered by <span className="gradient-text">Modern Technology</span>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-6 border border-cyan-500/30">
+              <Sparkles className="h-5 w-5 text-cyan-400 animate-pulse" />
+              <span className="text-sm font-medium text-cyan-300">Powered by Modern Technology</span>
+            </div>
+            <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Built for the <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Future</span>
             </h3>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Cutting-edge technology stack that scales with your business and delivers exceptional performance.
+            </p>
           </div>
           
           {/* Carousel Container */}
-          <div className="relative overflow-hidden">
-            <div className="flex animate-scroll space-x-6">
+          <div className="relative overflow-hidden text-blur-fade">
+            <div className="flex animate-scroll space-x-8">
               {[...capabilities, ...capabilities].map((capability, index) => (
-                <div key={index} className="group flex-shrink-0">
-                  <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-soft hover:shadow-medium transition-all duration-300 group-hover:-translate-y-1 w-56 h-52 flex flex-col">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-2xl shadow-lg mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div key={index} className="flex-shrink-0">
+                  <div className="w-48 h-48 flex flex-col items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center">
                       {capability.icon}
                     </div>
-                    <div className="text-lg font-semibold text-foreground mb-2 text-center leading-tight h-12 flex items-center justify-center">{capability.title}</div>
-                    <div className="text-sm text-muted-foreground text-center leading-relaxed h-16 flex items-center justify-center">{capability.description}</div>
+                    <div className="text-lg font-bold text-white text-center leading-tight">{capability.title}</div>
                   </div>
               </div>
             ))}
@@ -307,18 +376,30 @@ const Home = () => {
       </section>
 
       {/* Why Choose Aura Designs */}
-      <section className="section-padding relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-accent/5 to-secondary/10"></div>
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
+        {/* Space Background Elements */}
+        <div className="absolute inset-0">
+          {/* Shooting Stars */}
+          <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-twinkle"></div>
+          <div className="absolute top-40 right-32 w-1 h-1 bg-purple-400 rounded-full animate-twinkle delay-1000"></div>
+          <div className="absolute top-60 left-1/3 w-1 h-1 bg-teal-400 rounded-full animate-twinkle delay-2000"></div>
+          <div className="absolute top-32 right-1/4 w-1 h-1 bg-violet-400 rounded-full animate-twinkle delay-500"></div>
+          
+          {/* Nebula Effects */}
+          <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-gradient-to-r from-cyan-500/15 to-purple-500/15 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-purple-500/15 to-teal-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
-            <div className="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
-              <Heart className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Why Choose Us</span>
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
+              <Heart className="h-5 w-5 text-cyan-400 animate-pulse" />
+              <span className="text-sm font-medium text-cyan-300">Why Choose Us</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              The <span className="gradient-text">Aura Difference</span>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+              The <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Aura Difference</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
               We're not just another web agency. We're your strategic partner in digital success, combining technical excellence with business acumen.
             </p>
           </div>
@@ -329,12 +410,18 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               {differentiators.slice(0, 3).map((item, index) => (
                 <div key={index} className="group relative">
-                  {/* Rounded Hexagonal Card */}
-                  <div className="relative bg-white/60 backdrop-blur-sm border border-white/30 shadow-soft hover:shadow-medium transition-all duration-500 group-hover:-translate-y-2 group-hover:scale-105 rounded-3xl">
+                  {/* Space-themed Hexagonal Card */}
+                  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 group-hover:-translate-y-2 group-hover:scale-105 rounded-3xl overflow-hidden">
+                    {/* Glassmorphism Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
+                    
+                    {/* Glow Effect on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
                     {/* Rounded Hexagon shape using CSS clip-path */}
-                    <div className="p-8 text-center" style={{
+                    <div className="p-8 text-center relative z-10" style={{
                       clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
-                      minHeight: '300px',
+                      minHeight: '320px',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
@@ -344,17 +431,17 @@ const Home = () => {
                     }}>
                       
                       {/* Icon */}
-                      <div className="w-16 h-16 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                      <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
                         {item.icon}
                       </div>
                       
                       {/* Content */}
-                      <h3 className="text-xl font-bold mb-4 text-foreground">{item.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                      <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
+                      <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
                     </div>
                     
                     {/* Decorative Elements */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
                   </div>
                 </div>
               ))}
@@ -363,10 +450,10 @@ const Home = () => {
             {/* Central Connecting Element with Dividers */}
             <div className="flex items-center justify-center mb-8 hidden lg:flex">
               {/* Left Divider */}
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-primary/50"></div>
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-cyan-500/50"></div>
               
               {/* Central Element */}
-              <div className="mx-8 w-32 h-32 bg-gradient-primary/10 rounded-full flex items-center justify-center border-4 border-white/20 backdrop-blur-sm">
+              <div className="mx-8 w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full flex items-center justify-center border-2 border-cyan-500/30 backdrop-blur-md shadow-2xl">
                 <img 
                   src={logo} 
                   alt="Aura Designs Logo" 
@@ -375,19 +462,25 @@ const Home = () => {
               </div>
               
               {/* Right Divider */}
-              <div className="flex-1 h-px bg-gradient-to-l from-transparent via-primary/30 to-primary/50"></div>
+              <div className="flex-1 h-px bg-gradient-to-l from-transparent via-purple-500/30 to-purple-500/50"></div>
             </div>
             
             {/* Bottom Row */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {differentiators.slice(3, 6).map((item, index) => (
                 <div key={index + 3} className="group relative">
-                  {/* Rounded Hexagonal Card */}
-                  <div className="relative bg-white/60 backdrop-blur-sm border border-white/30 shadow-soft hover:shadow-medium transition-all duration-500 group-hover:-translate-y-2 group-hover:scale-105 rounded-3xl">
+                  {/* Space-themed Hexagonal Card */}
+                  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500 group-hover:-translate-y-2 group-hover:scale-105 rounded-3xl overflow-hidden">
+                    {/* Glassmorphism Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
+                    
+                    {/* Glow Effect on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
                     {/* Rounded Hexagon shape using CSS clip-path */}
-                    <div className="p-8 text-center" style={{
+                    <div className="p-8 text-center relative z-10" style={{
                       clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
-                      minHeight: '300px',
+                      minHeight: '320px',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
@@ -397,96 +490,145 @@ const Home = () => {
                     }}>
                       
                       {/* Icon */}
-                      <div className="w-16 h-16 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-cyan-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
                         {item.icon}
                       </div>
                       
                       {/* Content */}
-                      <h3 className="text-xl font-bold mb-4 text-foreground">{item.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                      <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
+                      <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
                     </div>
                     
                     {/* Decorative Elements */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
                   </div>
-              </div>
-            ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Success Metrics */}
-      <section className="section-padding bg-gradient-subtle relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-secondary/5"></div>
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
+        {/* Space Background Elements */}
+        <div className="absolute inset-0">
+          {/* Subtle Stars */}
+          <div className="absolute top-16 left-16 w-1 h-1 bg-cyan-300 rounded-full animate-twinkle"></div>
+          <div className="absolute top-32 right-24 w-1 h-1 bg-purple-300 rounded-full animate-twinkle delay-1000"></div>
+          <div className="absolute top-48 left-1/3 w-1 h-1 bg-teal-300 rounded-full animate-twinkle delay-2000"></div>
+          <div className="absolute top-24 right-1/3 w-1 h-1 bg-violet-300 rounded-full animate-twinkle delay-500"></div>
+          
+          {/* Nebula Effects */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20 mb-6">
-              <Heart className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Proven Results</span>
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
+              <TrendingUp className="h-5 w-5 text-cyan-400 animate-pulse" />
+              <span className="text-sm font-medium text-cyan-300">Proven Results</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Numbers That <span className="gradient-text">Speak Volumes</span>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+              Numbers That <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Speak Volumes</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
               Our track record speaks for itself. Here's what our clients achieve with our solutions.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {successMetrics.map((metric, index) => (
-              <div key={index} className="group text-center h-full">
-                <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-soft hover:shadow-medium transition-shadow duration-300 h-full flex flex-col">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                    {metric.icon}
+          <div ref={metricsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {successMetrics.map((metric, index) => {
+              let displayNumber = metric.number;
+              
+              // Map the animated numbers to the correct metrics
+              if (index === 0) displayNumber = `${animatedNumbers.conversion}%`;
+              else if (index === 1) displayNumber = `${animatedNumbers.weeks}`;
+              else if (index === 2) displayNumber = `${animatedNumbers.satisfaction}%`;
+              else if (index === 3) displayNumber = `${animatedNumbers.mobile}%`;
+              
+              return (
+                <div key={index} className="group text-center h-full">
+                  <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 h-full flex flex-col relative overflow-hidden group-hover:-translate-y-2">
+                    {/* Glassmorphism Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
+                    
+                    {/* Glow Effect on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 flex-shrink-0 shadow-lg">
+                        {metric.icon}
+                      </div>
+                      <div className="text-5xl font-bold text-white mb-3 flex-shrink-0 animate-pulse">
+                        {displayNumber}
+                      </div>
+                      <div className="text-lg font-semibold text-cyan-300 mb-4 flex-shrink-0">{metric.label}</div>
+                      <p className="text-slate-300 text-sm leading-relaxed flex-grow">{metric.description}</p>
+                    </div>
                   </div>
-                  <div className="text-4xl font-bold text-foreground mb-2 flex-shrink-0">{metric.number}</div>
-                  <div className="text-lg font-semibold text-foreground mb-3 flex-shrink-0">{metric.label}</div>
-                  <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{metric.description}</p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Band */}
-      <section className="section-padding bg-gradient-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-secondary/20"></div>
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-purple-900 to-slate-900">
+        {/* Space Background Elements */}
+        <div className="absolute inset-0">
+          {/* Shooting Stars */}
+          <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-twinkle"></div>
+          <div className="absolute top-40 right-32 w-1 h-1 bg-purple-400 rounded-full animate-twinkle delay-1000"></div>
+          <div className="absolute top-60 left-1/3 w-1 h-1 bg-teal-400 rounded-full animate-twinkle delay-2000"></div>
+          <div className="absolute top-32 right-1/4 w-1 h-1 bg-violet-400 rounded-full animate-twinkle delay-500"></div>
+          
+          {/* Nebula Effects */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20">
-            <div className="inline-flex items-center space-x-2 bg-white/20 rounded-full px-4 py-2 mb-8">
-              <Rocket className="h-4 w-4 text-white" />
-              <span className="text-sm font-medium text-white">Ready to Launch?</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Let's Build Something <span className="text-accent">Amazing</span>
-          </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-              Your digital transformation starts with a single conversation. Let's create a website that not only looks incredible but drives real business growth.
-          </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-2xl font-semibold">
-            <Link to="/contact">
-                  Start Your Project
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-              <Button asChild size="lg" className="bg-white/20 text-white hover:bg-white/30 border border-white/30 px-8 py-4 rounded-2xl font-semibold">
-                <Link to="/projects">View Our Work</Link>
-              </Button>
-            </div>
-            <div className="mt-8 flex justify-center items-center space-x-8 text-white/70">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5" />
-                <span className="text-sm">Free Consultation</span>
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl relative overflow-hidden">
+            {/* Glassmorphism Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
+            
+            <div className="relative z-10">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
+                <Rocket className="h-5 w-5 text-cyan-400 animate-pulse" />
+                <span className="text-sm font-medium text-cyan-300">Ready to Launch?</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5" />
-                <span className="text-sm">24h Response</span>
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
+                Let's Build Something <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Amazing</span>
+              </h2>
+              <p className="text-xl text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
+                Your digital transformation starts with a single conversation. Let's create a website that not only looks incredible but drives real business growth.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-6 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
+                  <Link to="/contact">
+                    Start Your Project
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" className="border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
+                  <Link to="/projects">View Our Work</Link>
+                </Button>
               </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-5 w-5" />
-                <span className="text-sm">No Obligation</span>
+              <div className="mt-10 flex justify-center items-center space-x-8 text-slate-400">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-5 w-5 text-cyan-400" />
+                  <span className="text-sm">Free Consultation</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-5 w-5 text-cyan-400" />
+                  <span className="text-sm">24h Response</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-5 w-5 text-cyan-400" />
+                  <span className="text-sm">No Obligation</span>
+                </div>
               </div>
             </div>
           </div>
