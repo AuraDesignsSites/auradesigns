@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
 import saturnImage from '@/assets/saturn.png';
+import moonImage from '@/assets/moon.png';
 
 const About = () => {
   const [visibleTimelineItems, setVisibleTimelineItems] = useState<number[]>([]);
   const [saturnPosition, setSaturnPosition] = useState({ scale: 1, x: 0, y: 0, opacity: 0.2 });
+  const [moonPosition, setMoonPosition] = useState({ scale: 0, x: 0, y: 0, opacity: 0 });
   const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
   const heroSectionRef = useRef<HTMLDivElement>(null);
+  const auraDifferenceRef = useRef<HTMLDivElement>(null);
 
 
   const team = [
@@ -136,6 +139,58 @@ const About = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Moon scroll animation for The Aura Difference section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!auraDifferenceRef.current) return;
+
+      const section = auraDifferenceRef.current;
+      const sectionRect = section.getBoundingClientRect();
+      const sectionTop = sectionRect.top;
+      const sectionHeight = sectionRect.height;
+      const windowHeight = window.innerHeight;
+      
+      // Start animation when section comes into view
+      const triggerPoint = windowHeight * 0.8; // Start when section top is at 80% of viewport height
+      
+      if (sectionTop > triggerPoint) {
+        // Reset to initial position when section is not yet visible
+        setMoonPosition({ scale: 0, x: 0, y: 0, opacity: 0 });
+        return;
+      }
+      
+      // Calculate scroll progress from trigger point to completely past section
+      const scrollFromTrigger = Math.max(0, triggerPoint - sectionTop);
+      const maxScroll = triggerPoint + sectionHeight; // Total scroll distance
+      const scrollProgress = Math.min(1, scrollFromTrigger / maxScroll);
+      
+      let newPosition = { scale: 0, x: 0, y: 0, opacity: 0 };
+      
+      if (scrollProgress < 0.2) {
+        // Phase 1: Zoom in and appear
+        const phaseProgress = scrollProgress / 0.2;
+        newPosition.scale = 1 + (1 * phaseProgress); // Scale from 1 to 2 (smaller final size)
+        newPosition.x = 0;
+        newPosition.y = 0;
+        newPosition.opacity = 0.2 + (0.3 * phaseProgress); // Increase opacity
+      } else {
+        // Phase 2: Move right and down, then fade out (starts earlier)
+        const phaseProgress = (scrollProgress - 0.2) / 0.8;
+        newPosition.scale = 2; // Keep zoomed in (smaller size)
+        newPosition.x = 500 * phaseProgress; // Move right (more drastic)
+        newPosition.y = 400 * phaseProgress; // Move down (more drastic)
+        newPosition.opacity = 0.5 - (0.5 * phaseProgress); // Fade out
+      }
+      
+      setMoonPosition(newPosition);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Space-Themed Hero Section */}
@@ -235,7 +290,21 @@ const About = () => {
       </section>
 
       {/* The Aura Difference - Space Theme */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
+      <section ref={auraDifferenceRef} className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
+        {/* Moon in top left */}
+        <div 
+          className="absolute top-8 left-8 w-32 h-32 transition-all duration-300 ease-out"
+          style={{
+            transform: `scale(${moonPosition.scale}) translate(${moonPosition.x}px, ${moonPosition.y}px)`,
+            opacity: moonPosition.opacity
+          }}
+        >
+          <img 
+            src={moonImage} 
+            alt="Moon"
+            className="w-full h-full object-contain"
+          />
+        </div>
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -434,6 +503,28 @@ const About = () => {
       <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
+          {/* Background Stars */}
+          <div className="bg-star bg-star-1"></div>
+          <div className="bg-star bg-star-2"></div>
+          <div className="bg-star bg-star-3"></div>
+          <div className="bg-star bg-star-4"></div>
+          <div className="bg-star bg-star-5"></div>
+          <div className="bg-star bg-star-6"></div>
+          <div className="bg-star bg-star-7"></div>
+          <div className="bg-star bg-star-8"></div>
+          <div className="bg-star bg-star-9"></div>
+          <div className="bg-star bg-star-10"></div>
+          <div className="bg-star bg-star-11"></div>
+          <div className="bg-star bg-star-12"></div>
+          <div className="bg-star bg-star-13"></div>
+          <div className="bg-star bg-star-14"></div>
+          <div className="bg-star bg-star-15"></div>
+          <div className="bg-star bg-star-16"></div>
+          <div className="bg-star bg-star-17"></div>
+          <div className="bg-star bg-star-18"></div>
+          <div className="bg-star bg-star-19"></div>
+          <div className="bg-star bg-star-20"></div>
+          
           {/* Subtle Stars */}
           <div className="absolute top-16 left-16 w-1 h-1 bg-cyan-300 rounded-full animate-twinkle"></div>
           <div className="absolute top-32 right-24 w-1 h-1 bg-purple-300 rounded-full animate-twinkle delay-1000"></div>
@@ -465,6 +556,7 @@ const About = () => {
               {/* Timeline Line */}
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-teal-500"></div>
               
+              
               {/* Timeline Items */}
               <div className="space-y-12">
             {process.map((phase, index) => (
@@ -481,9 +573,21 @@ const About = () => {
                       transitionDelay: `${index * 200}ms`
                     }}
                   >
-                    {/* Timeline Node */}
-                    <div className="absolute left-6 w-4 h-4 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full border-4 border-slate-900 shadow-lg z-10 group-hover:scale-125 transition-transform duration-300">
+                    {/* Timeline Node with Number */}
+                    <div className={`absolute left-6 w-10 h-10 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full border-2 border-slate-900 shadow-lg z-10 group-hover:scale-125 transition-all duration-1000 ${
+                      visibleTimelineItems.includes(index) 
+                        ? 'opacity-100' 
+                        : 'opacity-0 -translate-x-8'
+                    }`}
+                    style={{
+                      top: index === 0 ? '0rem' : '0.5rem', // First dot at very top
+                      left: 'calc(2rem - 1.25rem)', // Center on timeline line
+                      transitionDelay: `${index * 200}ms`
+                    }}>
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full animate-pulse"></div>
+                      <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
+                        {index + 1}
+                      </div>
                     </div>
                     
                     {/* Content Card */}
@@ -496,10 +600,7 @@ const About = () => {
                       
                       <div className="relative z-10">
                         {/* Phase Header */}
-                        <div className="flex items-center space-x-4 mb-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-500 shadow-lg">
-                    {index + 1}
-                  </div>
+                        <div className="mb-4">
                           <h3 className="text-2xl font-bold text-white">{phase.phase}</h3>
                 </div>
                         
