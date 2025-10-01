@@ -384,6 +384,24 @@
   animation: scroll-smooth 20s linear infinite;
 }
 
+@keyframes vertical-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes vertical-scroll-smooth {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-vertical-scroll {
+  animation: vertical-scroll 15s linear infinite;
+}
+
+.animate-vertical-scroll-smooth {
+  animation: vertical-scroll-smooth 20s linear infinite;
+}
+
 /* Space Theme Animations */
 @keyframes shooting-star {
   0% {

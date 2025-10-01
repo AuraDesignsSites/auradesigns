@@ -3,6 +3,7 @@ import { ArrowRight, Zap, Target, Shield, Code2, Users, Rocket, CheckCircle, Sta
 import { Button } from '@/components/ui/button';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import logo from '@/assets/auralogo-transparentbg.png';
+import tempWebImage from '@/assets/temp-web.png';
 import { useState, useEffect, useRef } from 'react';
 
 const Home = () => {
@@ -464,8 +465,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Choose Aura Designs */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
+      {/* Bring Your Ideas to Life - Gamma Inspired */}
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -480,119 +481,200 @@ const Home = () => {
         </div>
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-              <Heart className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">Why Choose Us</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Side - Text Content */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-4 border border-cyan-500/30">
+                <Rocket className="h-5 w-5 text-cyan-400 animate-pulse" />
+                <span className="text-sm font-medium text-cyan-300">Transform Your Vision</span>
+              </div>
+              
+              <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+                Bring your <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">ideas</span> to life
+              </h2>
+              
+              <p className="text-xl text-slate-300 leading-relaxed max-w-lg">
+                At Aura Designs we specialize in creating beautiful websites for any industry and we work with you to bring your vision to life without all the technical details so you can focus on your core business.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 flex items-center space-x-2">
+                  <Link to="/services">
+                    <span>Our Services</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </Button>
+                
+                <Button asChild variant="outline" className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 flex items-center space-x-2">
+                  <Link to="/projects">
+                    <span>Our Projects</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </Button>
+              </div>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
-              The <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Aura Difference</span>
-            </h2>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              We're not just another web agency. We're your strategic partner in digital success, combining technical excellence with business acumen.
-            </p>
-          </div>
-          
-          {/* Hexagonal Grid Layout */}
-          <div className="relative max-w-6xl mx-auto">
-            {/* Top Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              {differentiators.slice(0, 3).map((item, index) => (
-                <div key={index} className="group relative">
-                  {/* Space-themed Hexagonal Card */}
-                  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 group-hover:-translate-y-2 group-hover:scale-105 rounded-3xl overflow-hidden">
-                    {/* Glassmorphism Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
-                    
-                    {/* Glow Effect on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    {/* Rounded Hexagon shape using CSS clip-path */}
-                    <div className="p-8 text-center relative z-10" style={{
-                      clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
-                      minHeight: '320px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      paddingTop: '2rem',
-                      paddingBottom: '2rem'
-                    }}>
-                      
-                      {/* Icon */}
-                      <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
-                        {item.icon}
+            
+            {/* Right Side - Vertical Sliding Animation */}
+            <div className="relative h-[600px] overflow-hidden">
+              {/* Vertical sliding container */}
+              <div className="absolute inset-0 flex flex-col animate-vertical-scroll-smooth">
+                {/* Website Example 1 */}
+                <div className="flex-shrink-0 mb-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6">
+                      <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
+                        <img 
+                          src={tempWebImage} 
+                          alt="Website Example 1" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      
-                      {/* Content */}
-                      <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
-                      <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
                     </div>
-                    
-                    {/* Decorative Elements */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    <div className="p-4">
+                      <h3 className="text-white font-semibold text-lg">Modern Portfolio</h3>
+                      <p className="text-slate-300 text-sm">Clean, professional design</p>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-            
-            {/* Central Connecting Element with Dividers */}
-            <div className="flex items-center justify-center mb-8 hidden lg:flex">
-              {/* Left Divider */}
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-cyan-500/50"></div>
-              
-              {/* Central Element */}
-              <div className="mx-8 w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full flex items-center justify-center border-2 border-cyan-500/30 backdrop-blur-md shadow-2xl">
-                <img 
-                  src={logo} 
-                  alt="Aura Designs Logo" 
-                  className="w-24 h-24 object-contain animate-pulse"
-                />
-              </div>
-              
-              {/* Right Divider */}
-              <div className="flex-1 h-px bg-gradient-to-l from-transparent via-purple-500/30 to-purple-500/50"></div>
-            </div>
-            
-            {/* Bottom Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {differentiators.slice(3, 6).map((item, index) => (
-                <div key={index + 3} className="group relative">
-                  {/* Space-themed Hexagonal Card */}
-                  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500 group-hover:-translate-y-2 group-hover:scale-105 rounded-3xl overflow-hidden">
-                    {/* Glassmorphism Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
-                    
-                    {/* Glow Effect on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    {/* Rounded Hexagon shape using CSS clip-path */}
-                    <div className="p-8 text-center relative z-10" style={{
-                      clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
-                      minHeight: '320px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      paddingTop: '2rem',
-                      paddingBottom: '2rem'
-                    }}>
-                      
-                      {/* Icon */}
-                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-cyan-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
-                        {item.icon}
+                
+                {/* Website Example 2 */}
+                <div className="flex-shrink-0 mb-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6">
+                      <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
+                        <img 
+                          src={tempWebImage} 
+                          alt="Website Example 2" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      
-                      {/* Content */}
-                      <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
-                      <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
                     </div>
-                    
-                    {/* Decorative Elements */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                    <div className="p-4">
+                      <h3 className="text-white font-semibold text-lg">E-commerce Store</h3>
+                      <p className="text-slate-300 text-sm">Fully functional online shop</p>
+                    </div>
                   </div>
+                </div>
+                
+                {/* Website Example 3 */}
+                <div className="flex-shrink-0 mb-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-gradient-to-br from-pink-500/20 to-cyan-500/20 p-6">
+                      <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
+                        <img 
+                          src={tempWebImage} 
+                          alt="Website Example 3" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-white font-semibold text-lg">Business Website</h3>
+                      <p className="text-slate-300 text-sm">Professional corporate site</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Website Example 4 */}
+                <div className="flex-shrink-0 mb-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-gradient-to-br from-teal-500/20 to-purple-500/20 p-6">
+                      <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
+                        <img 
+                          src={tempWebImage} 
+                          alt="Website Example 4" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-white font-semibold text-lg">Creative Agency</h3>
+                      <p className="text-slate-300 text-sm">Bold, innovative design</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Duplicate for seamless loop */}
+                {/* Website Example 1 (Duplicate) */}
+                <div className="flex-shrink-0 mb-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6">
+                      <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
+                        <img 
+                          src={tempWebImage} 
+                          alt="Website Example 1" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-white font-semibold text-lg">Modern Portfolio</h3>
+                      <p className="text-slate-300 text-sm">Clean, professional design</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Website Example 2 (Duplicate) */}
+                <div className="flex-shrink-0 mb-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6">
+                      <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
+                        <img 
+                          src={tempWebImage} 
+                          alt="Website Example 2" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-white font-semibold text-lg">E-commerce Store</h3>
+                      <p className="text-slate-300 text-sm">Fully functional online shop</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Website Example 3 (Duplicate) */}
+                <div className="flex-shrink-0 mb-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-gradient-to-br from-pink-500/20 to-cyan-500/20 p-6">
+                      <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
+                        <img 
+                          src={tempWebImage} 
+                          alt="Website Example 3" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-white font-semibold text-lg">Business Website</h3>
+                      <p className="text-slate-300 text-sm">Professional corporate site</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Website Example 4 (Duplicate) */}
+                <div className="flex-shrink-0 mb-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-gradient-to-br from-teal-500/20 to-purple-500/20 p-6">
+                      <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
+                        <img 
+                          src={tempWebImage} 
+                          alt="Website Example 4" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-white font-semibold text-lg">Creative Agency</h3>
+                      <p className="text-slate-300 text-sm">Bold, innovative design</p>
+                    </div>
+                  </div>
+          </div>
               </div>
-            ))}
+              
+              {/* Fade effects for top and bottom */}
+              <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-slate-900 via-purple-900/50 to-transparent pointer-events-none z-10"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-900 via-purple-900/50 to-transparent pointer-events-none z-10"></div>
             </div>
           </div>
         </div>
