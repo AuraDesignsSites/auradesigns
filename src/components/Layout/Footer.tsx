@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
 import { scrollToTop } from '@/hooks/use-scroll-to-top';
+import { BUSINESS_EMAIL } from '@/lib/constants';
 import logo from '@/assets/auralogo-transparentbg.png';
 
 const Footer = () => {
@@ -118,8 +119,8 @@ const Footer = () => {
               <div className="space-y-3">
                 <div className="flex items-center space-x-2 text-slate-300">
                   <Mail className="h-4 w-4" />
-                  <a href="mailto:auradesigns.team@gmail.com" className="hover:text-cyan-400 transition-colors">
-                    auradesigns.team@gmail.com
+                  <a href={`mailto:${BUSINESS_EMAIL}`} className="hover:text-cyan-400 transition-colors">
+                    {BUSINESS_EMAIL}
                   </a>
                 </div>
                 <div className="flex items-center space-x-2 text-slate-300">

@@ -60,6 +60,26 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Environment Variables
+
+### Resend Email Integration
+
+This project uses Resend for email functionality with the domain `send.auradesigns.net`. To set up email sending:
+
+1. **Local Development:**
+   - Copy `.env.local` and add your Resend API key:
+   ```
+   VITE_RESEND_API_KEY=your_resend_api_key_here
+   ```
+
+2. **Production (Vercel):**
+   - Go to Vercel → Project → Settings → Environment Variables
+   - Add `VITE_RESEND_API_KEY` with your Resend API key value
+   - Make sure to set it for Production environment
+   - **Note:** Since you already have `RESEND_API_KEY` set in Vercel, the code will use that as a fallback
+
+**Important:** Never commit `.env.local` to version control.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/84a33e6a-5822-48f2-899c-908d1beeeb73) and click on Share -> Publish.

@@ -7,44 +7,92 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
+import { sendContactEmail, contactFormSchema, type ContactFormData } from '@/lib/email-service';
+import { BUSINESS_EMAIL } from '@/lib/constants';
 
 const Contact = () => {
   // Scroll to top when component mounts
   useScrollToTop();
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
+    phone: '',
     company: '',
-    website: '',
+    projectType: '',
     budget: '',
     timeline: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrors({});
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Validate form data
+      const validatedData = contactFormSchema.parse(formData);
+      
+      // Send email
+      const result = await sendContactEmail(validatedData);
+      
+      if (result.success) {
+        toast({
+          title: "Message sent successfully!",
+          description: result.message,
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          projectType: '',
+          budget: '',
+          timeline: '',
+          message: ''
+        });
+      } else {
+        toast({
+          title: "Failed to send message",
+          description: result.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      
+      if (error instanceof Error && error.name === 'ZodError') {
+        // Handle validation errors
+        const zodError = error as any;
+        const fieldErrors: Record<string, string> = {};
+        zodError.errors?.forEach((err: any) => {
+          if (err.path) {
+            fieldErrors[err.path[0]] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
+        
+        toast({
+          title: "Please check your form",
+          description: "Some fields need to be corrected.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } finally {
       setIsSubmitting(false);
-      toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        website: '',
-        budget: '',
-        timeline: '',
-        message: ''
-      });
-    }, 1000);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -181,10 +229,10 @@ const Contact = () => {
                       <div>
                         <p className="font-semibold text-white text-lg">Email us directly</p>
                         <a 
-                          href="mailto:hello@auradesigns.studio" 
+                          href={`mailto:${BUSINESS_EMAIL}`}
                           className="text-cyan-300 hover:text-cyan-200 transition-colors"
                         >
-                          hello@auradesigns.studio
+                          {BUSINESS_EMAIL}
                         </a>
                       </div>
                     </div>
@@ -256,8 +304,11 @@ const Contact = () => {
                         value={formData.name}
                         onChange={(e) => handleChange('name', e.target.value)}
                         required 
-                        className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20"
+                        className={`bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 ${errors.name ? 'border-red-400' : ''}`}
                       />
+                      {errors.name && (
+                        <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                      )}
                     </div>
                     <div>
                       <Label htmlFor="email" className="text-white font-semibold">Email *</Label>
@@ -267,12 +318,25 @@ const Contact = () => {
                         value={formData.email}
                         onChange={(e) => handleChange('email', e.target.value)}
                         required 
-                        className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20"
+                        className={`bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 ${errors.email ? 'border-red-400' : ''}`}
                       />
+                      {errors.email && (
+                        <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                      )}
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="phone" className="text-white font-semibold">Phone</Label>
+                      <Input 
+                        id="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleChange('phone', e.target.value)}
+                        className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20"
+                      />
+                    </div>
                     <div>
                       <Label htmlFor="company" className="text-white font-semibold">Company</Label>
                       <Input 
@@ -282,24 +346,34 @@ const Contact = () => {
                         className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20"
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="website" className="text-white font-semibold">Current Website</Label>
-                      <Input 
-                        id="website"
-                        type="url"
-                        placeholder="https://"
-                        value={formData.website}
-                        onChange={(e) => handleChange('website', e.target.value)}
-                        className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20"
-                      />
-                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="projectType" className="text-white font-semibold">Project Type *</Label>
+                    <Select onValueChange={(value) => handleChange('projectType', value)}>
+                      <SelectTrigger className="bg-white/10 border-white/20 text-white focus:border-cyan-400 focus:ring-cyan-400/20">
+                        <SelectValue placeholder="What type of project?" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-slate-800 border-slate-700">
+                        <SelectItem value="website">Website Design & Development</SelectItem>
+                        <SelectItem value="ecommerce">E-commerce Store</SelectItem>
+                        <SelectItem value="webapp">Web Application</SelectItem>
+                        <SelectItem value="redesign">Website Redesign</SelectItem>
+                        <SelectItem value="maintenance">Maintenance & Support</SelectItem>
+                        <SelectItem value="consulting">Consulting</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {errors.projectType && (
+                      <p className="text-red-400 text-sm mt-1">{errors.projectType}</p>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="budget" className="text-white font-semibold">Budget Range</Label>
+                      <Label htmlFor="budget" className="text-white font-semibold">Budget Range *</Label>
                       <Select onValueChange={(value) => handleChange('budget', value)}>
-                        <SelectTrigger className="bg-white/10 border-white/20 text-white focus:border-cyan-400 focus:ring-cyan-400/20">
+                        <SelectTrigger className={`bg-white/10 border-white/20 text-white focus:border-cyan-400 focus:ring-cyan-400/20 ${errors.budget ? 'border-red-400' : ''}`}>
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent className="bg-slate-800 border-slate-700">
@@ -311,11 +385,14 @@ const Contact = () => {
                           <SelectItem value="discuss">Let's discuss</SelectItem>
                         </SelectContent>
                       </Select>
+                      {errors.budget && (
+                        <p className="text-red-400 text-sm mt-1">{errors.budget}</p>
+                      )}
                     </div>
                     <div>
-                      <Label htmlFor="timeline" className="text-white font-semibold">Timeline</Label>
+                      <Label htmlFor="timeline" className="text-white font-semibold">Timeline *</Label>
                       <Select onValueChange={(value) => handleChange('timeline', value)}>
-                        <SelectTrigger className="bg-white/10 border-white/20 text-white focus:border-cyan-400 focus:ring-cyan-400/20">
+                        <SelectTrigger className={`bg-white/10 border-white/20 text-white focus:border-cyan-400 focus:ring-cyan-400/20 ${errors.timeline ? 'border-red-400' : ''}`}>
                           <SelectValue placeholder="When do you need this?" />
                         </SelectTrigger>
                         <SelectContent className="bg-slate-800 border-slate-700">
@@ -325,6 +402,9 @@ const Contact = () => {
                           <SelectItem value="exploring">Just exploring</SelectItem>
                         </SelectContent>
                       </Select>
+                      {errors.timeline && (
+                        <p className="text-red-400 text-sm mt-1">{errors.timeline}</p>
+                      )}
                     </div>
                   </div>
 
@@ -337,8 +417,11 @@ const Contact = () => {
                       value={formData.message}
                       onChange={(e) => handleChange('message', e.target.value)}
                       required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20"
+                      className={`bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 ${errors.message ? 'border-red-400' : ''}`}
                     />
+                    {errors.message && (
+                      <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                    )}
                   </div>
 
                   {/* Honeypot field for spam protection */}
@@ -353,10 +436,19 @@ const Contact = () => {
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Sending Message...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </>
+                    )}
                   </Button>
 
                   <p className="text-sm text-slate-300 text-center">
