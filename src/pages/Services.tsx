@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Globe, Shield, Wrench, Palette, Star, ArrowRight, Sparkles, CheckCircle, Users, Layers, Compass, Telescope, TrendingUp, Clock, Award, Heart, Zap, Target, Rocket, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ArrowRight, CheckCircle, Layers, Heart, ChevronLeft, ChevronRight, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import { useState, useEffect, useRef } from 'react';

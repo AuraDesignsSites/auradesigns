@@ -1,4 +1,4 @@
-import { Users, Target, Clock, Award, CheckCircle, Sparkles, Zap, Heart, Rocket, Code2, Palette, ArrowRight, Star, Globe, Shield, Layers, Compass, Telescope, TrendingUp } from 'lucide-react';
+import { Users, Target, CheckCircle, Sparkles, Zap, Heart, Rocket, Code2, ArrowRight, Shield, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';

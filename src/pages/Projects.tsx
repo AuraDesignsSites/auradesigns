@@ -1,4 +1,4 @@
-import { Rocket, Star } from 'lucide-react';
+import { Rocket } from 'lucide-react';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 
 const Projects = () => {
