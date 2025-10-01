@@ -44,19 +44,19 @@ const About = () => {
     },
     {
       phase: "Prototyping", 
-      details: ["Wireframe creation", "User flow mapping", "Design system development", "Interactive mockups"]
+      details: ["Mock-up designs", "Button/links design flow", "Image/video placement design", "Systems design and software architecture"]
     },
     {
       phase: "Build",
       details: ["Modern development practices", "Component-based architecture", "Performance optimization", "Cross-browser testing"]
     },
     {
-      phase: "QA",
-      details: ["Accessibility audit", "Performance testing", "Device compatibility check", "SEO optimization"]
+      phase: "Quality Testing",
+      details: ["Performance testing", "Device compatibility check", "SEO optimization", "Mobile responsiveness and optimization", "Custom functionality testing"]
     },
     {
       phase: "Launch",
-      details: ["DNS setup & SSL", "CDN configuration", "Analytics integration", "Monitoring setup"]
+      details: ["DNS setup & SSL", "CDN configuration", "Analytics integration", "Domain hookup", "Email notification config"]
     },
     {
       phase: "Support",
@@ -284,7 +284,7 @@ const About = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
+              <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm hover:text-white">
                 <Link to="/projects">See Our Work</Link>
               </Button>
             </div>
@@ -393,7 +393,7 @@ const About = () => {
                 <img 
                   src={logo} 
                   alt="Aura Designs Logo" 
-                  className="w-24 h-24 object-contain animate-pulse"
+                  className="w-24 h-24 object-contain"
                 />
               </div>
               
@@ -406,7 +406,7 @@ const About = () => {
               {[
                 { icon: <Rocket className="h-8 w-8" />, title: "Clarity over Complexity", description: "Simple solutions that work beautifully" },
                 { icon: <Shield className="h-8 w-8" />, title: "Security First", description: "Built with enterprise-grade security standards" },
-                { icon: <Globe className="h-8 w-8" />, title: "Global Reach", description: "Scalable solutions for worldwide audiences" }
+                { icon: <TrendingUp className="h-8 w-8" />, title: "Fair Pricing", description: "Transparent, competitive pricing for all budgets" }
               ].map((item, index) => (
                 <div key={index + 3} className="group relative">
                   {/* Space-themed Hexagonal Card */}
