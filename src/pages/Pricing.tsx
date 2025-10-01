@@ -3,9 +3,13 @@ import { Check, ArrowRight, Star, Award, Globe, Plus, Minus } from 'lucide-react
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import { useState } from 'react';
 
 const Pricing = () => {
+  // Scroll to top when component mounts
+  useScrollToTop();
+  
   const [openItems, setOpenItems] = useState<string[]>([]);
 
   const toggleItem = (value: string) => {
@@ -26,11 +30,12 @@ const Pricing = () => {
         "1-3 pages (Home, About, Contact)",
         "Clean one-pager or portfolio design",
         "Mobile-responsive layout",
-        "Contact form integration", 
+        "Contact form integration",
         "Basic SEO optimization",
-        "Launch on Vercel (included)",
+        "One month of free hosting",
+        "SSL and basic security included",
         "1 week turnaround",
-        "30 days of support"
+        "14 days of support"
       ],
       cta: "Choose Starter",
       popular: false
@@ -43,12 +48,16 @@ const Pricing = () => {
       features: [
         "Up to 6 pages (Home, About, Services, Projects, Pricing, Contact)",
         "Custom sections and layouts",
-        "Google Analytics integration",
+        "Custom form integration",
         "SEO essentials and optimization",
-        "Basic copy assistance",
+        "Mobile optimized",
+        "Basic animations",
         "2 rounds of revisions included",
         "2-3 weeks turnaround",
-        "60 days of support"
+        "SSL and basic security included",
+        "Image optimization and performance enhancements",
+        "Analytics integration",
+        "30 days of support"
       ],
       cta: "Choose Small Business",
       popular: true
@@ -59,14 +68,16 @@ const Pricing = () => {
       price: "$4,999+",
       description: "For businesses needing advanced functionality",
       features: [
+        "Everything in Starter and Small Business",
         "Unlimited pages and sections",
-        "Bespoke design system and animations",
+        "Custom design system and animations",
         "Advanced integrations (CRM, CMS, etc.)",
         "Custom components and functionality",
         "Headless CMS or e-commerce setup",
         "Priority support and maintenance",
         "Performance + accessibility audit",
-        "3-4 weeks turnaround"
+        "3-4 weeks turnaround",
+        "60 days of support"
       ],
       cta: "Request Custom Quote",
       popular: false
@@ -84,7 +95,7 @@ const Pricing = () => {
     },
     {
       question: "Do you handle hosting and domain setup?",
-      answer: "Yes! We deploy all sites on Vercel with SSL certificates included. We can also help with domain registration and DNS setup. Hosting costs are separate and typically run $10-30/month depending on traffic."
+      answer: "Yes! We do everything for setup if you want an external provider, or we can handle hosting internally for $10-$30/month (SSL included). We can also help with domain registration and DNS setup."
     },
     {
       question: "How many revisions are included?",
@@ -92,7 +103,7 @@ const Pricing = () => {
     },
     {
       question: "What if I need changes after launch?",
-      answer: "All plans include post-launch support (30-60 days). After that, we offer maintenance packages starting at $150/month for ongoing updates, security, and support."
+      answer: "All plans include post-launch support (30-60 days). After that, we offer maintenance packages for ongoing updates, security, and support at a price depending on your needs."
     },
     {
       question: "Can you work with my existing brand?",
@@ -103,8 +114,8 @@ const Pricing = () => {
       answer: "Yes, we offer 50% upfront and 50% on completion for all projects. For Pro projects over $10k, we can discuss custom payment schedules."
     },
     {
-      question: "What technologies do you use?",
-      answer: "We primarily use Next.js, React, Tailwind CSS, and deploy on Vercel. For e-commerce, we often integrate with Shopify or Stripe. All sites are built with modern, maintainable code."
+      question: "Do you offer bundling services like business cards, menus, etc.?",
+      answer: "Yes! We offer additional design services including business cards, menus, flyers, and other marketing materials. These are custom quoted based on your specific needs and requirements."
     }
   ];
 
@@ -136,13 +147,13 @@ const Pricing = () => {
               Pricing <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Plans</span>
             </h2>
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
-              Choose the plan that fits your needs. All plans include hosting, SSL, and support.
+              Choose the plan that fits your needs.
             </p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
-              <div key={index} className={`group relative ${plan.popular ? 'lg:scale-105' : ''}`}>
+              <div key={index} className={`group relative ${plan.popular ? 'lg:scale-110' : ''}`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
                     <div className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold flex items-center space-x-2 shadow-2xl">

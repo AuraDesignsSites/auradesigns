@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { scrollToTop } from '@/hooks/use-scroll-to-top';
 import logo from '@/assets/auralogo-transparentbg.png';
 
 const Navbar = () => {
@@ -34,7 +35,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2" onClick={scrollToTop}>
             <img src={logo} alt="Aura Designs" className="h-12 w-auto" />
             <span className={`font-normal text-xl transition-colors ${isScrolled ? 'text-white' : 'text-foreground'}`}>Aura Designs</span>
           </Link>
@@ -45,6 +46,7 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 to={link.href}
+                onClick={scrollToTop}
                 className={`font-medium transition-colors hover:text-primary ${
                   isActive(link.href) ? 'text-primary' : isScrolled ? 'text-white' : 'text-muted-foreground'
                 }`}
@@ -57,7 +59,7 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Button asChild className="btn-hero">
-              <Link to="/contact">Get Started</Link>
+              <Link to="/contact" onClick={scrollToTop}>Get Started</Link>
             </Button>
           </div>
 
@@ -83,13 +85,16 @@ const Navbar = () => {
                   className={`font-medium transition-colors hover:text-primary ${
                     isActive(link.href) ? 'text-primary' : isScrolled ? 'text-white' : 'text-muted-foreground'
                   }`}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    scrollToTop();
+                  }}
                 >
                   {link.label}
                 </Link>
               ))}
               <Button asChild className="btn-hero mt-4">
-                <Link to="/contact">Get Started</Link>
+                <Link to="/contact" onClick={scrollToTop}>Get Started</Link>
               </Button>
             </div>
           </div>

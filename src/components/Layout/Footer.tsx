@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
+import { scrollToTop } from '@/hooks/use-scroll-to-top';
 import logo from '@/assets/auralogo-transparentbg.png';
 
 const Footer = () => {
@@ -51,6 +52,7 @@ const Footer = () => {
                 <Link
                   key={link.href}
                   to={link.href}
+                  onClick={scrollToTop}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {link.label}
@@ -65,7 +67,7 @@ const Footer = () => {
             <p className="text-muted-foreground mb-4">
               Ready to transform your digital presence? Let's discuss your project.
             </p>
-            <Link to="/contact" className="inline-block btn-ghost text-sm px-6 py-3">
+            <Link to="/contact" onClick={scrollToTop} className="inline-block btn-ghost text-sm px-6 py-3">
               Start a Project
             </Link>
           </div>

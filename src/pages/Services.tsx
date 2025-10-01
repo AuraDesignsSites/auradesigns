@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Globe, Shield, Wrench, Palette, Star, ArrowRight, Sparkles, CheckCircle, Users, Layers, Compass, Telescope, TrendingUp, Clock, Award, Heart, Zap, Target, Rocket, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import { useState, useEffect, useRef } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
 import tempWebImage from '@/assets/temp-web.png';
@@ -9,6 +10,9 @@ import moonImage from '@/assets/moon.png';
 import shroomsImage from '@/assets/shrooms.png';
 
 const Services = () => {
+  // Scroll to top when component mounts
+  useScrollToTop();
+  
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const [imageVisibleItems, setImageVisibleItems] = useState<number[]>([]);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);

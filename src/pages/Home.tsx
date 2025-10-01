@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Target, Shield, Code2, Users, Rocket, CheckCircle, Star, TrendingUp, Clock, Award, Sparkles, Heart, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import logo from '@/assets/auralogo-transparentbg.png';
 import { useState, useEffect, useRef } from 'react';
 
 const Home = () => {
+  // Scroll to top when component mounts
+  useScrollToTop();
+  
   const [currentSlogan, setCurrentSlogan] = useState(0);
   const slogans = ['Modern', 'Fast', 'Secure'];
   const [animatedNumbers, setAnimatedNumbers] = useState({

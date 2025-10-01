@@ -6,8 +6,12 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 
 const Contact = () => {
+  // Scroll to top when component mounts
+  useScrollToTop();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',

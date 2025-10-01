@@ -1,12 +1,16 @@
 import { Users, Target, Clock, Award, CheckCircle, Sparkles, Zap, Heart, Rocket, Code2, Palette, ArrowRight, Star, Globe, Shield, Layers, Compass, Telescope, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import { useState, useEffect, useRef } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
 import saturnImage from '@/assets/saturn.png';
 import moonImage from '@/assets/moon.png';
 
 const About = () => {
+  // Scroll to top when component mounts
+  useScrollToTop();
+  
   const [visibleTimelineItems, setVisibleTimelineItems] = useState<number[]>([]);
   const [saturnPosition, setSaturnPosition] = useState({ scale: 1, x: 0, y: 0, opacity: 0.2 });
   const [moonPosition, setMoonPosition] = useState({ scale: 0, x: 0, y: 0, opacity: 0 });
@@ -586,8 +590,8 @@ const About = () => {
                     }}>
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full animate-pulse"></div>
                       <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
-                        {index + 1}
-                      </div>
+                    {index + 1}
+                  </div>
                     </div>
                     
                     {/* Content Card */}
