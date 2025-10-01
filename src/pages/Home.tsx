@@ -144,7 +144,7 @@ const Home = () => {
     },
     {
       icon: <Rocket className="h-8 w-8 text-white" />,
-      title: "Scalable Architecture",
+      title: "Scalable",
       description: "Grows with your business"
     },
     {
@@ -347,6 +347,81 @@ const Home = () => {
 
       {/* Tech Stack & Capabilities Carousel */}
       <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        {/* Background Stars */}
+        <div className="absolute inset-0">
+          {/* Small stars */}
+          <div className="bg-star" style={{ top: '5%', left: '3%' }}></div>
+          <div className="bg-star" style={{ top: '8%', left: '12%' }}></div>
+          <div className="bg-star" style={{ top: '12%', left: '25%' }}></div>
+          <div className="bg-star" style={{ top: '6%', left: '38%' }}></div>
+          <div className="bg-star" style={{ top: '15%', left: '45%' }}></div>
+          <div className="bg-star" style={{ top: '9%', left: '58%' }}></div>
+          <div className="bg-star" style={{ top: '18%', left: '68%' }}></div>
+          <div className="bg-star" style={{ top: '7%', left: '78%' }}></div>
+          <div className="bg-star" style={{ top: '14%', left: '88%' }}></div>
+          <div className="bg-star" style={{ top: '11%', left: '95%' }}></div>
+          
+          <div className="bg-star" style={{ top: '25%', left: '2%' }}></div>
+          <div className="bg-star" style={{ top: '22%', left: '15%' }}></div>
+          <div className="bg-star" style={{ top: '28%', left: '28%' }}></div>
+          <div className="bg-star" style={{ top: '31%', left: '42%' }}></div>
+          <div className="bg-star" style={{ top: '26%', left: '55%' }}></div>
+          <div className="bg-star" style={{ top: '33%', left: '65%' }}></div>
+          <div className="bg-star" style={{ top: '29%', left: '75%' }}></div>
+          <div className="bg-star" style={{ top: '35%', left: '85%' }}></div>
+          <div className="bg-star" style={{ top: '24%', left: '92%' }}></div>
+          
+          <div className="bg-star" style={{ top: '45%', left: '5%' }}></div>
+          <div className="bg-star" style={{ top: '48%', left: '18%' }}></div>
+          <div className="bg-star" style={{ top: '42%', left: '32%' }}></div>
+          <div className="bg-star" style={{ top: '51%', left: '48%' }}></div>
+          <div className="bg-star" style={{ top: '47%', left: '62%' }}></div>
+          <div className="bg-star" style={{ top: '44%', left: '72%' }}></div>
+          <div className="bg-star" style={{ top: '49%', left: '82%' }}></div>
+          <div className="bg-star" style={{ top: '46%', left: '95%' }}></div>
+          
+          <div className="bg-star" style={{ top: '65%', left: '3%' }}></div>
+          <div className="bg-star" style={{ top: '68%', left: '16%' }}></div>
+          <div className="bg-star" style={{ top: '72%', left: '29%' }}></div>
+          <div className="bg-star" style={{ top: '66%', left: '41%' }}></div>
+          <div className="bg-star" style={{ top: '69%', left: '54%' }}></div>
+          <div className="bg-star" style={{ top: '74%', left: '67%' }}></div>
+          <div className="bg-star" style={{ top: '71%', left: '79%' }}></div>
+          <div className="bg-star" style={{ top: '67%', left: '89%' }}></div>
+          <div className="bg-star" style={{ top: '73%', left: '96%' }}></div>
+          
+          <div className="bg-star" style={{ top: '85%', left: '7%' }}></div>
+          <div className="bg-star" style={{ top: '88%', left: '21%' }}></div>
+          <div className="bg-star" style={{ top: '82%', left: '35%' }}></div>
+          <div className="bg-star" style={{ top: '86%', left: '49%' }}></div>
+          <div className="bg-star" style={{ top: '91%', left: '63%' }}></div>
+          <div className="bg-star" style={{ top: '87%', left: '76%' }}></div>
+          <div className="bg-star" style={{ top: '84%', left: '88%' }}></div>
+          <div className="bg-star" style={{ top: '89%', left: '94%' }}></div>
+          
+          {/* Additional scattered stars */}
+          <div className="bg-star" style={{ top: '35%', left: '8%' }}></div>
+          <div className="bg-star" style={{ top: '55%', left: '25%' }}></div>
+          <div className="bg-star" style={{ top: '75%', left: '12%' }}></div>
+          <div className="bg-star" style={{ top: '40%', left: '85%' }}></div>
+          <div className="bg-star" style={{ top: '60%', left: '90%' }}></div>
+          <div className="bg-star" style={{ top: '80%', left: '5%' }}></div>
+          <div className="bg-star" style={{ top: '50%', left: '15%' }}></div>
+          <div className="bg-star" style={{ top: '70%', left: '35%' }}></div>
+          <div className="bg-star" style={{ top: '30%', left: '55%' }}></div>
+          <div className="bg-star" style={{ top: '90%', left: '45%' }}></div>
+          <div className="bg-star" style={{ top: '20%', left: '70%' }}></div>
+          <div className="bg-star" style={{ top: '60%', left: '50%' }}></div>
+          <div className="bg-star" style={{ top: '40%', left: '20%' }}></div>
+          <div className="bg-star" style={{ top: '80%', left: '60%' }}></div>
+          <div className="bg-star" style={{ top: '25%', left: '40%' }}></div>
+          <div className="bg-star" style={{ top: '75%', left: '80%' }}></div>
+          <div className="bg-star" style={{ top: '45%', left: '70%' }}></div>
+          <div className="bg-star" style={{ top: '65%', left: '10%' }}></div>
+          <div className="bg-star" style={{ top: '35%', left: '60%' }}></div>
+          <div className="bg-star" style={{ top: '85%', left: '30%' }}></div>
+        </div>
+        
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-6 border border-cyan-500/30">
@@ -362,15 +437,25 @@ const Home = () => {
           </div>
           
           {/* Carousel Container */}
-          <div className="relative overflow-hidden text-blur-fade">
-            <div className="flex animate-scroll space-x-8">
-              {[...capabilities, ...capabilities].map((capability, index) => (
+          <div className="relative overflow-hidden">
+            {/* Glassy background effect */}
+            <div className="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10"></div>
+            
+            {/* Custom fade effects for space theme */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-900 via-purple-900/50 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-900 via-purple-900/50 to-transparent z-10 pointer-events-none"></div>
+            
+            <div className="flex animate-scroll-smooth space-x-8 relative z-10 p-8">
+              {[...capabilities, ...capabilities, ...capabilities].map((capability, index) => (
                 <div key={index} className="flex-shrink-0">
                   <div className="w-48 h-48 flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                    {/* Glassy card effect */}
+                    <div className="w-20 h-20 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 backdrop-blur-md rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-2xl border border-white/20">
                       {capability.icon}
                     </div>
-                    <div className="text-lg font-bold text-white text-center leading-tight">{capability.title}</div>
+                    <div className="text-lg font-bold text-white text-center leading-tight drop-shadow-lg">
+                      {capability.title}
+                    </div>
                   </div>
               </div>
             ))}
