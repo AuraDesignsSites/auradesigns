@@ -70,15 +70,16 @@ const Services = () => {
 
   const services = [
     {
-      emoji: "🌐",
+      emoji: "💻",
       title: "Website Design & Development",
       description: "Complete web solutions built for performance and conversion.",
       features: [
-        "Responsive Next.js sites with modern design",
-        "UX/UI optimization and copy support",
-        "CMS integration or static site options",
-        "Performance & SEO best practices built-in",
-        "Analytics & conversion tracking setup"
+        "Dedicated web designer and mock-ups made for customers",
+        "Modern web design with cutting-edge web stack",
+        "Fully responsive on mobile and optimized for all devices",
+        "Performance, security, and privacy built-in",
+        "SEO optimization for better search rankings",
+        "Custom features, forms, and integrations"
       ]
     },
     {
@@ -86,11 +87,13 @@ const Services = () => {
       title: "Web Hosting & Security", 
       description: "Enterprise-grade hosting with built-in security and monitoring.",
       features: [
-        "Vercel deployments with global CDN",
-        "SSL certificates and automated backups", 
-        "Core Web Vitals optimization",
-        "Uptime monitoring and alerts",
-        "Basic WAF and security recommendations"
+        "Affordable hosting solutions that fit your budget",
+        "Scalable hosting that grows with your business",
+        "Automated backup deployments for peace of mind",
+        "Global CDNs for lightning-fast loading worldwide",
+        "Uptime monitoring and instant alerts",
+        "Basic WAF and security recommendations",
+        "SSL included with every hosting plan"
       ]
     },
     {
@@ -99,10 +102,12 @@ const Services = () => {
       description: "Keep your site running smoothly with ongoing care.",
       features: [
         "Monthly security and performance updates",
+        "Amazing uptime with 99.9% reliability",
         "Content changes and copy revisions",
         "Bug fixes and compatibility updates",
         "Small feature additions and improvements",
-        "Priority technical support"
+        "Priority technical support when you need it",
+        "Complete setup support and guidance"
       ]
     },
     {
@@ -110,11 +115,12 @@ const Services = () => {
       title: "Brand & Collateral",
       description: "Complete brand identity and marketing materials.",
       features: [
-        "Custom logo design and brand guidelines",
-        "Business card design & print-ready files",
+        "Custom logo design and comprehensive brand guidelines",
+        "Business card design with print-ready files",
         "Social media profile and cover setup",
-        "Brand kit handoff with all assets",
-        "Style guide and usage documentation"
+        "Complete brand kit handoff with all assets",
+        "Google Business setup and optimization",
+        "Additional brand-related services available on request"
       ]
     }
   ];
@@ -375,14 +381,14 @@ const Services = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevTestimonial}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-2xl hover:bg-white/20 transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full border-2 border-cyan-400/50 shadow-2xl hover:bg-white/20 hover:border-cyan-400 transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
             >
               <ChevronLeft className="h-6 w-6" />
             </button>
             
             <button
               onClick={nextTestimonial}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-2xl hover:bg-white/20 transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full border-2 border-cyan-400/50 shadow-2xl hover:bg-white/20 hover:border-cyan-400 transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
             >
               <ChevronRight className="h-6 w-6" />
             </button>
