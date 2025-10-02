@@ -1,6 +1,6 @@
 // Business contact information constants
 export const BUSINESS_EMAIL = 'auradesigns.team@gmail.com';
-export const BUSINESS_DOMAIN = 'send.auradesigns.net';
+export const BUSINESS_DOMAIN = 'mail.auradesigns.net';
 export const BUSINESS_NAME = 'Aura Designs';
 
 // Email configuration

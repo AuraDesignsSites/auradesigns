@@ -62,10 +62,10 @@ This project is built with:
 
 ## Email Integration
 
-This project uses Resend for email functionality with the domain `send.auradesigns.net`. 
+This project uses Resend for email functionality with the domain `mail.auradesigns.net`. 
 
-- Emails are sent from `noreply@send.auradesigns.net` to `auradesigns.team@gmail.com`
-- The domain `send.auradesigns.net` is verified in Resend
+- Emails are sent from `noreply@mail.auradesigns.net` to `auradesigns.team@gmail.com`
+- The domain `mail.auradesigns.net` is verified in Resend
 - Uses `RESEND_API_KEY` environment variable configured in Vercel
 
 ## How can I deploy this project?
