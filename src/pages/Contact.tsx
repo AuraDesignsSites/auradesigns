@@ -354,14 +354,14 @@ const Contact = () => {
                       <SelectTrigger className="bg-white/10 border-white/20 text-white focus:border-cyan-400 focus:ring-cyan-400/20">
                         <SelectValue placeholder="What type of project?" />
                       </SelectTrigger>
-                      <SelectContent className="bg-slate-800 border-slate-700">
-                        <SelectItem value="website">Website Design & Development</SelectItem>
-                        <SelectItem value="ecommerce">E-commerce Store</SelectItem>
-                        <SelectItem value="webapp">Web Application</SelectItem>
-                        <SelectItem value="redesign">Website Redesign</SelectItem>
-                        <SelectItem value="maintenance">Maintenance & Support</SelectItem>
-                        <SelectItem value="consulting">Consulting</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                      <SelectContent className="bg-slate-900 border-slate-600 text-white">
+                        <SelectItem value="website" className="text-white hover:bg-slate-700 focus:bg-slate-700">Website Design & Development</SelectItem>
+                        <SelectItem value="ecommerce" className="text-white hover:bg-slate-700 focus:bg-slate-700">E-commerce Store</SelectItem>
+                        <SelectItem value="webapp" className="text-white hover:bg-slate-700 focus:bg-slate-700">Web Application</SelectItem>
+                        <SelectItem value="redesign" className="text-white hover:bg-slate-700 focus:bg-slate-700">Website Redesign</SelectItem>
+                        <SelectItem value="maintenance" className="text-white hover:bg-slate-700 focus:bg-slate-700">Maintenance & Support</SelectItem>
+                        <SelectItem value="consulting" className="text-white hover:bg-slate-700 focus:bg-slate-700">Consulting</SelectItem>
+                        <SelectItem value="other" className="text-white hover:bg-slate-700 focus:bg-slate-700">Other</SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.projectType && (
@@ -376,13 +376,13 @@ const Contact = () => {
                         <SelectTrigger className={`bg-white/10 border-white/20 text-white focus:border-cyan-400 focus:ring-cyan-400/20 ${errors.budget ? 'border-red-400' : ''}`}>
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
-                        <SelectContent className="bg-slate-800 border-slate-700">
-                          <SelectItem value="under-1k">Under $1,000</SelectItem>
-                          <SelectItem value="1k-3k">$1,000 - $3,000</SelectItem>
-                          <SelectItem value="3k-5k">$3,000 - $5,000</SelectItem>
-                          <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
-                          <SelectItem value="10k-plus">$10,000+</SelectItem>
-                          <SelectItem value="discuss">Let's discuss</SelectItem>
+                        <SelectContent className="bg-slate-900 border-slate-600 text-white">
+                          <SelectItem value="under-1k" className="text-white hover:bg-slate-700 focus:bg-slate-700">Under $1,000</SelectItem>
+                          <SelectItem value="1k-3k" className="text-white hover:bg-slate-700 focus:bg-slate-700">$1,000 - $3,000</SelectItem>
+                          <SelectItem value="3k-5k" className="text-white hover:bg-slate-700 focus:bg-slate-700">$3,000 - $5,000</SelectItem>
+                          <SelectItem value="5k-10k" className="text-white hover:bg-slate-700 focus:bg-slate-700">$5,000 - $10,000</SelectItem>
+                          <SelectItem value="10k-plus" className="text-white hover:bg-slate-700 focus:bg-slate-700">$10,000+</SelectItem>
+                          <SelectItem value="discuss" className="text-white hover:bg-slate-700 focus:bg-slate-700">Let's discuss</SelectItem>
                         </SelectContent>
                       </Select>
                       {errors.budget && (
@@ -395,11 +395,11 @@ const Contact = () => {
                         <SelectTrigger className={`bg-white/10 border-white/20 text-white focus:border-cyan-400 focus:ring-cyan-400/20 ${errors.timeline ? 'border-red-400' : ''}`}>
                           <SelectValue placeholder="When do you need this?" />
                         </SelectTrigger>
-                        <SelectContent className="bg-slate-800 border-slate-700">
-                          <SelectItem value="asap">ASAP</SelectItem>
-                          <SelectItem value="1-month">Within 1 month</SelectItem>
-                          <SelectItem value="1-3-months">1-3 months</SelectItem>
-                          <SelectItem value="exploring">Just exploring</SelectItem>
+                        <SelectContent className="bg-slate-900 border-slate-600 text-white">
+                          <SelectItem value="asap" className="text-white hover:bg-slate-700 focus:bg-slate-700">ASAP</SelectItem>
+                          <SelectItem value="1-month" className="text-white hover:bg-slate-700 focus:bg-slate-700">Within 1 month</SelectItem>
+                          <SelectItem value="1-3-months" className="text-white hover:bg-slate-700 focus:bg-slate-700">1-3 months</SelectItem>
+                          <SelectItem value="exploring" className="text-white hover:bg-slate-700 focus:bg-slate-700">Just exploring</SelectItem>
                         </SelectContent>
                       </Select>
                       {errors.timeline && (
