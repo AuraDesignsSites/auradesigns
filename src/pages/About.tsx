@@ -21,19 +21,19 @@ const About = () => {
 
   const team = [
     {
-      name: "Alex Rodriguez",
-      role: "Lead Designer & Developer", 
-      bio: "10+ years crafting digital experiences with a focus on performance and usability."
+      name: "Pratik Mistry",
+      role: "Lead Developer", 
+      bio: "4-5 years of experience in software engineering with a strong foundation in computer science. Passionate about building scalable and efficient web applications."
     },
     {
-      name: "Sarah Chen",
-      role: "UX Strategist",
-      bio: "Conversion optimization expert who turns user insights into business results."
+      name: "Kavin Mural",
+      role: "Lead Developer",
+      bio: "4-5 years of experience in software engineering with a computer science background. Specializes in modern web technologies and full-stack development."
     },
     {
-      name: "Mike Johnson", 
-      role: "Technical Lead",
-      bio: "Full-stack architect specializing in modern web technologies and scalable solutions."
+      name: "Ryan Honeybone", 
+      role: "UX/UI Designer",
+      bio: "3 years of experience in design with a strong educational background in design principles. Creates intuitive and beautiful user experiences that drive engagement."
     }
   ];
 
