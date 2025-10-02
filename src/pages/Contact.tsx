@@ -6,9 +6,10 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { useScrollToTop } from '@/hooks/use-scroll-to-top';
+import { useScrollToTop } from '@/hooks';
 import { sendContactEmail, contactFormSchema, type ContactFormData } from '@/lib/email-service';
-import { BUSINESS_EMAIL } from '@/lib/constants';
+import { BUSINESS_EMAIL, BUSINESS_PHONE } from '@/lib/constants';
+import type { ProcessStepInfo } from '@/lib/types';
 
 const Contact = () => {
   // Scroll to top when component mounts
@@ -17,8 +18,8 @@ const Contact = () => {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
-    phone: '',
-    company: '',
+    phone: undefined,
+    company: undefined,
     projectType: '',
     budget: '',
     timeline: '',
@@ -35,7 +36,7 @@ const Contact = () => {
     
     try {
       // Validate form data
-      const validatedData = contactFormSchema.parse(formData);
+      const validatedData = contactFormSchema.parse(formData) as ContactFormData;
       
       // Send email
       const result = await sendContactEmail(validatedData);
@@ -50,8 +51,8 @@ const Contact = () => {
         setFormData({
           name: '',
           email: '',
-          phone: '',
-          company: '',
+          phone: undefined,
+          company: undefined,
           projectType: '',
           budget: '',
           timeline: '',
@@ -96,10 +97,13 @@ const Contact = () => {
   };
 
   const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({ 
+      ...prev, 
+      [field]: value === '' && (field === 'phone' || field === 'company') ? undefined : value 
+    }));
   };
 
-  const processSteps = [
+  const processSteps: ProcessStepInfo[] = [
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Send us a message",
@@ -244,10 +248,10 @@ const Contact = () => {
                       <div className="min-w-0 flex-1">
                         <p className="font-semibold text-white text-base sm:text-lg">Call us directly</p>
                         <a 
-                          href="tel:+1-555-123-4567" 
+                          href={`tel:${BUSINESS_PHONE}`} 
                           className="text-cyan-300 hover:text-cyan-200 transition-colors text-sm sm:text-base"
                         >
-                          (555) 123-4567
+                          {BUSINESS_PHONE}
                         </a>
                       </div>
                     </div>

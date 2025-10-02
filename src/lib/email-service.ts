@@ -1,59 +1,53 @@
 import { z } from 'zod';
+import { FORM_LIMITS, PERFORMANCE_THRESHOLDS } from './constants';
+import type { ContactFormData, EmailResponse, RateLimitEntry } from './types';
 
 // Validation schema for contact form with enhanced security
 export const contactFormSchema = z.object({
   name: z.string()
-    .min(2, 'Name must be at least 2 characters')
-    .max(100, 'Name must be less than 100 characters')
+    .min(FORM_LIMITS.NAME_MIN, `Name must be at least ${FORM_LIMITS.NAME_MIN} characters`)
+    .max(FORM_LIMITS.NAME_MAX, `Name must be less than ${FORM_LIMITS.NAME_MAX} characters`)
     .regex(/^[a-zA-Z\s\-'\.]+$/, 'Name contains invalid characters'),
   email: z.string()
     .email('Invalid email address')
-    .max(254, 'Email must be less than 254 characters'),
+    .max(FORM_LIMITS.EMAIL_MAX, `Email must be less than ${FORM_LIMITS.EMAIL_MAX} characters`),
   phone: z.string()
     .optional()
     .refine((val) => !val || /^[\+]?[1-9][\d]{0,15}$/.test(val.replace(/[\s\-\(\)]/g, '')), 'Invalid phone number format'),
   company: z.string()
-    .max(100, 'Company name must be less than 100 characters')
+    .max(FORM_LIMITS.COMPANY_MAX, `Company name must be less than ${FORM_LIMITS.COMPANY_MAX} characters`)
     .optional(),
   projectType: z.string()
     .min(1, 'Project type is required')
-    .max(50, 'Project type must be less than 50 characters'),
+    .max(FORM_LIMITS.PROJECT_TYPE_MAX, `Project type must be less than ${FORM_LIMITS.PROJECT_TYPE_MAX} characters`),
   budget: z.string()
     .min(1, 'Budget range is required')
-    .max(50, 'Budget range must be less than 50 characters'),
+    .max(FORM_LIMITS.BUDGET_MAX, `Budget range must be less than ${FORM_LIMITS.BUDGET_MAX} characters`),
   timeline: z.string()
     .min(1, 'Timeline is required')
-    .max(50, 'Timeline must be less than 50 characters'),
+    .max(FORM_LIMITS.TIMELINE_MAX, `Timeline must be less than ${FORM_LIMITS.TIMELINE_MAX} characters`),
   message: z.string()
-    .min(10, 'Message must be at least 10 characters')
-    .max(2000, 'Message must be less than 2000 characters')
+    .min(FORM_LIMITS.MESSAGE_MIN, `Message must be at least ${FORM_LIMITS.MESSAGE_MIN} characters`)
+    .max(FORM_LIMITS.MESSAGE_MAX, `Message must be less than ${FORM_LIMITS.MESSAGE_MAX} characters`)
     .refine((val) => !/<script|javascript:|on\w+\s*=/i.test(val), 'Message contains potentially harmful content'),
 });
 
-export type ContactFormData = z.infer<typeof contactFormSchema>;
-
-export interface EmailResponse {
-  success: boolean;
-  message: string;
-  error?: string;
-}
+export type { ContactFormData, EmailResponse };
 
 // Rate limiting to prevent spam (simple in-memory store for demo)
-const rateLimit = new Map<string, { count: number; lastReset: number }>();
-const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
-const MAX_REQUESTS_PER_WINDOW = 3;
+const rateLimit = new Map<string, RateLimitEntry>();
 
 const checkRateLimit = (email: string): boolean => {
   const now = Date.now();
   const key = email.toLowerCase();
   const userLimit = rateLimit.get(key);
 
-  if (!userLimit || now - userLimit.lastReset > RATE_LIMIT_WINDOW) {
+  if (!userLimit || now - userLimit.lastReset > PERFORMANCE_THRESHOLDS.RATE_LIMIT_WINDOW) {
     rateLimit.set(key, { count: 1, lastReset: now });
     return true;
   }
 
-  if (userLimit.count >= MAX_REQUESTS_PER_WINDOW) {
+  if (userLimit.count >= PERFORMANCE_THRESHOLDS.MAX_REQUESTS_PER_WINDOW) {
     return false;
   }
 

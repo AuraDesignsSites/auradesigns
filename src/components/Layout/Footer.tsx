@@ -1,20 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
-import { scrollToTop } from '@/hooks/use-scroll-to-top';
-import { BUSINESS_EMAIL } from '@/lib/constants';
+import { scrollToTop } from '@/hooks';
+import { BUSINESS_EMAIL, BUSINESS_PHONE, NAVIGATION_LINKS } from '@/lib/constants';
 import logo from '@/assets/auralogo-transparentbg.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/pricing', label: 'Pricing' },
-    { href: '/contact', label: 'Contact' },
-  ];
+  const quickLinks = NAVIGATION_LINKS;
 
   return (
     <footer className="relative overflow-hidden bg-gradient-to-br from-black via-indigo-900 to-purple-900">
@@ -125,8 +118,8 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center space-x-2 text-slate-300">
                   <Phone className="h-4 w-4" />
-                  <a href="tel:+1-555-123-4567" className="hover:text-cyan-400 transition-colors">
-                    (555) 123-4567
+                  <a href={`tel:${BUSINESS_PHONE}`} className="hover:text-cyan-400 transition-colors">
+                    {BUSINESS_PHONE}
                   </a>
                 </div>
               </div>

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Target, Shield, Code2, Users, Rocket, CheckCircle, Star, TrendingUp, Clock, Award, Sparkles, Heart, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useScrollToTop } from '@/hooks/use-scroll-to-top';
+import { useScrollToTop } from '@/hooks';
+import { PERFORMANCE_THRESHOLDS } from '@/lib/constants';
+import type { Capability, Differentiator, SuccessMetric, AnimatedNumbers } from '@/lib/types';
 import logo from '@/assets/auralogo-transparentbg.png';
 import realEstateWebImage from '@/assets/website-example-realestate.png';
 import rocketWebImage from '@/assets/website-example-rocket.png';
@@ -15,7 +17,7 @@ const Home = () => {
   
   const [currentSlogan, setCurrentSlogan] = useState(0);
   const slogans = useMemo(() => ['Modern', 'Fast', 'Secure'], []);
-  const [animatedNumbers, setAnimatedNumbers] = useState({
+  const [animatedNumbers, setAnimatedNumbers] = useState<AnimatedNumbers>({
     conversion: 0,
     weeks: "1-2",
     satisfaction: 0,
@@ -77,7 +79,7 @@ const Home = () => {
   }, [isVisible, animateNumbers]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.3 });
+    const observer = new IntersectionObserver(handleIntersection, { threshold: PERFORMANCE_THRESHOLDS.INTERSECTION_OBSERVER });
 
     if (metricsRef.current) {
       observer.observe(metricsRef.current);
@@ -118,7 +120,7 @@ const Home = () => {
     };
   }, []);
 
-  const capabilities = [
+  const capabilities: Capability[] = [
     {
       icon: <Code2 className="h-8 w-8 text-white" />,
       title: "Modern Tech Stack",
@@ -161,7 +163,7 @@ const Home = () => {
     }
   ];
 
-  const differentiators = [
+  const differentiators: Differentiator[] = [
     {
       icon: <Users className="h-8 w-8" />,
       title: "Personal Touch",
@@ -200,7 +202,7 @@ const Home = () => {
     }
   ];
 
-  const successMetrics = [
+  const successMetrics: SuccessMetric[] = [
     {
       icon: <TrendingUp className="h-8 w-8" />,
       number: "40%",

@@ -1,8 +1,10 @@
 import { Users, Target, CheckCircle, Sparkles, Zap, Heart, Rocket, Code2, ArrowRight, Shield, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { useScrollToTop } from '@/hooks/use-scroll-to-top';
+import { useScrollToTop } from '@/hooks';
 import { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react';
+import { PERFORMANCE_THRESHOLDS } from '@/lib/constants';
+import type { TeamMember, ProcessStep, Differentiator, Position } from '@/lib/types';
 import logo from '@/assets/auralogo-transparentbg.png';
 import saturnImage from '@/assets/saturn.png';
 import moonImage from '@/assets/moon.png';
@@ -12,14 +14,14 @@ const About = () => {
   useScrollToTop();
   
   const [visibleTimelineItems, setVisibleTimelineItems] = useState<number[]>([]);
-  const [saturnPosition, setSaturnPosition] = useState({ scale: 1, x: 0, y: 0, opacity: 0.2 });
-  const [moonPosition, setMoonPosition] = useState({ scale: 0, x: 0, y: 0, opacity: 0 });
+  const [saturnPosition, setSaturnPosition] = useState<Position>({ scale: 1, x: 0, y: 0, opacity: 0.2 });
+  const [moonPosition, setMoonPosition] = useState<Position>({ scale: 0, x: 0, y: 0, opacity: 0 });
   const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const auraDifferenceRef = useRef<HTMLDivElement>(null);
 
 
-  const team = useMemo(() => [
+  const team = useMemo((): TeamMember[] => [
     {
       name: "Pratik Mistry",
       role: "Lead Developer", 
@@ -37,7 +39,7 @@ const About = () => {
     }
   ], []);
 
-  const process = useMemo(() => [
+  const process = useMemo((): ProcessStep[] => [
     {
       phase: "Discovery",
       details: ["Business goals analysis", "Target audience research", "Competitive landscape review", "Technical requirements gathering"]
@@ -81,7 +83,7 @@ const About = () => {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: PERFORMANCE_THRESHOLDS.INTERSECTION_OBSERVER }
     );
 
     timelineRefs.current.forEach((ref) => {

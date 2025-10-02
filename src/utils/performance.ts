@@ -1,7 +1,10 @@
+import { PERFORMANCE_THRESHOLDS } from '@/lib/constants';
+import type { PerformanceMetrics, MemoryUsage, PerformanceMonitoringHook } from '@/lib/types';
+
 // Performance monitoring utilities
 export const performanceMetrics = {
   // Measure page load performance
-  measurePageLoad: () => {
+  measurePageLoad: (): PerformanceMetrics | null => {
     if (typeof window !== 'undefined' && 'performance' in window) {
       const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
       
@@ -69,11 +72,11 @@ export const performanceMetrics = {
         }
       };
       
-      // Throttle scroll events
+      // Throttle scroll events using constants
       let scrollTimeout: NodeJS.Timeout;
       const throttledScrollEnd = () => {
         clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(handleScrollEnd, 100);
+        scrollTimeout = setTimeout(handleScrollEnd, PERFORMANCE_THRESHOLDS.SCROLL_DEBOUNCE);
       };
       
       window.addEventListener('scroll', handleScrollStart, { passive: true });
@@ -89,7 +92,7 @@ export const performanceMetrics = {
   },
 
   // Get memory usage (if available)
-  getMemoryUsage: () => {
+  getMemoryUsage: (): MemoryUsage | null => {
     if (typeof window !== 'undefined' && 'memory' in performance) {
       const memory = (performance as any).memory;
       return {
@@ -124,7 +127,7 @@ export const performanceMetrics = {
 };
 
 // Performance monitoring hook
-export const usePerformanceMonitoring = (componentName: string) => {
+export const usePerformanceMonitoring = (componentName: string): PerformanceMonitoringHook => {
   const startTime = performance.now();
   
   return {

@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { scrollToTop } from '@/hooks/use-scroll-to-top';
+import { scrollToTop } from '@/hooks';
+import { NAVIGATION_LINKS, BREAKPOINTS } from '@/lib/constants';
 import logo from '@/assets/auralogo-transparentbg.png';
 
 const Navbar = () => {
@@ -19,14 +20,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/pricing', label: 'Pricing' },
-    { href: '/contact', label: 'Contact' },
-  ];
+  const navLinks = NAVIGATION_LINKS;
 
   const isActive = (href: string) => location.pathname === href;
 
