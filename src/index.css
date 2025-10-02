@@ -48,6 +48,44 @@
     --gradient-primary: linear-gradient(135deg, hsl(188 95% 43%), hsl(259 83% 58%));
     --gradient-subtle: linear-gradient(135deg, hsl(188 95% 43% / 0.1), hsl(259 83% 58% / 0.1));
     
+    /* Performance optimizations */
+    --will-change: auto;
+  }
+
+  /* Smooth resizing and prevent glitchy behavior */
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent layout shifts during animations */
+  .animate-scroll-smooth,
+  .animate-vertical-scroll-smooth {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Optimize animations for better performance */
+  .animate-pulse,
+  .animate-twinkle,
+  .animate-spin-slow,
+  .animate-spin-slow-reverse {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+    
     /* Shadows */
     --shadow-soft: 0 4px 6px -1px hsl(220 50% 10% / 0.1), 0 2px 4px -2px hsl(220 50% 10% / 0.1);
     --shadow-medium: 0 10px 15px -3px hsl(220 50% 10% / 0.1), 0 4px 6px -4px hsl(220 50% 10% / 0.1);
@@ -104,7 +142,6 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
 @layer base {
   * {

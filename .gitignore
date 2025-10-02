@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Screenshots and temporary files
+.cursor/
+screenshots/
+browser-logs/

@@ -91,7 +91,7 @@ const Home = () => {
 
   // Cursor glow effect - Hero section only
   useEffect(() => {
-    const heroSection = document.querySelector('.cursor-glow');
+    const heroSection = document.querySelector('.cursor-glow') as HTMLElement;
     if (!heroSection) return;
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -227,9 +227,9 @@ const Home = () => {
   ];
 
   return (
-    <div style={{ margin: 0, padding: 0 }}>
+    <div className="m-0 p-0">
       {/* Space-Themed Hero Section */}
-      <section className="hero-section min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-black via-teal-900 to-purple-900 cursor-glow" style={{ paddingTop: '0', marginTop: '0', position: 'relative', zIndex: '1' }}>
+      <section className="hero-section min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-black via-teal-900 to-purple-900 cursor-glow pt-0 mt-0 z-10">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -282,37 +282,37 @@ const Home = () => {
           <div className="absolute top-2/3 right-1/6 w-48 h-48 bg-gradient-to-r from-purple-500/18 to-indigo-500/18 rounded-full blur-3xl animate-pulse delay-2500"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 py-24 relative z-10" style={{ paddingTop: '100px' }}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="fade-in">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 relative z-10 pt-20 sm:pt-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center min-h-[80vh]">
+            <div className="fade-in order-2 lg:order-1">
               <div className="mb-4">
                 <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 text-white text-sm font-medium backdrop-blur-sm">
                   <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
                   Crafting Digital Excellence
                 </span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight text-white">
                 Design. Build. Launch
                 <span className="gradient-text"> — <span key={currentSlogan} className="cool-text-animation">{slogans[currentSlogan]}</span></span>
               </h1>
-              <p className="text-xl text-white/90 mb-8 leading-relaxed">
+              <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
                 Aura Designs creates high-performing websites for small businesses and professionals using modern development workflows.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild className="btn-hero bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-600 hover:to-violet-700 border-0 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button asChild className="btn-hero bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-600 hover:to-violet-700 border-0 text-white shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                   <Link to="/contact">
                     Launch Your Project
                     <Rocket className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="btn-ghost border-cyan-400/70 text-white bg-cyan-500/20 hover:bg-cyan-500/30 hover:border-cyan-300/80">
+                <Button asChild variant="outline" className="btn-ghost border-cyan-400/70 text-white bg-cyan-500/20 hover:bg-cyan-500/30 hover:border-cyan-300/80 w-full sm:w-auto">
                   <Link to="/projects">Learn More</Link>
                 </Button>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="w-full max-w-[500px] h-[400px] mx-auto relative flex items-center justify-center">
+            <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end">
+              <div className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] h-[220px] xs:h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] mx-auto relative flex items-center justify-center">
                 {/* Orbital Rings */}
                 <div className="absolute inset-0 border border-teal-500/20 rounded-full animate-spin-slow"></div>
                 <div className="absolute inset-4 border border-purple-500/20 rounded-full animate-spin-slow-reverse"></div>
@@ -347,7 +347,7 @@ const Home = () => {
       </section>
 
       {/* Tech Stack & Capabilities Carousel */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         {/* Background Stars */}
         <div className="absolute inset-0">
           {/* Small stars */}
@@ -423,38 +423,38 @@ const Home = () => {
           <div className="bg-star" style={{ top: '85%', left: '30%' }}></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-6 border border-cyan-500/30">
               <Sparkles className="h-5 w-5 text-cyan-400 animate-pulse" />
               <span className="text-sm font-medium text-cyan-300">Powered by Modern Technology</span>
             </div>
-            <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               Built for the <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Future</span>
             </h3>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto">
               Cutting-edge technology stack that scales with your business and delivers exceptional performance.
             </p>
           </div>
           
           {/* Carousel Container */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden rounded-3xl">
             {/* Glassy background effect */}
             <div className="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10"></div>
             
             {/* Custom fade effects for space theme */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-900 via-purple-900/50 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-900 via-purple-900/50 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-20 bg-gradient-to-r from-slate-900 via-purple-900/50 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-20 bg-gradient-to-l from-slate-900 via-purple-900/50 to-transparent z-10 pointer-events-none"></div>
             
-            <div className="flex animate-scroll-smooth space-x-8 relative z-10 p-8">
+            <div className="flex animate-scroll-smooth space-x-3 sm:space-x-4 md:space-x-6 lg:space-x-8 relative z-10 p-3 sm:p-4 md:p-6 lg:p-8">
               {[...capabilities, ...capabilities, ...capabilities].map((capability, index) => (
                 <div key={index} className="flex-shrink-0">
-                  <div className="w-48 h-48 flex flex-col items-center justify-center">
+                  <div className="w-28 h-28 xs:w-32 xs:h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex flex-col items-center justify-center">
                     {/* Glassy card effect */}
-                    <div className="w-20 h-20 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 backdrop-blur-md rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-2xl border border-white/20">
+                    <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 backdrop-blur-md rounded-2xl mx-auto mb-2 xs:mb-3 sm:mb-4 md:mb-6 flex items-center justify-center shadow-2xl border border-white/20">
                       {capability.icon}
                     </div>
-                    <div className="text-lg font-bold text-white text-center leading-tight drop-shadow-lg">
+                    <div className="text-xs xs:text-sm sm:text-base md:text-lg font-bold text-white text-center leading-tight drop-shadow-lg px-1 xs:px-2">
                       {capability.title}
                     </div>
                   </div>
@@ -466,7 +466,7 @@ const Home = () => {
       </section>
 
       {/* Bring Your Ideas to Life - Gamma Inspired */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -480,8 +480,8 @@ const Home = () => {
           <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-purple-500/15 to-teal-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left Side - Text Content */}
             <div className="space-y-6">
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-4 border border-cyan-500/30">
@@ -489,23 +489,23 @@ const Home = () => {
                 <span className="text-sm font-medium text-cyan-300">Transform Your Vision</span>
               </div>
               
-              <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Bring your <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">ideas</span> to life
               </h2>
               
-              <p className="text-xl text-slate-300 leading-relaxed max-w-lg">
+              <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-lg">
                 At Aura Designs we specialize in creating beautiful websites for any industry and we work with you to bring your vision to life without all the technical details so you can focus on your core business.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 flex items-center space-x-2">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button asChild className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 flex items-center space-x-2 w-full sm:w-auto">
                   <Link to="/services">
                     <span>Our Services</span>
                     <ArrowRight className="w-5 h-5" />
                   </Link>
                 </Button>
                 
-                <Button asChild variant="outline" className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 flex items-center space-x-2">
+                <Button asChild variant="outline" className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-semibold transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto">
                   <Link to="/projects">
                     <span>Our Projects</span>
                     <ArrowRight className="w-5 h-5" />
@@ -515,7 +515,7 @@ const Home = () => {
             </div>
             
             {/* Right Side - Vertical Sliding Animation */}
-            <div className="relative h-[600px] overflow-hidden">
+            <div className="relative h-[350px] sm:h-[450px] md:h-[550px] lg:h-[600px] overflow-hidden order-2 lg:order-1">
               {/* Vertical sliding container */}
               <div className="absolute inset-0 flex flex-col animate-vertical-scroll-smooth">
                 {/* Website Example 1 */}
@@ -681,7 +681,7 @@ const Home = () => {
       </section>
 
       {/* Success Metrics */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Subtle Stars */}
@@ -695,20 +695,20 @@ const Home = () => {
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
               <TrendingUp className="h-5 w-5 text-cyan-400 animate-pulse" />
               <span className="text-sm font-medium text-cyan-300">Proven Results</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-white">
               Numbers That <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Speak Volumes</span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
               Our track record speaks for itself. Here's what our clients achieve with our solutions.
             </p>
           </div>
-          <div ref={metricsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div ref={metricsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {successMetrics.map((metric, index) => {
               let displayNumber = metric.number;
               
@@ -743,7 +743,7 @@ const Home = () => {
       </section>
 
       {/* CTA Band */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-purple-900 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-black via-purple-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -757,8 +757,8 @@ const Home = () => {
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 md:p-12 border border-white/20 shadow-2xl relative overflow-hidden">
             {/* Glassmorphism Effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
             
@@ -767,24 +767,24 @@ const Home = () => {
                 <Rocket className="h-5 w-5 text-cyan-400 animate-pulse" />
                 <span className="text-sm font-medium text-cyan-300">Ready to Launch?</span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
                 Let's Build Something <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Amazing</span>
           </h2>
-              <p className="text-xl text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
                 Your digital transformation starts with a single conversation. Let's create a website that not only looks incredible but drives real business growth.
           </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-6 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-8 sm:px-10 py-4 sm:py-6 rounded-2xl font-semibold text-base sm:text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105 w-full sm:w-auto">
             <Link to="/contact">
                     Start Your Project
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
-                <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm hover:bg-cyan-500/10 hover:border-cyan-400">
+                <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-8 sm:px-10 py-4 sm:py-6 rounded-2xl font-semibold text-base sm:text-lg backdrop-blur-sm hover:bg-cyan-500/10 hover:border-cyan-400 w-full sm:w-auto">
                   <Link to="/projects">View Our Work</Link>
                 </Button>
               </div>
-              <div className="mt-10 flex justify-center items-center space-x-8 text-slate-400">
+              <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 md:space-x-8 text-slate-400">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-5 w-5 text-cyan-400" />
                   <span className="text-sm">Free Consultation</span>
