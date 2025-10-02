@@ -285,7 +285,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 relative z-10 pt-20 sm:pt-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center min-h-[80vh]">
             <div className="fade-in order-2 lg:order-1 text-center lg:text-left">
-              <div className="mb-4">
+              <div className="mb-4 flex justify-center lg:justify-start">
                 <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 text-white text-sm font-medium backdrop-blur-sm">
                   <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
                   Crafting Digital Excellence
@@ -298,7 +298,7 @@ const Home = () => {
               <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
                 Aura Designs creates high-performing websites for small businesses and professionals using modern development workflows.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Button asChild className="btn-hero bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-600 hover:to-violet-700 border-0 text-white shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
                   <Link to="/contact">
                     Launch Your Project
@@ -469,11 +469,55 @@ const Home = () => {
       <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
-          {/* Shooting Stars */}
-          <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-twinkle"></div>
-          <div className="absolute top-40 right-32 w-1 h-1 bg-purple-400 rounded-full animate-twinkle delay-1000"></div>
-          <div className="absolute top-60 left-1/3 w-1 h-1 bg-teal-400 rounded-full animate-twinkle delay-2000"></div>
-          <div className="absolute top-32 right-1/4 w-1 h-1 bg-violet-400 rounded-full animate-twinkle delay-500"></div>
+          {/* Background Stars */}
+          <div className="bg-star" style={{ top: '5%', left: '3%' }}></div>
+          <div className="bg-star" style={{ top: '8%', left: '12%' }}></div>
+          <div className="bg-star" style={{ top: '12%', left: '25%' }}></div>
+          <div className="bg-star" style={{ top: '6%', left: '38%' }}></div>
+          <div className="bg-star" style={{ top: '15%', left: '45%' }}></div>
+          <div className="bg-star" style={{ top: '9%', left: '58%' }}></div>
+          <div className="bg-star" style={{ top: '18%', left: '68%' }}></div>
+          <div className="bg-star" style={{ top: '7%', left: '78%' }}></div>
+          <div className="bg-star" style={{ top: '14%', left: '88%' }}></div>
+          <div className="bg-star" style={{ top: '11%', left: '95%' }}></div>
+          
+          <div className="bg-star" style={{ top: '25%', left: '2%' }}></div>
+          <div className="bg-star" style={{ top: '22%', left: '15%' }}></div>
+          <div className="bg-star" style={{ top: '28%', left: '28%' }}></div>
+          <div className="bg-star" style={{ top: '31%', left: '42%' }}></div>
+          <div className="bg-star" style={{ top: '26%', left: '55%' }}></div>
+          <div className="bg-star" style={{ top: '33%', left: '65%' }}></div>
+          <div className="bg-star" style={{ top: '29%', left: '75%' }}></div>
+          <div className="bg-star" style={{ top: '35%', left: '85%' }}></div>
+          <div className="bg-star" style={{ top: '24%', left: '92%' }}></div>
+          
+          <div className="bg-star" style={{ top: '45%', left: '5%' }}></div>
+          <div className="bg-star" style={{ top: '48%', left: '18%' }}></div>
+          <div className="bg-star" style={{ top: '42%', left: '32%' }}></div>
+          <div className="bg-star" style={{ top: '51%', left: '48%' }}></div>
+          <div className="bg-star" style={{ top: '47%', left: '62%' }}></div>
+          <div className="bg-star" style={{ top: '44%', left: '72%' }}></div>
+          <div className="bg-star" style={{ top: '49%', left: '82%' }}></div>
+          <div className="bg-star" style={{ top: '46%', left: '95%' }}></div>
+          
+          <div className="bg-star" style={{ top: '65%', left: '3%' }}></div>
+          <div className="bg-star" style={{ top: '68%', left: '16%' }}></div>
+          <div className="bg-star" style={{ top: '72%', left: '29%' }}></div>
+          <div className="bg-star" style={{ top: '66%', left: '41%' }}></div>
+          <div className="bg-star" style={{ top: '69%', left: '54%' }}></div>
+          <div className="bg-star" style={{ top: '74%', left: '67%' }}></div>
+          <div className="bg-star" style={{ top: '71%', left: '79%' }}></div>
+          <div className="bg-star" style={{ top: '67%', left: '89%' }}></div>
+          <div className="bg-star" style={{ top: '73%', left: '96%' }}></div>
+          
+          <div className="bg-star" style={{ top: '85%', left: '7%' }}></div>
+          <div className="bg-star" style={{ top: '88%', left: '21%' }}></div>
+          <div className="bg-star" style={{ top: '82%', left: '35%' }}></div>
+          <div className="bg-star" style={{ top: '86%', left: '49%' }}></div>
+          <div className="bg-star" style={{ top: '91%', left: '63%' }}></div>
+          <div className="bg-star" style={{ top: '87%', left: '76%' }}></div>
+          <div className="bg-star" style={{ top: '89%', left: '88%' }}></div>
+          <div className="bg-star" style={{ top: '84%', left: '95%' }}></div>
           
           {/* Nebula Effects */}
           <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-gradient-to-r from-cyan-500/15 to-purple-500/15 rounded-full blur-3xl animate-pulse"></div>
@@ -484,7 +528,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left Side - Text Content */}
             <div className="space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-4 border border-cyan-500/30">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-4 border border-cyan-500/30 mx-auto lg:mx-0">
                 <Rocket className="h-5 w-5 text-cyan-400 animate-pulse" />
                 <span className="text-sm font-medium text-cyan-300">Transform Your Vision</span>
               </div>
@@ -493,11 +537,11 @@ const Home = () => {
                 Bring your <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">ideas</span> to life
               </h2>
               
-              <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-lg">
+              <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-lg mx-auto lg:mx-0">
                 At Aura Designs we specialize in creating beautiful websites for any industry and we work with you to bring your vision to life without all the technical details so you can focus on your core business.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Button asChild className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 flex items-center space-x-2 w-full sm:w-auto">
                   <Link to="/services">
                     <span>Our Services</span>
@@ -681,7 +725,7 @@ const Home = () => {
       </section>
 
       {/* Success Metrics */}
-      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-teal-900 to-indigo-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Subtle Stars */}
