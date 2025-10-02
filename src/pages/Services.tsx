@@ -4,10 +4,11 @@ import { Button } from '@/components/ui/button';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import { useState, useEffect, useRef, memo, useCallback, useMemo } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
-import tempWebImage from '@/assets/temp-web.png';
-import realEstateImage from '@/assets/realestate-webmock.png';
+import realEstateWebImage from '@/assets/website-example-realestate.png';
+import rocketWebImage from '@/assets/website-example-rocket.png';
+import gardenWebImage from '@/assets/website-example-garden.png';
+import travelWebImage from '@/assets/website-example-travel.png';
 import moonImage from '@/assets/moon.png';
-import shroomsImage from '@/assets/shrooms.png';
 
 const Services = () => {
   // Scroll to top when component mounts
@@ -262,7 +263,7 @@ const Services = () => {
                       }`}
                     >
                       <img 
-                        src={index === 0 ? realEstateImage : index === 1 ? shroomsImage : tempWebImage} 
+                        src={index === 0 ? realEstateWebImage : index === 1 ? rocketWebImage : index === 2 ? gardenWebImage : travelWebImage} 
                         alt={service.title}
                         className="w-full h-64 sm:h-72 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="eager"

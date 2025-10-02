@@ -3,7 +3,10 @@ import { ArrowRight, Zap, Target, Shield, Code2, Users, Rocket, CheckCircle, Sta
 import { Button } from '@/components/ui/button';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import logo from '@/assets/auralogo-transparentbg.png';
-import tempWebImage from '@/assets/temp-web.png';
+import realEstateWebImage from '@/assets/website-example-realestate.png';
+import rocketWebImage from '@/assets/website-example-rocket.png';
+import gardenWebImage from '@/assets/website-example-garden.png';
+import travelWebImage from '@/assets/website-example-travel.png';
 import { useState, useEffect, useRef, memo, useCallback, useMemo } from 'react';
 
 const Home = () => {
@@ -568,7 +571,7 @@ const Home = () => {
                     <div className="aspect-video bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6">
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
-                          src={tempWebImage} 
+                          src={realEstateWebImage} 
                           alt="Website Example 1" 
                           className="w-full h-full object-cover"
                           loading="eager"
@@ -577,8 +580,8 @@ const Home = () => {
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-white font-semibold text-lg">Modern Portfolio</h3>
-                      <p className="text-slate-300 text-sm">Clean, professional design</p>
+                      <h3 className="text-white font-semibold text-lg">Real Estate</h3>
+                      <p className="text-slate-300 text-sm">Property showcase platform</p>
                     </div>
                   </div>
                 </div>
@@ -589,15 +592,15 @@ const Home = () => {
                     <div className="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6">
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
-                          src={tempWebImage} 
-                          alt="Website Example 2" 
+                          src={rocketWebImage} 
+                          alt="Rocket Website" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-white font-semibold text-lg">E-commerce Store</h3>
-                      <p className="text-slate-300 text-sm">Fully functional online shop</p>
+                      <h3 className="text-white font-semibold text-lg">Tech Startup</h3>
+                      <p className="text-slate-300 text-sm">Innovative tech platform</p>
                     </div>
                   </div>
                 </div>
@@ -608,15 +611,15 @@ const Home = () => {
                     <div className="aspect-video bg-gradient-to-br from-pink-500/20 to-cyan-500/20 p-6">
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
-                          src={tempWebImage} 
-                          alt="Website Example 3" 
+                          src={gardenWebImage} 
+                          alt="Garden Website" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-white font-semibold text-lg">Business Website</h3>
-                      <p className="text-slate-300 text-sm">Professional corporate site</p>
+                      <h3 className="text-white font-semibold text-lg">Garden Center</h3>
+                      <p className="text-slate-300 text-sm">Eco-friendly business site</p>
                     </div>
                   </div>
                 </div>
@@ -627,15 +630,15 @@ const Home = () => {
                     <div className="aspect-video bg-gradient-to-br from-teal-500/20 to-purple-500/20 p-6">
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
-                          src={tempWebImage} 
-                          alt="Website Example 4" 
+                          src={travelWebImage} 
+                          alt="Travel Website" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-white font-semibold text-lg">Creative Agency</h3>
-                      <p className="text-slate-300 text-sm">Bold, innovative design</p>
+                      <h3 className="text-white font-semibold text-lg">Travel Agency</h3>
+                      <p className="text-slate-300 text-sm">Adventure booking platform</p>
                     </div>
                   </div>
                 </div>
@@ -647,8 +650,8 @@ const Home = () => {
                     <div className="aspect-video bg-gradient-to-br from-cyan-500/20 to-purple-500/20 p-6">
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
-                          src={tempWebImage} 
-                          alt="Website Example 1" 
+                          src={realEstateWebImage} 
+                          alt="Real Estate Website" 
                           className="w-full h-full object-cover"
                           loading="eager"
                           decoding="async"
@@ -656,8 +659,8 @@ const Home = () => {
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-white font-semibold text-lg">Modern Portfolio</h3>
-                      <p className="text-slate-300 text-sm">Clean, professional design</p>
+                      <h3 className="text-white font-semibold text-lg">Real Estate</h3>
+                      <p className="text-slate-300 text-sm">Property showcase platform</p>
                     </div>
                   </div>
                 </div>
@@ -668,15 +671,15 @@ const Home = () => {
                     <div className="aspect-video bg-gradient-to-br from-purple-500/20 to-pink-500/20 p-6">
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
-                          src={tempWebImage} 
-                          alt="Website Example 2" 
+                          src={rocketWebImage} 
+                          alt="Rocket Website" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-white font-semibold text-lg">E-commerce Store</h3>
-                      <p className="text-slate-300 text-sm">Fully functional online shop</p>
+                      <h3 className="text-white font-semibold text-lg">Tech Startup</h3>
+                      <p className="text-slate-300 text-sm">Innovative tech platform</p>
                     </div>
                   </div>
                 </div>
@@ -687,15 +690,15 @@ const Home = () => {
                     <div className="aspect-video bg-gradient-to-br from-pink-500/20 to-cyan-500/20 p-6">
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
-                          src={tempWebImage} 
-                          alt="Website Example 3" 
+                          src={gardenWebImage} 
+                          alt="Garden Website" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-white font-semibold text-lg">Business Website</h3>
-                      <p className="text-slate-300 text-sm">Professional corporate site</p>
+                      <h3 className="text-white font-semibold text-lg">Garden Center</h3>
+                      <p className="text-slate-300 text-sm">Eco-friendly business site</p>
                     </div>
                   </div>
                 </div>
@@ -706,15 +709,15 @@ const Home = () => {
                     <div className="aspect-video bg-gradient-to-br from-teal-500/20 to-purple-500/20 p-6">
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
-                          src={tempWebImage} 
-                          alt="Website Example 4" 
+                          src={travelWebImage} 
+                          alt="Travel Website" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-white font-semibold text-lg">Creative Agency</h3>
-                      <p className="text-slate-300 text-sm">Bold, innovative design</p>
+                      <h3 className="text-white font-semibold text-lg">Travel Agency</h3>
+                      <p className="text-slate-300 text-sm">Adventure booking platform</p>
                     </div>
                   </div>
           </div>
