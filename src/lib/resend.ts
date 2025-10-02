@@ -1,6 +1,8 @@
 import { Resend } from 'resend';
 
-// API key will be available at build time in production
-const apiKey = import.meta.env.VITE_RESEND_API_KEY || '';
+// Get API key from environment variables
+// In production, this will be injected by Vercel
+const apiKey = import.meta.env.RESEND_API_KEY || '';
 
-export const resend = new Resend(apiKey);
+// Only create Resend instance if we have an API key
+export const resend = apiKey ? new Resend(apiKey) : null;

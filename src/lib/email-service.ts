@@ -65,6 +65,16 @@ const checkRateLimit = (email: string): boolean => {
 
 export const sendContactEmail = async (data: ContactFormData): Promise<EmailResponse> => {
   try {
+    // Check if Resend is available
+    if (!resend) {
+      console.error('Resend not initialized - API key missing');
+      return {
+        success: false,
+        message: 'Email service is not configured. Please contact us directly.',
+        error: 'Service not available'
+      };
+    }
+
     // Rate limiting check
     if (!checkRateLimit(data.email)) {
       return {
