@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { FORM_LIMITS, PERFORMANCE_THRESHOLDS } from './constants';
+import { sanitizeForXSS, validateEmail, validatePhone, generateSecureToken } from './security';
 import type { ContactFormData, EmailResponse, RateLimitEntry } from './types';
 
 // Validation schema for contact form with enhanced security
@@ -10,10 +11,11 @@ export const contactFormSchema = z.object({
     .regex(/^[a-zA-Z\s\-'\.]+$/, 'Name contains invalid characters'),
   email: z.string()
     .email('Invalid email address')
-    .max(FORM_LIMITS.EMAIL_MAX, `Email must be less than ${FORM_LIMITS.EMAIL_MAX} characters`),
+    .max(FORM_LIMITS.EMAIL_MAX, `Email must be less than ${FORM_LIMITS.EMAIL_MAX} characters`)
+    .refine((val) => validateEmail(val), 'Email contains invalid characters or format'),
   phone: z.string()
     .optional()
-    .refine((val) => !val || /^[\+]?[1-9][\d]{0,15}$/.test(val.replace(/[\s\-\(\)]/g, '')), 'Invalid phone number format'),
+    .refine((val) => !val || validatePhone(val), 'Invalid phone number format or contains dangerous characters'),
   company: z.string()
     .max(FORM_LIMITS.COMPANY_MAX, `Company name must be less than ${FORM_LIMITS.COMPANY_MAX} characters`)
     .optional(),
@@ -29,7 +31,7 @@ export const contactFormSchema = z.object({
   message: z.string()
     .min(FORM_LIMITS.MESSAGE_MIN, `Message must be at least ${FORM_LIMITS.MESSAGE_MIN} characters`)
     .max(FORM_LIMITS.MESSAGE_MAX, `Message must be less than ${FORM_LIMITS.MESSAGE_MAX} characters`)
-    .refine((val) => !/<script|javascript:|on\w+\s*=/i.test(val), 'Message contains potentially harmful content'),
+    .refine((val) => !/<script|javascript:|on\w+\s*=|data:(?!image\/)|vbscript:/i.test(val), 'Message contains potentially harmful content'),
 });
 
 export type { ContactFormData, EmailResponse };
@@ -69,14 +71,14 @@ export const sendContactEmail = async (data: ContactFormData): Promise<EmailResp
     // Validate the data
     const validatedData = contactFormSchema.parse(data);
 
-    // Sanitize data for email
+    // Sanitize data for email with XSS protection
     const sanitizedData = {
       ...validatedData,
-      name: validatedData.name.trim(),
+      name: sanitizeForXSS(validatedData.name.trim()),
       email: validatedData.email.toLowerCase().trim(),
-      phone: validatedData.phone ? validatedData.phone.trim() : '',
-      company: validatedData.company ? validatedData.company.trim() : '',
-      message: validatedData.message.trim()
+      phone: validatedData.phone ? sanitizeForXSS(validatedData.phone.trim()) : '',
+      company: validatedData.company ? sanitizeForXSS(validatedData.company.trim()) : '',
+      message: sanitizeForXSS(validatedData.message.trim())
     };
 
     // Send email via Vercel serverless function (server-side)

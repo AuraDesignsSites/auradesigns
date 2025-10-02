@@ -3,11 +3,103 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Security headers
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+  'Cross-Origin-Embedder-Policy': 'require-corp',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Resource-Policy': 'same-origin',
+};
+
+// Rate limiting store (in production, use Redis or similar)
+const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
+const MAX_REQUESTS = 3;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const key = ip;
+  const userLimit = rateLimitStore.get(key);
+
+  if (!userLimit || now > userLimit.resetTime) {
+    rateLimitStore.set(key, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+
+  if (userLimit.count >= MAX_REQUESTS) {
+    return false;
+  }
+
+  userLimit.count++;
+  return true;
+}
+
+// Input sanitization
+function sanitizeInput(input: string): string {
+  if (typeof input !== 'string') return '';
+  
+  // Remove null bytes and control characters
+  let sanitized = input.replace(/\0/g, '').replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+  
+  // Normalize unicode
+  sanitized = sanitized.normalize('NFC');
+  
+  // Trim and limit length
+  sanitized = sanitized.trim().substring(0, 10000);
+  
+  return sanitized;
+}
+
+// XSS protection
+function sanitizeForXSS(input: string): string {
+  let sanitized = sanitizeInput(input);
+  
+  // Remove dangerous patterns
+  const dangerousPatterns = [
+    /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+    /javascript:/gi,
+    /on\w+\s*=/gi,
+    /data:(?!image\/)/gi,
+    /vbscript:/gi,
+    /<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi,
+    /<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi,
+    /<embed\b[^<]*(?:(?!<\/embed>)<[^<]*)*<\/embed>/gi,
+    /<form\b[^<]*(?:(?!<\/form>)<[^<]*)*<\/form>/gi,
+    /<input\b[^<]*(?:(?!<\/input>)<[^<]*)*<\/input>/gi,
+    /<meta\s+http-equiv\s*=\s*["']refresh["']/gi,
+  ];
+  
+  dangerousPatterns.forEach(pattern => {
+    sanitized = sanitized.replace(pattern, '');
+  });
+  
+  // HTML encode
+  sanitized = sanitized
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
+  
+  return sanitized;
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Set CORS headers
+  // Set security headers
+  Object.entries(SECURITY_HEADERS).forEach(([key, value]) => {
+    res.setHeader(key, value);
+  });
+
+  // Set CORS headers (more restrictive)
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN || 'https://auradesigns.net');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
@@ -24,7 +116,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Rate limiting
+  const clientIP = req.headers['x-forwarded-for'] as string || 
+                   req.headers['x-real-ip'] as string || 
+                   req.connection?.remoteAddress || 
+                   'unknown';
+  
+  if (!checkRateLimit(clientIP)) {
+    return res.status(429).json({ 
+      error: 'Too many requests. Please try again later.',
+      success: false 
+    });
+  }
+
   try {
+    // Validate request body exists
+    if (!req.body || typeof req.body !== 'object') {
+      return res.status(400).json({ 
+        error: 'Invalid request body',
+        success: false 
+      });
+    }
+
     const {
       name,
       email,
@@ -36,49 +149,59 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       message
     } = req.body;
 
+    // Sanitize all inputs
+    const sanitizedData = {
+      name: sanitizeForXSS(sanitizeInput(name || '')),
+      email: sanitizeInput(email || ''),
+      phone: phone ? sanitizeForXSS(sanitizeInput(phone)) : '',
+      company: company ? sanitizeForXSS(sanitizeInput(company)) : '',
+      projectType: sanitizeForXSS(sanitizeInput(projectType || '')),
+      budget: sanitizeForXSS(sanitizeInput(budget || '')),
+      timeline: sanitizeForXSS(sanitizeInput(timeline || '')),
+      message: sanitizeForXSS(sanitizeInput(message || ''))
+    };
+
     // Basic validation
-    if (!name || !email || !projectType || !budget || !timeline || !message) {
+    if (!sanitizedData.name || !sanitizedData.email || !sanitizedData.projectType || 
+        !sanitizedData.budget || !sanitizedData.timeline || !sanitizedData.message) {
       return res.status(400).json({ 
         error: 'Missing required fields',
         success: false 
       });
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    // Enhanced email validation
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (!emailRegex.test(sanitizedData.email) || sanitizedData.email.length > 254) {
       return res.status(400).json({ 
         error: 'Invalid email address',
         success: false 
       });
     }
 
-    // Send email using Resend
+    // Validate input lengths
+    if (sanitizedData.name.length < 2 || sanitizedData.name.length > 100) {
+      return res.status(400).json({ 
+        error: 'Name must be between 2 and 100 characters',
+        success: false 
+      });
+    }
+
+    if (sanitizedData.message.length < 10 || sanitizedData.message.length > 2000) {
+      return res.status(400).json({ 
+        error: 'Message must be between 10 and 2000 characters',
+        success: false 
+      });
+    }
+
+    // Send email using Resend with sanitized data
     const { data, error } = await resend.emails.send({
       from: 'Aura Designs <noreply@mail.auradesigns.net>',
       to: ['auradesigns.team@gmail.com'],
-      replyTo: email,
-      subject: `New Contact Form Submission from ${name}`,
-      html: generateEmailHTML({
-        name,
-        email,
-        phone: phone || '',
-        company: company || '',
-        projectType,
-        budget,
-        timeline,
-        message
-      }),
-      text: generateEmailText({
-        name,
-        email,
-        phone: phone || '',
-        company: company || '',
-        projectType,
-        budget,
-        timeline,
-        message
-      }),
+      replyTo: sanitizedData.email,
+      subject: `New Contact Form Submission from ${sanitizedData.name}`,
+      html: generateEmailHTML(sanitizedData),
+      text: generateEmailText(sanitizedData),
     });
 
     if (error) {

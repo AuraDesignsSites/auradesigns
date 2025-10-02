@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, Suspense, lazy } from "react";
 import Layout from "./components/Layout/Layout";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { SecurityProvider } from "./components/SecurityProvider";
 import { initLazyLoading } from "./utils/imageLoader";
 import { performanceMetrics } from "./utils/performance";
 
@@ -53,35 +54,37 @@ const App = () => {
 
   return (
     <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-        <BrowserRouter>
-          <Layout>
-            <Suspense fallback={
-              <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-                <div className="text-center">
-                  <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                  <p className="text-white text-lg">Loading...</p>
+      <SecurityProvider>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+          <BrowserRouter>
+            <Layout>
+              <Suspense fallback={
+                <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+                  <div className="text-center">
+                    <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-white text-lg">Loading...</p>
+                  </div>
                 </div>
-              </div>
-            }>
-              <Routes>
-                <Route path="/" element={<ErrorBoundary><Home /></ErrorBoundary>} />
-                <Route path="/about" element={<ErrorBoundary><About /></ErrorBoundary>} />
-                <Route path="/services" element={<ErrorBoundary><Services /></ErrorBoundary>} />
-                <Route path="/projects" element={<ErrorBoundary><Projects /></ErrorBoundary>} />
-                <Route path="/pricing" element={<ErrorBoundary><Pricing /></ErrorBoundary>} />
-                <Route path="/contact" element={<ErrorBoundary><Contact /></ErrorBoundary>} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </Layout>
-        </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
+              }>
+                <Routes>
+                  <Route path="/" element={<ErrorBoundary><Home /></ErrorBoundary>} />
+                  <Route path="/about" element={<ErrorBoundary><About /></ErrorBoundary>} />
+                  <Route path="/services" element={<ErrorBoundary><Services /></ErrorBoundary>} />
+                  <Route path="/projects" element={<ErrorBoundary><Projects /></ErrorBoundary>} />
+                  <Route path="/pricing" element={<ErrorBoundary><Pricing /></ErrorBoundary>} />
+                  <Route path="/contact" element={<ErrorBoundary><Contact /></ErrorBoundary>} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </Layout>
+          </BrowserRouter>
+          </TooltipProvider>
+        </QueryClientProvider>
+      </SecurityProvider>
     </ErrorBoundary>
   );
 };

@@ -2,6 +2,7 @@ import { useState, memo } from 'react';
 import { Mail, Clock, CheckCircle, ArrowRight, Phone, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { SecureInput, SecureTextarea } from '@/components/ui/secure-input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -303,12 +304,14 @@ const Contact = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="name" className="text-white font-semibold text-sm sm:text-base">Name *</Label>
-                      <Input 
+                      <SecureInput 
                         id="name"
                         value={formData.name}
                         onChange={(e) => handleChange('name', e.target.value)}
                         required 
                         className={`bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 h-10 sm:h-11 text-sm sm:text-base ${errors.name ? 'border-red-400' : ''}`}
+                        sanitizeMode="xss"
+                        maxLength={100}
                       />
                       {errors.name && (
                         <p className="text-red-400 text-xs sm:text-sm mt-1">{errors.name}</p>
@@ -316,13 +319,15 @@ const Contact = () => {
                     </div>
                     <div>
                       <Label htmlFor="email" className="text-white font-semibold text-sm sm:text-base">Email *</Label>
-                      <Input 
+                      <SecureInput 
                         id="email"
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleChange('email', e.target.value)}
                         required 
                         className={`bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 h-10 sm:h-11 text-sm sm:text-base ${errors.email ? 'border-red-400' : ''}`}
+                        sanitizeMode="basic"
+                        maxLength={254}
                       />
                       {errors.email && (
                         <p className="text-red-400 text-xs sm:text-sm mt-1">{errors.email}</p>
@@ -333,21 +338,25 @@ const Contact = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="phone" className="text-white font-semibold text-sm sm:text-base">Phone</Label>
-                      <Input 
+                      <SecureInput 
                         id="phone"
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => handleChange('phone', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 h-10 sm:h-11 text-sm sm:text-base"
+                        sanitizeMode="xss"
+                        maxLength={20}
                       />
                     </div>
                     <div>
                       <Label htmlFor="company" className="text-white font-semibold text-sm sm:text-base">Company</Label>
-                      <Input 
+                      <SecureInput 
                         id="company"
                         value={formData.company}
                         onChange={(e) => handleChange('company', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 h-10 sm:h-11 text-sm sm:text-base"
+                        sanitizeMode="xss"
+                        maxLength={100}
                       />
                     </div>
                   </div>
@@ -414,7 +423,7 @@ const Contact = () => {
 
                   <div>
                     <Label htmlFor="message" className="text-white font-semibold text-sm sm:text-base">Tell us about your project *</Label>
-                    <Textarea 
+                    <SecureTextarea 
                       id="message"
                       rows={4}
                       placeholder="Describe your project goals, target audience, and any specific requirements..."
@@ -422,6 +431,8 @@ const Contact = () => {
                       onChange={(e) => handleChange('message', e.target.value)}
                       required
                       className={`bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 text-sm sm:text-base resize-none ${errors.message ? 'border-red-400' : ''}`}
+                      sanitizeMode="xss"
+                      maxLength={2000}
                     />
                     {errors.message && (
                       <p className="text-red-400 text-xs sm:text-sm mt-1">{errors.message}</p>
