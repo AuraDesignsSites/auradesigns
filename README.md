@@ -66,7 +66,9 @@ This project uses Resend for email functionality with the domain `mail.auradesig
 
 - Emails are sent from `noreply@mail.auradesigns.net` to `auradesigns.team@gmail.com`
 - The domain `mail.auradesigns.net` is verified in Resend
-- Uses `RESEND_API_KEY` environment variable configured in Vercel
+- Uses Vercel serverless function (`/api/send-email.ts`) for secure email sending
+- API key is kept secure on the server (not exposed to browser)
+- Follows Vite + Vercel best practices for email integration
 
 ## How can I deploy this project?
 
