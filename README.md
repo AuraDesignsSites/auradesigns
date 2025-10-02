@@ -64,21 +64,16 @@ This project is built with:
 
 ### Resend Email Integration
 
-This project uses Resend for email functionality with the domain `send.auradesigns.net`. To set up email sending:
+This project uses Resend for email functionality with the domain `send.auradesigns.net`. 
 
-1. **Local Development:**
-   - Copy `.env.local` and add your Resend API key:
-   ```
-   VITE_RESEND_API_KEY=your_resend_api_key_here
-   ```
+**Production Setup:**
+- The `RESEND_API_KEY` environment variable is already configured in Vercel
+- Emails are sent from `noreply@send.auradesigns.net` to `auradesigns.team@gmail.com`
+- The domain `send.auradesigns.net` is verified in Resend
 
-2. **Production (Vercel):**
-   - Go to Vercel → Project → Settings → Environment Variables
-   - Add `VITE_RESEND_API_KEY` with your Resend API key value
-   - Make sure to set it for Production environment
-   - **Note:** Since you already have `RESEND_API_KEY` set in Vercel, the code will use that as a fallback
-
-**Important:** Never commit `.env.local` to version control.
+**Local Development:**
+- For local testing, add `VITE_RESEND_API_KEY=your_api_key` to `.env.local`
+- The code will automatically use the appropriate environment variable
 
 ## How can I deploy this project?
 

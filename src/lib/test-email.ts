@@ -1,6 +1,4 @@
 // Test utility for email functionality
-// This file can be removed in production
-
 import { sendContactEmail } from './email-service';
 import { EMAIL_CONFIG } from './constants';
 
@@ -27,10 +25,3 @@ export const testEmail = async () => {
     return { success: false, message: 'Test failed', error: error instanceof Error ? error.message : 'Unknown error' };
   }
 };
-
-// Uncomment the line below to test email functionality
-// testEmail();
-
-// For testing in browser console:
-// import { testEmail } from './lib/test-email';
-// testEmail();
