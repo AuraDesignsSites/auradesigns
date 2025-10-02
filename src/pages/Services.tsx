@@ -197,7 +197,7 @@ const Services = () => {
     <div className="min-h-screen">
 
       {/* Services Showcase - Space Theme */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <section className="services-showcase py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Subtle Stars */}
@@ -212,17 +212,17 @@ const Services = () => {
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-              <Layers className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">Our Services</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8 border border-cyan-500/30">
+              <Layers className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 animate-pulse" />
+              <span className="text-xs sm:text-sm font-medium text-cyan-300">Our Services</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white relative">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 text-white relative">
               Complete <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent relative">
                 Digital Solutions
                 {/* Moon behind Solutions */}
-                <div className="absolute -top-8 -right-8 w-32 h-32 opacity-15 animate-levitate">
+                <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 md:-top-8 md:-right-8 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 opacity-15 animate-levitate">
                   <img 
                     src={moonImage} 
                     alt="Moon"
@@ -231,12 +231,12 @@ const Services = () => {
                 </div>
               </span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed px-4">
               From concept to launch, we deliver comprehensive web solutions that transform your business and delight your customers.
             </p>
           </div>
           
-          <div className="space-y-16">
+          <div className="space-y-12 sm:space-y-16">
             {services.map((service, index) => (
               <div 
                 key={index} 
@@ -248,7 +248,7 @@ const Services = () => {
                     : 'opacity-0 translate-y-12'
                 }`}
               >
-                <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
+                <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 sm:gap-12`}>
                   {/* Image Section */}
                   <div className="flex-1">
                     <div 
@@ -265,7 +265,7 @@ const Services = () => {
                       <img 
                         src={index === 0 ? realEstateImage : index === 1 ? shroomsImage : tempWebImage} 
                         alt={service.title}
-                        className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-64 sm:h-72 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
@@ -273,29 +273,29 @@ const Services = () => {
                   
                   {/* Content Section */}
                   <div className="flex-1">
-                    <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl h-full flex flex-col relative overflow-hidden">
+                    <div className="service-card bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/20 shadow-2xl h-full flex flex-col relative overflow-hidden">
                       {/* Glassmorphism Effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
                       
                       <div className="relative z-10 flex flex-col h-full">
-                        <div className="flex items-center space-x-4 mb-6 flex-shrink-0">
-                          <div className="text-6xl">
+                        <div className="flex items-center space-x-3 sm:space-x-4 mb-4 sm:mb-6 flex-shrink-0">
+                          <div className="text-4xl sm:text-5xl md:text-6xl">
                             {service.emoji}
                           </div>
                           <div>
-                            <h3 className="text-2xl font-bold text-white">{service.title}</h3>
+                            <h3 className="text-xl sm:text-2xl font-bold text-white">{service.title}</h3>
                           </div>
                         </div>
                         
-                        <p className="text-slate-300 mb-6 text-lg leading-relaxed flex-shrink-0">
+                        <p className="text-slate-300 mb-4 sm:mb-6 text-base sm:text-lg leading-relaxed flex-shrink-0">
                           {service.description}
                         </p>
                         
-                        <ul className="space-y-3 flex-grow">
+                        <ul className="space-y-2 sm:space-y-3 flex-grow">
                           {service.features.map((feature, featureIndex) => (
-                            <li key={featureIndex} className="flex items-start space-x-3 text-slate-300">
-                              <CheckCircle className="h-5 w-5 text-cyan-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-sm leading-relaxed">{feature}</span>
+                            <li key={featureIndex} className="flex items-start space-x-2 sm:space-x-3 text-slate-300">
+                              <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-xs sm:text-sm leading-relaxed">{feature}</span>
                             </li>
                           ))}
                         </ul>
@@ -310,7 +310,7 @@ const Services = () => {
       </section>
 
       {/* Success Stories - Space Theme */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
+      <section className="services-testimonials py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -324,16 +324,16 @@ const Services = () => {
           <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-purple-500/15 to-teal-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-              <Heart className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">Success Stories</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8 border border-cyan-500/30">
+              <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 animate-pulse" />
+              <span className="text-xs sm:text-sm font-medium text-cyan-300">Success Stories</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 text-white">
               What Our <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Clients Say</span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
               Real results from real businesses who trusted us with their digital transformation
             </p>
           </div>
@@ -347,28 +347,28 @@ const Services = () => {
               >
                 {testimonials.map((testimonial, index) => (
                   <div key={index} className="w-full flex-shrink-0">
-                    <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl h-full flex flex-col relative overflow-hidden">
+                    <div className="testimonial-card bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 md:p-12 border border-white/20 shadow-2xl h-full flex flex-col relative overflow-hidden">
                       {/* Glassmorphism Effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
                       
                       <div className="relative z-10 flex flex-col h-full text-center">
-                        <div className="flex items-center justify-center mb-8 flex-shrink-0">
+                        <div className="flex items-center justify-center mb-6 sm:mb-8 flex-shrink-0">
                           {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star key={i} className="h-8 w-8 text-yellow-400 fill-current mx-1" />
+                            <Star key={i} className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-400 fill-current mx-1" />
                           ))}
                         </div>
                         
-                        <blockquote className="text-slate-300 text-2xl leading-relaxed mb-12 flex-grow font-medium">
+                        <blockquote className="text-slate-300 text-lg sm:text-xl md:text-2xl leading-relaxed mb-8 sm:mb-12 flex-grow font-medium">
                           "{testimonial.quote}"
                         </blockquote>
                         
-                        <div className="flex items-center justify-center space-x-4 flex-shrink-0">
-                          <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                        <div className="flex items-center justify-center space-x-3 sm:space-x-4 flex-shrink-0">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl">
                             {testimonial.author.split(' ').map(n => n[0]).join('')}
                           </div>
                           <div>
-                            <div className="font-semibold text-white text-xl">{testimonial.author}</div>
-                            <div className="text-cyan-300 text-lg">{testimonial.role}</div>
+                            <div className="font-semibold text-white text-lg sm:text-xl">{testimonial.author}</div>
+                            <div className="text-cyan-300 text-base sm:text-lg">{testimonial.role}</div>
                           </div>
                         </div>
                       </div>
@@ -381,16 +381,16 @@ const Services = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevTestimonial}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full border-2 border-cyan-400/50 shadow-2xl hover:bg-white/20 hover:border-cyan-400 transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-md rounded-full border-2 border-cyan-400/50 shadow-2xl hover:bg-white/20 hover:border-cyan-400 transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
             >
-              <ChevronLeft className="h-6 w-6" />
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
             
             <button
               onClick={nextTestimonial}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-md rounded-full border-2 border-cyan-400/50 shadow-2xl hover:bg-white/20 hover:border-cyan-400 transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-md rounded-full border-2 border-cyan-400/50 shadow-2xl hover:bg-white/20 hover:border-cyan-400 transition-all duration-300 flex items-center justify-center text-white hover:scale-110"
             >
-              <ChevronRight className="h-6 w-6" />
+              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
 
             {/* Dots Indicator */}
@@ -413,7 +413,7 @@ const Services = () => {
 
 
       {/* CTA - Space Theme */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-purple-900 to-slate-900">
+      <section className="services-cta py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-black via-purple-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -427,45 +427,45 @@ const Services = () => {
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 md:p-12 border border-white/20 shadow-2xl relative overflow-hidden">
             {/* Glassmorphism Effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
             
             <div className="relative z-10">
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-                <Rocket className="h-5 w-5 text-cyan-400 animate-pulse" />
-                <span className="text-sm font-medium text-cyan-300">Ready to Launch?</span>
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8 border border-cyan-500/30">
+                <Rocket className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 animate-pulse" />
+                <span className="text-xs sm:text-sm font-medium text-cyan-300">Ready to Launch?</span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">
+              <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 sm:mb-8">
                 Ready to Transform Your <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Business?</span>
               </h2>
-              <p className="text-xl text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4">
                 Let's create something amazing together. Every great website starts with a conversation.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-6 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 rounded-2xl font-semibold text-base sm:text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105 w-full sm:w-auto">
                   <Link to="/contact">
                     Start Your Project
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm">
+                <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 rounded-2xl font-semibold text-base sm:text-lg backdrop-blur-sm w-full sm:w-auto">
                   <Link to="/projects">View Our Work</Link>
                 </Button>
               </div>
-              <div className="mt-10 flex justify-center items-center space-x-8 text-slate-400">
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 md:space-x-8 text-slate-400">
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">Free Consultation</span>
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400" />
+                  <span className="text-xs sm:text-sm">Free Consultation</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">Fast Delivery</span>
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400" />
+                  <span className="text-xs sm:text-sm">Fast Delivery</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-cyan-400" />
-                  <span className="text-sm">Quality Assured</span>
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400" />
+                  <span className="text-xs sm:text-sm">Quality Assured</span>
                 </div>
               </div>
             </div>

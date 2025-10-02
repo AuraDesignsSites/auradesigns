@@ -85,6 +85,152 @@
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
+
+  /* About page specific optimizations */
+  .about-hero,
+  .about-section,
+  .about-timeline {
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Services page specific optimizations */
+  .services-hero,
+  .services-showcase,
+  .services-testimonials,
+  .services-cta {
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Projects page specific optimizations */
+  .projects-hero,
+  .projects-coming-soon {
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Pricing page specific optimizations */
+  .pricing-hero,
+  .pricing-cards,
+  .pricing-faq {
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Prevent layout shifts during resize */
+  .hexagon-card {
+    min-height: 280px;
+    transition: all 0.3s ease;
+  }
+
+  .timeline-card {
+    transition: all 0.3s ease;
+  }
+
+  .service-card {
+    transition: all 0.3s ease;
+  }
+
+  .testimonial-card {
+    transition: all 0.3s ease;
+  }
+
+  .coming-soon-card {
+    transition: all 0.3s ease;
+  }
+
+  .pricing-card {
+    transition: all 0.3s ease;
+    min-height: 600px;
+    width: 100%;
+  }
+
+  /* Ensure equal card widths at all breakpoints */
+  .pricing-card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Force equal heights for all pricing cards */
+  .pricing-grid > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    transition: all 0.3s ease;
+  }
+
+  /* Smooth transitions for mobile */
+  @media (max-width: 640px) {
+    .hexagon-card {
+      min-height: 240px;
+    }
+    
+    .timeline-card {
+      margin-left: 3rem;
+    }
+
+    .service-card {
+      min-height: auto;
+    }
+
+    .testimonial-card {
+      min-height: 300px;
+    }
+
+    .coming-soon-card {
+      min-height: 200px;
+    }
+
+    .pricing-card {
+      min-height: 500px;
+    }
+
+    .faq-item {
+      min-height: auto;
+    }
+  }
+
+  /* Fix for specific problematic breakpoints */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .pricing-card {
+      min-height: 580px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .pricing-card {
+      min-height: 600px;
+    }
+  }
+
+  /* Better desktop spacing */
+  @media (min-width: 1280px) {
+    .pricing-grid {
+      gap: 2rem;
+    }
+    
+    .pricing-card {
+      min-height: 650px;
+    }
+  }
+
+  /* Make middle card slightly wider on desktop */
+  @media (min-width: 1024px) {
+    .pricing-grid {
+      grid-template-columns: 1fr 1.1fr 1fr;
+    }
+  }
     
     /* Shadows */
     --shadow-soft: 0 4px 6px -1px hsl(220 50% 10% / 0.1), 0 2px 4px -2px hsl(220 50% 10% / 0.1);

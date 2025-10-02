@@ -198,10 +198,10 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Space-Themed Hero Section */}
-      <section ref={heroSectionRef} className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-indigo-900 to-purple-900">
+      <section ref={heroSectionRef} className="about-hero py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-black via-indigo-900 to-purple-900">
         {/* Saturn in top right */}
         <div 
-          className="absolute top-8 right-8 w-48 h-48 transition-all duration-300 ease-out"
+          className="absolute top-4 right-4 sm:top-8 sm:right-8 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 transition-all duration-300 ease-out"
           style={{
             transform: `scale(${saturnPosition.scale}) translate(${saturnPosition.x}px, ${saturnPosition.y}px)`,
             opacity: saturnPosition.opacity
@@ -262,29 +262,29 @@ const About = () => {
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-              <Sparkles className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">About Aura Designs</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8 border border-cyan-500/30">
+              <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 animate-pulse" />
+              <span className="text-xs sm:text-sm font-medium text-cyan-300">About Aura Designs</span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-bold mb-8 text-white leading-tight">
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 text-white leading-tight">
               We're not just developers,<br />
               <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">we're digital architects</span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-8 sm:mb-12 px-4">
               Every business deserves a digital presence that not only looks amazing but drives real results. 
               We bridge the gap between cutting-edge technology and thoughtful design strategy.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-6 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-16">
+              <Button asChild size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 rounded-2xl font-semibold text-base sm:text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105 w-full sm:w-auto">
                 <Link to="/contact">
                   Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-10 py-6 rounded-2xl font-semibold text-lg backdrop-blur-sm hover:text-white">
+              <Button asChild size="lg" className="border-2 border-cyan-400 text-cyan-300 bg-cyan-500/10 px-6 py-4 sm:px-8 sm:py-5 md:px-10 md:py-6 rounded-2xl font-semibold text-base sm:text-lg backdrop-blur-sm hover:text-white w-full sm:w-auto">
                 <Link to="/projects">See Our Work</Link>
               </Button>
             </div>
@@ -294,10 +294,10 @@ const About = () => {
       </section>
 
       {/* The Aura Difference - Space Theme */}
-      <section ref={auraDifferenceRef} className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
+      <section ref={auraDifferenceRef} className="about-section py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
         {/* Moon in top left */}
         <div 
-          className="absolute top-8 left-8 w-32 h-32 transition-all duration-300 ease-out"
+          className="absolute top-4 left-4 sm:top-8 sm:left-8 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 transition-all duration-300 ease-out"
           style={{
             transform: `scale(${moonPosition.scale}) translate(${moonPosition.x}px, ${moonPosition.y}px)`,
             opacity: moonPosition.opacity
@@ -322,16 +322,16 @@ const About = () => {
           <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-purple-500/15 to-teal-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-              <Heart className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">Why Choose Us</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8 border border-cyan-500/30">
+              <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 animate-pulse" />
+              <span className="text-xs sm:text-sm font-medium text-cyan-300">Why Choose Us</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 text-white">
               The <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Aura Difference</span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed px-4">
               We're not just another web agency. We're your strategic partner in digital success, combining technical excellence with business acumen.
             </p>
           </div>
@@ -339,7 +339,7 @@ const About = () => {
           {/* Hexagonal Grid Layout */}
           <div className="relative max-w-6xl mx-auto">
             {/* Top Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
               {[
                 { icon: <Zap className="h-8 w-8" />, title: "Speed with Quality", description: "Fast delivery without compromising on excellence" },
                 { icon: <Heart className="h-8 w-8" />, title: "Transparent Communication", description: "Honest, clear communication throughout every project" },
@@ -347,7 +347,7 @@ const About = () => {
               ].map((item, index) => (
                 <div key={index} className="group relative">
                   {/* Space-themed Hexagonal Card */}
-                  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
+                  <div className="hexagon-card relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
                     {/* Glassmorphism Effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
                     
@@ -355,25 +355,25 @@ const About = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
                     {/* Rounded Hexagon shape using CSS clip-path */}
-                    <div className="p-8 text-center relative z-10" style={{
+                    <div className="p-6 sm:p-8 text-center relative z-10" style={{
                       clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
-                      minHeight: '320px',
+                      minHeight: '280px',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      paddingTop: '2rem',
-                      paddingBottom: '2rem'
+                      paddingTop: '1.5rem',
+                      paddingBottom: '1.5rem'
                     }}>
                       
                       {/* Icon */}
-                      <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-4 sm:mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
                         {item.icon}
                       </div>
                       
                       {/* Content */}
-                      <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
-                      <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
+                      <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">{item.title}</h3>
+                      <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">{item.description}</p>
                     </div>
                     
                     {/* Decorative Elements */}
@@ -384,16 +384,16 @@ const About = () => {
             </div>
             
             {/* Central Connecting Element with Dividers */}
-            <div className="flex items-center justify-center mb-8 hidden lg:flex">
+            <div className="flex items-center justify-center mb-6 sm:mb-8 hidden lg:flex">
               {/* Left Divider */}
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-cyan-500/50"></div>
               
               {/* Central Element */}
-              <div className="mx-8 w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full flex items-center justify-center border-2 border-cyan-500/30 backdrop-blur-md shadow-2xl">
+              <div className="mx-6 sm:mx-8 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full flex items-center justify-center border-2 border-cyan-500/30 backdrop-blur-md shadow-2xl">
                 <img 
                   src={logo} 
                   alt="Aura Designs Logo" 
-                  className="w-24 h-24 object-contain"
+                  className="w-16 h-16 sm:w-24 sm:h-24 object-contain"
                 />
               </div>
               
@@ -402,7 +402,7 @@ const About = () => {
             </div>
             
             {/* Bottom Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
               {[
                 { icon: <Rocket className="h-8 w-8" />, title: "Clarity over Complexity", description: "Simple solutions that work beautifully" },
                 { icon: <Shield className="h-8 w-8" />, title: "Security First", description: "Built with enterprise-grade security standards" },
@@ -410,7 +410,7 @@ const About = () => {
               ].map((item, index) => (
                 <div key={index + 3} className="group relative">
                   {/* Space-themed Hexagonal Card */}
-                  <div className="relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
+                  <div className="hexagon-card relative bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
                     {/* Glassmorphism Effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
                     
@@ -418,25 +418,25 @@ const About = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
                     {/* Rounded Hexagon shape using CSS clip-path */}
-                    <div className="p-8 text-center relative z-10" style={{
+                    <div className="p-6 sm:p-8 text-center relative z-10" style={{
                       clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
-                      minHeight: '320px',
+                      minHeight: '280px',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      paddingTop: '2rem',
-                      paddingBottom: '2rem'
+                      paddingTop: '1.5rem',
+                      paddingBottom: '1.5rem'
                     }}>
                       
                       {/* Icon */}
-                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-cyan-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-cyan-600 rounded-2xl mx-auto mb-4 sm:mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
                         {item.icon}
                       </div>
                       
                       {/* Content */}
-                      <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
-                      <p className="text-slate-300 text-sm leading-relaxed">{item.description}</p>
+                      <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">{item.title}</h3>
+                      <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">{item.description}</p>
                   </div>
                     
                     {/* Decorative Elements */}
@@ -450,7 +450,7 @@ const About = () => {
       </section>
 
       {/* Dream Team - Space Theme */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
+      <section className="about-section py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-black via-slate-900 to-purple-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -464,24 +464,24 @@ const About = () => {
           <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-purple-500/15 to-teal-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-              <Users className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">Meet Our Team</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8 border border-cyan-500/30">
+              <Users className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 animate-pulse" />
+              <span className="text-xs sm:text-sm font-medium text-cyan-300">Meet Our Team</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 text-white">
               The <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Dream Team</span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
               Passionate professionals dedicated to turning your vision into digital reality
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {team.map((member, index) => (
               <div key={index} className="group h-full">
-                <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 h-full flex flex-col relative overflow-hidden">
+                <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 h-full flex flex-col relative overflow-hidden">
                   {/* Glassmorphism Effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
                   
@@ -489,12 +489,12 @@ const About = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
                   <div className="relative z-10 text-center flex flex-col h-full">
-                    <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg flex-shrink-0">
-                      <Users className="h-10 w-10" />
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-4 sm:mb-6 flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg flex-shrink-0">
+                      <Users className="h-8 w-8 sm:h-10 sm:w-10" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-2 text-white flex-shrink-0">{member.name}</h3>
-                    <p className="text-cyan-300 font-semibold mb-4 text-lg flex-shrink-0">{member.role}</p>
-                    <p className="text-slate-300 leading-relaxed flex-grow">{member.bio}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white flex-shrink-0">{member.name}</h3>
+                    <p className="text-cyan-300 font-semibold mb-3 sm:mb-4 text-base sm:text-lg flex-shrink-0">{member.role}</p>
+                    <p className="text-slate-300 leading-relaxed flex-grow text-sm sm:text-base">{member.bio}</p>
                   </div>
                 </div>
               </div>
@@ -504,7 +504,7 @@ const About = () => {
       </section>
 
       {/* How We Bring Ideas to Life - Space Theme */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
+      <section className="about-timeline py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Background Stars */}
@@ -540,16 +540,16 @@ const About = () => {
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-8 border border-cyan-500/30">
-              <Code2 className="h-5 w-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-cyan-300">Our Process</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8 border border-cyan-500/30">
+              <Code2 className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 animate-pulse" />
+              <span className="text-xs sm:text-sm font-medium text-cyan-300">Our Process</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+            <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 text-white">
               How We <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Bring Ideas to Life</span>
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
               A proven methodology that transforms your vision into a digital masterpiece
             </p>
           </div>
@@ -558,11 +558,11 @@ const About = () => {
           <div className="max-w-2xl mx-auto">
             <div className="relative">
               {/* Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-teal-500"></div>
+              <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-teal-500"></div>
               
               
               {/* Timeline Items */}
-              <div className="space-y-12">
+              <div className="space-y-8 sm:space-y-12">
             {process.map((phase, index) => (
                   <div 
                     key={index} 
@@ -578,24 +578,24 @@ const About = () => {
                     }}
                   >
                     {/* Timeline Node with Number */}
-                    <div className={`absolute left-6 w-10 h-10 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full border-2 border-slate-900 shadow-lg z-10 group-hover:scale-125 transition-all duration-1000 ${
+                    <div className={`absolute left-4 sm:left-6 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full border-2 border-slate-900 shadow-lg z-10 group-hover:scale-125 transition-all duration-1000 ${
                       visibleTimelineItems.includes(index) 
                         ? 'opacity-100' 
                         : 'opacity-0 -translate-x-8'
                     }`}
                     style={{
                       top: index === 0 ? '0rem' : '0.5rem', // First dot at very top
-                      left: 'calc(2rem - 1.25rem)', // Center on timeline line
+                      left: 'calc(1.5rem - 1rem)', // Center on timeline line
                       transitionDelay: `${index * 200}ms`
                     }}>
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full animate-pulse"></div>
-                      <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
+                      <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-xs sm:text-sm">
                     {index + 1}
                   </div>
                     </div>
                     
                     {/* Content Card */}
-                    <div className="ml-16 bg-white/10 backdrop-blur-md rounded-3xl p-6 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 relative overflow-hidden">
+                    <div className="timeline-card ml-12 sm:ml-16 bg-white/10 backdrop-blur-md rounded-3xl p-4 sm:p-6 border border-white/20 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 relative overflow-hidden">
                       {/* Glassmorphism Effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
                       
@@ -604,16 +604,16 @@ const About = () => {
                       
                       <div className="relative z-10">
                         {/* Phase Header */}
-                        <div className="mb-4">
-                          <h3 className="text-2xl font-bold text-white">{phase.phase}</h3>
+                        <div className="mb-3 sm:mb-4">
+                          <h3 className="text-xl sm:text-2xl font-bold text-white">{phase.phase}</h3>
                 </div>
                         
                         {/* Phase Details */}
-                        <ul className="space-y-3">
+                        <ul className="space-y-2 sm:space-y-3">
                   {phase.details.map((detail, detailIndex) => (
-                            <li key={detailIndex} className="flex items-start space-x-3 text-slate-300">
-                              <CheckCircle className="h-5 w-5 text-cyan-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-sm leading-relaxed">{detail}</span>
+                            <li key={detailIndex} className="flex items-start space-x-2 sm:space-x-3 text-slate-300">
+                              <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-xs sm:text-sm leading-relaxed">{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -625,7 +625,7 @@ const About = () => {
                     
                     {/* Connecting Arrow (except for last item) */}
                     {index < process.length - 1 && (
-                      <div className="absolute left-7 top-20 w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-cyan-500/50"></div>
+                      <div className="absolute left-5 sm:left-7 top-16 sm:top-20 w-0 h-0 border-l-3 border-r-3 border-t-6 sm:border-l-4 sm:border-r-4 sm:border-t-8 border-l-transparent border-r-transparent border-t-cyan-500/50"></div>
                     )}
               </div>
             ))}

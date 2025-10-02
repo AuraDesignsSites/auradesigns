@@ -8,7 +8,7 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-indigo-900 to-purple-900">
       {/* Hero Section */}
-      <section className="min-h-screen py-24 relative overflow-hidden">
+      <section className="projects-hero min-h-screen py-16 sm:py-20 md:py-24 relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           {/* Background Stars */}
@@ -72,41 +72,41 @@ const Projects = () => {
           <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10 flex items-center justify-center min-h-screen">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 flex items-center justify-center min-h-screen">
           <div className="text-center max-w-4xl mx-auto">
             {/* Main Title */}
-            <div className="mb-8">
-              <h1 className="text-6xl md:text-7xl font-bold mb-8 text-white leading-tight">
+            <div className="mb-6 sm:mb-8">
+              <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-bold mb-6 sm:mb-8 text-white leading-tight">
                 <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Projects
                 </span>
               </h1>
-              <div className="flex items-center justify-center space-x-2 mb-6">
-                <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
-                <span className="text-cyan-300 font-medium text-lg">
+              <div className="flex items-center justify-center space-x-2 mb-4 sm:mb-6">
+                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+                <span className="text-cyan-300 font-medium text-base sm:text-lg">
                   Something amazing is coming soon
                 </span>
               </div>
             </div>
 
             {/* Coming Soon Card */}
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl relative overflow-hidden max-w-2xl mx-auto">
+            <div className="coming-soon-card bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 md:p-12 border border-white/20 shadow-2xl relative overflow-hidden max-w-2xl mx-auto">
               {/* Glassmorphism Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl"></div>
               
               <div className="relative z-10">
                 {/* Rocket Icon */}
-                <div className="flex justify-center mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
-                    <Rocket className="w-10 h-10 text-white" />
+                <div className="flex justify-center mb-4 sm:mb-6">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
+                    <Rocket className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                   </div>
                 </div>
                 
                 {/* Coming Soon Text */}
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
                   Coming Soon
                 </h2>
-                <p className="text-xl text-slate-300 leading-relaxed">
+                <p className="text-lg sm:text-xl text-slate-300 leading-relaxed">
                   Thanks for your patience!
                 </p>
               </div>
