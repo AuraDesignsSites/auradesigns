@@ -298,6 +298,19 @@
     .timeline-card {
       margin-left: 3rem;
     }
+  }
+
+  /* Mobile navigation animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
     .service-card {
       min-height: auto;
@@ -352,7 +365,8 @@
       grid-template-columns: 1fr 1.1fr 1fr;
     }
   }
-    
+
+  :root {
     /* Shadows */
     --shadow-soft: 0 4px 6px -1px hsl(220 50% 10% / 0.1), 0 2px 4px -2px hsl(220 50% 10% / 0.1);
     --shadow-medium: 0 10px 15px -3px hsl(220 50% 10% / 0.1), 0 4px 6px -4px hsl(220 50% 10% / 0.1);
