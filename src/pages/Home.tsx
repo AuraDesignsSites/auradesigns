@@ -25,7 +25,6 @@ const Home = () => {
     const interval = setInterval(() => {
       setCurrentSlogan((prev) => {
         const next = (prev + 1) % slogans.length;
-        console.log('Changing slogan to:', slogans[next]);
         return next;
       });
     }, 2000); // Change every 2 seconds
@@ -328,6 +327,8 @@ const Home = () => {
                     src={logo} 
                     alt="Aura Designs Logo" 
                     className="w-full max-w-[450px] h-auto object-contain animate-float"
+                    loading="eager"
+                    decoding="async"
                   />
                   {/* Glow effect on hover */}
                   <div className="absolute inset-0 bg-gradient-to-r from-teal-500/0 to-purple-500/0 rounded-full blur-xl group-hover:from-teal-500/20 group-hover:to-purple-500/20 transition-all duration-500"></div>
@@ -571,6 +572,8 @@ const Home = () => {
                           src={tempWebImage} 
                           alt="Website Example 1" 
                           className="w-full h-full object-cover"
+                          loading="eager"
+                          decoding="async"
                         />
                       </div>
                     </div>
@@ -648,6 +651,8 @@ const Home = () => {
                           src={tempWebImage} 
                           alt="Website Example 1" 
                           className="w-full h-full object-cover"
+                          loading="eager"
+                          decoding="async"
                         />
                       </div>
                     </div>

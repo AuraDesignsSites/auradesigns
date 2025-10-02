@@ -68,6 +68,20 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  /* Image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Image loading optimization */
+  img {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
   /* Prevent layout shifts during animations */
   .animate-scroll-smooth,
   .animate-vertical-scroll-smooth {
@@ -80,10 +94,42 @@
   .animate-pulse,
   .animate-twinkle,
   .animate-spin-slow,
-  .animate-spin-slow-reverse {
+  .animate-spin-slow-reverse,
+  .animate-float,
+  .animate-levitate,
+  .animate-rocket-launch,
+  .animate-rocket-bounce {
     will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    transform: translateZ(0); /* Force hardware acceleration */
+  }
+
+  /* Reduce animations on mobile for better performance */
+  @media (max-width: 768px) {
+    .animate-pulse {
+      animation-duration: 3s;
+    }
+    
+    .animate-twinkle {
+      animation-duration: 4s;
+    }
+    
+    .animate-float {
+      animation-duration: 6s;
+    }
+    
+    .animate-levitate {
+      animation-duration: 8s;
+    }
+    
+    /* Disable complex animations on very small screens */
+    @media (max-width: 480px) {
+      .animate-rocket-launch,
+      .animate-rocket-bounce {
+        animation: none;
+      }
+    }
   }
 
   /* About page specific optimizations */
@@ -207,6 +253,34 @@
     
     .bg-star {
       opacity: 0.3;
+    }
+  }
+
+  /* Mobile touch target optimizations */
+  @media (max-width: 768px) {
+    /* Ensure all interactive elements meet minimum touch target size */
+    button,
+    [role="button"],
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    a[href] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Specific optimizations for small buttons */
+    .h-9 {
+      min-height: 44px;
+    }
+    
+    /* Ensure proper spacing for touch targets */
+    .space-x-2 > * + * {
+      margin-left: 0.75rem;
+    }
+    
+    .space-y-2 > * + * {
+      margin-top: 0.75rem;
     }
   }
 

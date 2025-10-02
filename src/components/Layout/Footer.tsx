@@ -110,7 +110,7 @@ const Footer = () => {
             {/* Brand */}
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <img src={logo} alt="Aura Designs" className="h-8 w-auto" />
+                <img src={logo} alt="Aura Designs" className="h-8 w-auto" loading="lazy" decoding="async" />
                 <span className="font-normal text-lg text-white">Aura Designs</span>
               </div>
               <p className="text-slate-300 max-w-xs">

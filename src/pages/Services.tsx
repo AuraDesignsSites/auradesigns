@@ -227,6 +227,8 @@ const Services = () => {
                     src={moonImage} 
                     alt="Moon"
                     className="w-full h-full object-contain"
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
               </span>
@@ -266,6 +268,8 @@ const Services = () => {
                         src={index === 0 ? realEstateImage : index === 1 ? shroomsImage : tempWebImage} 
                         alt={service.title}
                         className="w-full h-64 sm:h-72 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="eager"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>

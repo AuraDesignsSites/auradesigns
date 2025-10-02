@@ -211,6 +211,8 @@ const About = () => {
             src={saturnImage} 
             alt="Saturn"
             className="w-full h-full object-contain"
+            loading="eager"
+            decoding="async"
           />
         </div>
         {/* Animated Background Elements */}
@@ -307,6 +309,8 @@ const About = () => {
             src={moonImage} 
             alt="Moon"
             className="w-full h-full object-contain"
+            loading="eager"
+            decoding="async"
           />
         </div>
         {/* Space Background Elements */}
@@ -394,6 +398,8 @@ const About = () => {
                   src={logo} 
                   alt="Aura Designs Logo" 
                   className="w-16 h-16 sm:w-24 sm:h-24 object-contain"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
               

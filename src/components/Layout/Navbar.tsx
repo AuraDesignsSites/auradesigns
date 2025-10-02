@@ -36,7 +36,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2" onClick={scrollToTop}>
-            <img src={logo} alt="Aura Designs" className="h-12 w-auto" />
+            <img src={logo} alt="Aura Designs" className="h-12 w-auto" loading="eager" decoding="async" />
             <span className={`font-normal text-xl transition-colors ${isScrolled ? 'text-white' : 'text-foreground'}`}>Aura Designs</span>
           </Link>
 
