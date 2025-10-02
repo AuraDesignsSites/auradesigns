@@ -250,11 +250,11 @@ const Services = () => {
               >
                 <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 sm:gap-12`}>
                   {/* Image Section */}
-                  <div className="flex-1">
+                  <div className="flex-1 w-full">
                     <div 
                       ref={(el) => (imageRefs.current[index] = el)}
                       data-image-index={index}
-                      className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-1000 ${
+                      className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-1000 w-full h-64 sm:h-72 md:h-80 ${
                         imageVisibleItems.includes(index) 
                           ? 'opacity-100 translate-x-0' 
                           : index % 2 === 0 
@@ -265,7 +265,12 @@ const Services = () => {
                       <img 
                         src={index === 0 ? realEstateWebImage : index === 1 ? rocketWebImage : index === 2 ? gardenWebImage : travelWebImage} 
                         alt={service.title}
-                        className="w-full h-64 sm:h-72 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                        style={{ 
+                          objectFit: 'contain',
+                          objectPosition: 'center center',
+                          transform: (index === 0 || index === 3) ? 'scale(1.5)' : 'scale(1)'
+                        }}
                         loading="eager"
                         decoding="async"
                       />
