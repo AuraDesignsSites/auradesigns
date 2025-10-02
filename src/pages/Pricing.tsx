@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
-import { useState } from 'react';
+import { useState, memo, useMemo, useCallback } from 'react';
 
 const Pricing = () => {
   // Scroll to top when component mounts
@@ -12,15 +12,15 @@ const Pricing = () => {
   
   const [openItems, setOpenItems] = useState<string[]>([]);
 
-  const toggleItem = (value: string) => {
+  const toggleItem = useCallback((value: string) => {
     setOpenItems(prev => 
       prev.includes(value) 
         ? prev.filter(item => item !== value)
         : [...prev, value]
     );
-  };
+  }, []);
 
-  const pricingPlans = [
+  const pricingPlans = useMemo(() => [
     {
       name: "Starter",
       subtitle: "Individual",
@@ -82,9 +82,9 @@ const Pricing = () => {
       cta: "Request Custom Quote",
       popular: false
     }
-  ];
+  ], []);
 
-  const faqs = [
+  const faqs = useMemo(() => [
     {
       question: "What's the typical timeline for a project?",
       answer: "Starter projects typically take 1 week, Small Business projects 2-3 weeks, and Pro projects 3-4 weeks. Timeline depends on complexity and how quickly you provide feedback and content."
@@ -117,7 +117,7 @@ const Pricing = () => {
       question: "Do you offer bundling services like business cards, menus, etc.?",
       answer: "Yes! We offer additional design services including business cards, menus, flyers, and other marketing materials. These are custom quoted based on your specific needs and requirements."
     }
-  ];
+  ], []);
 
   return (
     <div className="min-h-screen">
@@ -322,4 +322,4 @@ const Pricing = () => {
   );
 };
 
-export default Pricing;
+export default memo(Pricing);

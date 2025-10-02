@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Star, ArrowRight, CheckCircle, Layers, Heart, ChevronLeft, ChevronRight, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo, useCallback, useMemo } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
 import tempWebImage from '@/assets/temp-web.png';
 import realEstateImage from '@/assets/realestate-webmock.png';
@@ -19,36 +19,33 @@ const Services = () => {
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            setVisibleItems(prev => [...prev, index]);
-          } else {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            setVisibleItems(prev => prev.filter(item => item !== index));
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  const handleItemIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const index = parseInt(entry.target.getAttribute('data-index') || '0');
+        setVisibleItems(prev => [...prev, index]);
+      } else {
+        const index = parseInt(entry.target.getAttribute('data-index') || '0');
+        setVisibleItems(prev => prev.filter(item => item !== index));
+      }
+    });
+  }, []);
 
-    const imageObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-image-index') || '0');
-            setImageVisibleItems(prev => [...prev, index]);
-          } else {
-            const index = parseInt(entry.target.getAttribute('data-image-index') || '0');
-            setImageVisibleItems(prev => prev.filter(item => item !== index));
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+  const handleImageIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const index = parseInt(entry.target.getAttribute('data-image-index') || '0');
+        setImageVisibleItems(prev => [...prev, index]);
+      } else {
+        const index = parseInt(entry.target.getAttribute('data-image-index') || '0');
+        setImageVisibleItems(prev => prev.filter(item => item !== index));
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleItemIntersection, { threshold: 0.2 });
+    const imageObserver = new IntersectionObserver(handleImageIntersection, { threshold: 0.3 });
 
     itemRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
@@ -66,9 +63,9 @@ const Services = () => {
         if (ref) imageObserver.unobserve(ref);
       });
     };
-  }, []);
+  }, [handleItemIntersection, handleImageIntersection]);
 
-  const services = [
+  const services = useMemo(() => [
     {
       emoji: "💻",
       title: "Website Design & Development",
@@ -123,9 +120,9 @@ const Services = () => {
         "Additional brand-related services available on request"
       ]
     }
-  ];
+  ], []);
 
-  const testimonials = [
+  const testimonials = useMemo(() => [
     {
       quote: "Aura delivered a clean, fast site in days. Our conversion rate jumped 40% within the first month.",
       author: "Taylor R.",
@@ -174,15 +171,15 @@ const Services = () => {
       role: "Consultant",
       rating: 5
     }
-  ];
+  ], []);
 
-  const nextTestimonial = () => {
+  const nextTestimonial = useCallback(() => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
-  const prevTestimonial = () => {
+  const prevTestimonial = useCallback(() => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
   // Auto-swipe functionality
   useEffect(() => {
@@ -480,4 +477,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default memo(Services);

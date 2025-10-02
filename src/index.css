@@ -103,6 +103,7 @@
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     transform: translateZ(0); /* Force hardware acceleration */
+    contain: layout style paint; /* CSS containment for better performance */
   }
 
   /* Reduce animations on mobile for better performance */
@@ -132,46 +133,50 @@
     }
   }
 
-  /* About page specific optimizations */
+  /* Page-specific optimizations with CSS containment */
   .about-hero,
   .about-section,
-  .about-timeline {
-    will-change: auto;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-
-  /* Services page specific optimizations */
+  .about-timeline,
   .services-hero,
   .services-showcase,
   .services-testimonials,
-  .services-cta {
-    will-change: auto;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-
-  /* Projects page specific optimizations */
+  .services-cta,
   .projects-hero,
-  .projects-coming-soon {
-    will-change: auto;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-
-  /* Pricing page specific optimizations */
+  .projects-coming-soon,
   .pricing-hero,
   .pricing-cards,
   .pricing-faq {
     will-change: auto;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    contain: layout style; /* CSS containment for better paint performance */
   }
 
   /* Prevent layout shifts during resize */
   .hexagon-card {
     min-height: 280px;
     transition: all 0.3s ease;
+    contain: layout; /* Prevent layout shifts */
+  }
+
+  /* Optimize scrolling performance */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Optimize text rendering */
+  body {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Optimize image rendering */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
   }
 
   .timeline-card {

@@ -1,5 +1,6 @@
 import { Rocket } from 'lucide-react';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
+import { memo } from 'react';
 
 const Projects = () => {
   // Scroll to top when component mounts
@@ -118,4 +119,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default memo(Projects);

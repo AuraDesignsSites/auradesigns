@@ -2,7 +2,7 @@ import { Users, Target, CheckCircle, Sparkles, Zap, Heart, Rocket, Code2, ArrowR
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
 import saturnImage from '@/assets/saturn.png';
 import moonImage from '@/assets/moon.png';
@@ -19,7 +19,7 @@ const About = () => {
   const auraDifferenceRef = useRef<HTMLDivElement>(null);
 
 
-  const team = [
+  const team = useMemo(() => [
     {
       name: "Pratik Mistry",
       role: "Lead Developer", 
@@ -35,9 +35,9 @@ const About = () => {
       role: "UX/UI Designer",
       bio: "3 years of experience in design with a strong educational background in design principles. Creates intuitive and beautiful user experiences that drive engagement."
     }
-  ];
+  ], []);
 
-  const process = [
+  const process = useMemo(() => [
     {
       phase: "Discovery",
       details: ["Business goals analysis", "Target audience research", "Competitive landscape review", "Technical requirements gathering"]
@@ -62,7 +62,7 @@ const About = () => {
       phase: "Support",
       details: ["Monthly maintenance", "Content updates", "Security patches", "Performance monitoring"]
     }
-  ];
+  ], []);
 
   // Timeline animation effect
   useEffect(() => {
@@ -645,4 +645,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default memo(About);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { Mail, Clock, CheckCircle, ArrowRight, Phone, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -465,4 +465,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default memo(Contact);

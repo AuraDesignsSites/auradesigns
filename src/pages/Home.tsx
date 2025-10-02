@@ -4,14 +4,14 @@ import { Button } from '@/components/ui/button';
 import { useScrollToTop } from '@/hooks/use-scroll-to-top';
 import logo from '@/assets/auralogo-transparentbg.png';
 import tempWebImage from '@/assets/temp-web.png';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo, useCallback, useMemo } from 'react';
 
 const Home = () => {
   // Scroll to top when component mounts
   useScrollToTop();
   
   const [currentSlogan, setCurrentSlogan] = useState(0);
-  const slogans = ['Modern', 'Fast', 'Secure'];
+  const slogans = useMemo(() => ['Modern', 'Fast', 'Secure'], []);
   const [animatedNumbers, setAnimatedNumbers] = useState({
     conversion: 0,
     weeks: "1-2",
@@ -32,32 +32,7 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Animated numbers effect
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !isVisible) {
-            setIsVisible(true);
-            animateNumbers();
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (metricsRef.current) {
-      observer.observe(metricsRef.current);
-    }
-
-    return () => {
-      if (metricsRef.current) {
-        observer.unobserve(metricsRef.current);
-      }
-    };
-  }, [isVisible]);
-
-  const animateNumbers = () => {
+  const animateNumbers = useCallback(() => {
     const targets = {
       conversion: 40,
       weeks: "1-2", // Keep this static
@@ -86,7 +61,31 @@ const Home = () => {
         setAnimatedNumbers(targets);
       }
     }, stepDuration);
-  };
+  }, []);
+
+  // Animated numbers effect
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !isVisible) {
+        setIsVisible(true);
+        animateNumbers();
+      }
+    });
+  }, [isVisible, animateNumbers]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.3 });
+
+    if (metricsRef.current) {
+      observer.observe(metricsRef.current);
+    }
+
+    return () => {
+      if (metricsRef.current) {
+        observer.unobserve(metricsRef.current);
+      }
+    };
+  }, [handleIntersection]);
 
   // Cursor glow effect - Hero section only
   useEffect(() => {
@@ -855,4 +854,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);
