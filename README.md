@@ -60,20 +60,13 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## Environment Variables
-
-### Resend Email Integration
+## Email Integration
 
 This project uses Resend for email functionality with the domain `send.auradesigns.net`. 
 
-**Production Setup:**
-- The `RESEND_API_KEY` environment variable is already configured in Vercel
 - Emails are sent from `noreply@send.auradesigns.net` to `auradesigns.team@gmail.com`
 - The domain `send.auradesigns.net` is verified in Resend
-
-**Local Development:**
-- For local testing, add `VITE_RESEND_API_KEY=your_api_key` to `.env.local`
-- The code will automatically use the appropriate environment variable
+- Environment variables are configured in Vercel
 
 ## How can I deploy this project?
 
