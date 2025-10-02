@@ -284,7 +284,7 @@ const Home = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24 relative z-10 pt-20 sm:pt-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center min-h-[80vh]">
-            <div className="fade-in order-2 lg:order-1">
+            <div className="fade-in order-2 lg:order-1 text-center lg:text-left">
               <div className="mb-4">
                 <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-violet-500/20 border border-cyan-500/30 text-white text-sm font-medium backdrop-blur-sm">
                   <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
@@ -466,7 +466,7 @@ const Home = () => {
       </section>
 
       {/* Bring Your Ideas to Life - Gamma Inspired */}
-      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-cyan-900 to-slate-900">
         {/* Space Background Elements */}
         <div className="absolute inset-0">
           {/* Shooting Stars */}
@@ -483,7 +483,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left Side - Text Content */}
-            <div className="space-y-6">
+            <div className="space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full px-6 py-3 mb-4 border border-cyan-500/30">
                 <Rocket className="h-5 w-5 text-cyan-400 animate-pulse" />
                 <span className="text-sm font-medium text-cyan-300">Transform Your Vision</span>
@@ -673,8 +673,8 @@ const Home = () => {
               </div>
               
               {/* Fade effects for top and bottom */}
-              <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-slate-900 via-purple-900/50 to-transparent pointer-events-none z-10"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-900 via-purple-900/50 to-transparent pointer-events-none z-10"></div>
+              <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-slate-900 via-cyan-900/50 to-transparent pointer-events-none z-10"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-slate-900 via-cyan-900/50 to-transparent pointer-events-none z-10"></div>
             </div>
           </div>
         </div>
