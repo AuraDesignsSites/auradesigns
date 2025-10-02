@@ -168,6 +168,48 @@
     transition: all 0.3s ease;
   }
 
+  /* Contact page specific optimizations */
+  .contact-form,
+  .contact-info,
+  .contact-steps {
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Prevent layout shifts during resize */
+  .contact-card {
+    transition: all 0.3s ease;
+  }
+
+  /* Mobile form optimizations */
+  @media (max-width: 640px) {
+    .contact-card {
+      min-height: auto;
+    }
+    
+    /* Ensure touch targets are at least 44px */
+    .contact-card input,
+    .contact-card textarea,
+    .contact-card button {
+      min-height: 44px;
+    }
+    
+    /* Better spacing for mobile forms */
+    .contact-card .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+    
+    /* Reduce background animations on mobile for better performance */
+    .shooting-star {
+      animation-duration: 8s;
+    }
+    
+    .bg-star {
+      opacity: 0.3;
+    }
+  }
+
   /* Smooth transitions for mobile */
   @media (max-width: 640px) {
     .hexagon-card {
