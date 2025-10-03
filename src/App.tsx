@@ -19,6 +19,12 @@ const Pricing = lazy(() => import("./pages/Pricing"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+// Hidden SEO pages
+const FAQ = lazy(() => import("./pages/FAQ"));
+const ServicesDirectory = lazy(() => import("./pages/ServicesDirectory"));
+const PricingGuide = lazy(() => import("./pages/PricingGuide"));
+const Locations = lazy(() => import("./pages/Locations"));
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -76,6 +82,13 @@ const App = () => {
                   <Route path="/projects" element={<ErrorBoundary><Projects /></ErrorBoundary>} />
                   <Route path="/pricing" element={<ErrorBoundary><Pricing /></ErrorBoundary>} />
                   <Route path="/contact" element={<ErrorBoundary><Contact /></ErrorBoundary>} />
+                  
+                  {/* Hidden SEO Pages - Not in main navigation */}
+                  <Route path="/faq" element={<ErrorBoundary><FAQ /></ErrorBoundary>} />
+                  <Route path="/services-directory" element={<ErrorBoundary><ServicesDirectory /></ErrorBoundary>} />
+                  <Route path="/pricing-guide" element={<ErrorBoundary><PricingGuide /></ErrorBoundary>} />
+                  <Route path="/locations" element={<ErrorBoundary><Locations /></ErrorBoundary>} />
+                  
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
