@@ -121,14 +121,14 @@ const Navbar = () => {
             <div className="h-[calc(100vh-80px)] bg-gradient-to-br from-white via-slate-50 to-cyan-50">
               {/* Navigation Content */}
               <div className="flex flex-col items-center justify-center h-full px-6">
-                <div className="w-full max-w-sm space-y-8">
+                <div className="w-full max-w-sm space-y-4">
                   {/* Navigation Links */}
-                  <div className="space-y-6">
+                  <div className="space-y-3">
                     {navLinks.map((link, index) => (
                       <Link
                         key={link.href}
                         to={link.href}
-                        className={`block text-center py-4 px-6 rounded-2xl font-semibold text-lg transition-all duration-300 ${
+                        className={`block text-center py-3 px-4 rounded-xl font-semibold text-base transition-all duration-300 ${
                           isActive(link.href) 
                             ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/25' 
                             : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
@@ -151,7 +151,7 @@ const Navbar = () => {
 
                   {/* CTA Button */}
                   <div 
-                    className="pt-4"
+                    className="pt-2"
                     style={{
                       animationDelay: '600ms',
                       animation: 'fadeInUp 0.6s ease-out forwards',
@@ -161,7 +161,7 @@ const Navbar = () => {
                   >
                     <Button 
                       asChild 
-                      className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-semibold py-4 px-8 rounded-2xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/30"
+                      className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/30"
                     >
                       <Link 
                         to="/contact" 
