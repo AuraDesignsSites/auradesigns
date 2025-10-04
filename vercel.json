@@ -1,7 +1,13 @@
 {
   "redirects": [
     {
-      "source": "https://www.auradesigns.net/(.*)",
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.auradesigns.net"
+        }
+      ],
       "destination": "https://auradesigns.net/$1",
       "permanent": true
     }
