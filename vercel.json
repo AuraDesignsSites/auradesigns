@@ -1,7 +1,7 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/((?!sitemap\\.xml|image-sitemap\\.xml|robots\\.txt).*)",
       "has": [
         {
           "type": "host",
