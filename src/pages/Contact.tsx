@@ -310,7 +310,7 @@ const Contact = () => {
                         onChange={(e) => handleChange('name', e.target.value)}
                         required 
                         className={`bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 h-10 sm:h-11 text-sm sm:text-base ${errors.name ? 'border-red-400' : ''}`}
-                        sanitizeMode="xss"
+                        sanitizeMode="none"
                         maxLength={100}
                       />
                       {errors.name && (
@@ -355,7 +355,7 @@ const Contact = () => {
                         value={formData.company}
                         onChange={(e) => handleChange('company', e.target.value)}
                         className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 h-10 sm:h-11 text-sm sm:text-base"
-                        sanitizeMode="xss"
+                        sanitizeMode="none"
                         maxLength={100}
                       />
                     </div>
@@ -431,7 +431,7 @@ const Contact = () => {
                       onChange={(e) => handleChange('message', e.target.value)}
                       required
                       className={`bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-cyan-400 focus:ring-cyan-400/20 text-sm sm:text-base resize-none ${errors.message ? 'border-red-400' : ''}`}
-                      sanitizeMode="xss"
+                      sanitizeMode="none"
                       maxLength={2000}
                     />
                     {errors.message && (

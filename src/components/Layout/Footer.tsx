@@ -83,7 +83,7 @@ const Footer = () => {
         {/* AURA Brand Section */}
         <div className="py-16 text-center">
           <h1 className="text-8xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/40 to-white/5 leading-none tracking-widest uppercase" style={{
-            fontFamily: 'system-ui, -apple-system, sans-serif',
+            fontFamily: 'Nunito, Quicksand, Poppins, sans-serif',
             fontWeight: '800',
             letterSpacing: '0.1em',
             textShadow: '0 0 20px rgba(255, 255, 255, 0.1)'
@@ -110,14 +110,14 @@ const Footer = () => {
                 Creating high-performing websites for small businesses and professionals using modern development workflows.
               </p>
               <div className="space-y-3">
-                <div className="flex items-center space-x-2 text-slate-300">
-                  <Mail className="h-4 w-4" />
-                  <a href={`mailto:${BUSINESS_EMAIL}`} className="hover:text-cyan-400 transition-colors">
+                <div className="flex items-start space-x-2 text-slate-300">
+                  <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                  <a href={`mailto:${BUSINESS_EMAIL}`} className="hover:text-cyan-400 transition-colors break-all">
                     {BUSINESS_EMAIL}
                   </a>
                 </div>
-                <div className="flex items-center space-x-2 text-slate-300">
-                  <Phone className="h-4 w-4" />
+                <div className="flex items-start space-x-2 text-slate-300">
+                  <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
                   <a href={`tel:${BUSINESS_PHONE}`} className="hover:text-cyan-400 transition-colors">
                     {BUSINESS_PHONE}
                   </a>
