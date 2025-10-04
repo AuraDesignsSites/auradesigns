@@ -1,17 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/((?!sitemap\\.xml|image-sitemap\\.xml|robots\\.txt).*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.auradesigns.net"
-        }
-      ],
-      "destination": "https://auradesigns.net/$1",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
