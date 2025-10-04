@@ -574,7 +574,7 @@ const Home = () => {
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
                           src={realEstateWebImage} 
-                          alt="Website Example 1" 
+                          alt="Real Estate Website Design Toronto - Professional Property Showcase Platform" 
                           className="w-full h-full object-cover"
                           loading="eager"
                           decoding="async"
@@ -595,7 +595,7 @@ const Home = () => {
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
                           src={rocketWebImage} 
-                          alt="Rocket Website" 
+                          alt="Rocket Launch Website Design Toronto - Modern Tech Startup Platform" 
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -614,7 +614,7 @@ const Home = () => {
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
                           src={gardenWebImage} 
-                          alt="Garden Website" 
+                          alt="Garden & Landscaping Website Design GTA - Professional Horticulture Business Platform" 
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -633,7 +633,7 @@ const Home = () => {
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
                           src={travelWebImage} 
-                          alt="Travel Website" 
+                          alt="Travel & Tourism Website Design Toronto - Adventure Booking Platform" 
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -653,7 +653,7 @@ const Home = () => {
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
                           src={realEstateWebImage} 
-                          alt="Real Estate Website" 
+                          alt="Real Estate Website Design Toronto - Property Showcase Platform" 
                           className="w-full h-full object-cover"
                           loading="eager"
                           decoding="async"
@@ -674,7 +674,7 @@ const Home = () => {
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
                           src={rocketWebImage} 
-                          alt="Rocket Website" 
+                          alt="Rocket Launch Website Design Toronto - Modern Tech Startup Platform" 
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -693,7 +693,7 @@ const Home = () => {
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
                           src={gardenWebImage} 
-                          alt="Garden Website" 
+                          alt="Garden & Landscaping Website Design GTA - Professional Horticulture Business Platform" 
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -712,7 +712,7 @@ const Home = () => {
                       <div className="h-full bg-white/90 rounded-xl shadow-lg overflow-hidden">
                         <img 
                           src={travelWebImage} 
-                          alt="Travel Website" 
+                          alt="Travel & Tourism Website Design Toronto - Adventure Booking Platform" 
                           className="w-full h-full object-cover"
                         />
                       </div>

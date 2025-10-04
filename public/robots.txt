@@ -13,8 +13,6 @@ Allow: /
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemaps
 Sitemap: https://auradesigns.net/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 1
+Sitemap: https://auradesigns.net/image-sitemap.xml
