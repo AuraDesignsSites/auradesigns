@@ -1,8 +1,16 @@
-import { useScrollToTop } from '@/hooks';
+import { useScrollToTop, useSEO } from '@/hooks';
 import { memo } from 'react';
 
 const PricingGuide = () => {
   useScrollToTop();
+  
+  // SEO meta tags - Indexed for high-intent pricing searches
+  useSEO({
+    title: "Web Design Pricing Guide Toronto | Website Development Costs GTA | Aura Designs",
+    description: "Transparent pricing guide for web design, development, and digital marketing services in Toronto & GTA. Get detailed costs for small business websites, e-commerce, and enterprise solutions.",
+    keywords: "web design pricing toronto, website development cost gta, toronto web agency pricing, small business website cost, ecommerce website price toronto",
+    canonical: "https://auradesigns.net/pricing-guide"
+  });
 
   const pricingCategories = [
     {

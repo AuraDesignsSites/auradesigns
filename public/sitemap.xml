@@ -57,7 +57,7 @@
     <loc>https://auradesigns.net/faq</loc>
     <lastmod>2024-12-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   
   <!-- Services Directory Page -->
@@ -65,7 +65,7 @@
     <loc>https://auradesigns.net/services-directory</loc>
     <lastmod>2024-12-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   
   <!-- Pricing Guide Page -->
@@ -81,8 +81,7 @@
     <loc>https://auradesigns.net/locations</loc>
     <lastmod>2024-12-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  
   
 </urlset>

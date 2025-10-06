@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { useScrollToTop } from '@/hooks';
+import { useScrollToTop, useSEO } from '@/hooks';
 import { sendContactEmail, contactFormSchema, type ContactFormData } from '@/lib/email-service';
 import { BUSINESS_EMAIL, BUSINESS_PHONE } from '@/lib/constants';
 import type { ProcessStepInfo } from '@/lib/types';
@@ -15,6 +15,14 @@ import type { ProcessStepInfo } from '@/lib/types';
 const Contact = () => {
   // Scroll to top when component mounts
   useScrollToTop();
+  
+  // SEO meta tags
+  useSEO({
+    title: "Contact Aura Designs - Web Design & Development Toronto | Get Quote | Aura Designs",
+    description: "Contact Aura Designs for professional web design, development, and digital marketing services in Toronto & GTA. Get a free quote for your project today.",
+    keywords: "contact aura designs, web design quote toronto, web development consultation gta, toronto web agency contact, get website quote",
+    canonical: "https://auradesigns.net/contact"
+  });
   
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',

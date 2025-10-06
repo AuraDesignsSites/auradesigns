@@ -1,8 +1,16 @@
-import { useScrollToTop } from '@/hooks';
+import { useScrollToTop, useSEO } from '@/hooks';
 import { memo } from 'react';
 
 const Locations = () => {
   useScrollToTop();
+  
+  // SEO meta tags - Indexed for local SEO and city-specific searches
+  useSEO({
+    title: "Web Design Services GTA | Toronto, Mississauga, Brampton, Vaughan | Aura Designs",
+    description: "Professional web design and development services across the Greater Toronto Area. Serving Toronto, Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville, and Burlington.",
+    keywords: "web design toronto, web design mississauga, web design brampton, web design vaughan, web design markham, web design richmond hill, web design oakville, web design burlington",
+    canonical: "https://auradesigns.net/locations"
+  });
 
   const locations = [
     {

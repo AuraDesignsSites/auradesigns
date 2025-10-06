@@ -1,7 +1,7 @@
 import { Users, Target, CheckCircle, Sparkles, Zap, Heart, Rocket, Code2, ArrowRight, Shield, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { useScrollToTop } from '@/hooks';
+import { useScrollToTop, useSEO } from '@/hooks';
 import { useState, useEffect, useRef, memo, useMemo, useCallback } from 'react';
 import { PERFORMANCE_THRESHOLDS } from '@/lib/constants';
 import type { TeamMember, ProcessStep, Differentiator, Position } from '@/lib/types';
@@ -12,6 +12,14 @@ import moonImage from '@/assets/moon.png';
 const About = () => {
   // Scroll to top when component mounts
   useScrollToTop();
+  
+  // SEO meta tags
+  useSEO({
+    title: "About Aura Designs - Web Design & Development Team Toronto | Aura Designs",
+    description: "Meet the Aura Designs team - Toronto's leading web design and development agency. Learn about our expertise, process, and commitment to creating exceptional digital experiences for GTA businesses.",
+    keywords: "about aura designs, web design team toronto, web development team gta, toronto web agency, web design company toronto",
+    canonical: "https://auradesigns.net/about"
+  });
   
   const [visibleTimelineItems, setVisibleTimelineItems] = useState<number[]>([]);
   const [saturnPosition, setSaturnPosition] = useState<Position>({ scale: 1, x: 0, y: 0, opacity: 0.2 });

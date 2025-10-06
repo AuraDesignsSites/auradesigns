@@ -1,8 +1,16 @@
-import { useScrollToTop } from '@/hooks';
+import { useScrollToTop, useSEO } from '@/hooks';
 import { memo } from 'react';
 
 const FAQ = () => {
   useScrollToTop();
+  
+  // SEO meta tags - Indexed for long-tail keywords
+  useSEO({
+    title: "FAQ - Web Design & Development Toronto | Pricing, Timelines & Process | Aura Designs",
+    description: "Get answers to frequently asked questions about web design, development, and digital marketing services in Toronto & GTA. Learn about pricing, timelines, and our proven process.",
+    keywords: "web design faq toronto, web development questions gta, toronto web agency faq, website design cost toronto, how long to build website gta",
+    canonical: "https://auradesigns.net/faq"
+  });
 
   const faqs = [
     {

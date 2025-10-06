@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Star, ArrowRight, CheckCircle, Layers, Heart, ChevronLeft, ChevronRight, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useScrollToTop } from '@/hooks/use-scroll-to-top';
+import { useScrollToTop, useSEO } from '@/hooks';
 import { useState, useEffect, useRef, memo, useCallback, useMemo } from 'react';
 import logo from '@/assets/auralogo-transparentbg.png';
 import realEstateWebImage from '@/assets/website-example-realestate.png';
@@ -13,6 +13,14 @@ import moonImage from '@/assets/moon.png';
 const Services = () => {
   // Scroll to top when component mounts
   useScrollToTop();
+  
+  // SEO meta tags
+  useSEO({
+    title: "Web Design & Development Services Toronto | Business Cards & Logo Design GTA | Aura Designs",
+    description: "Professional web design, development, business cards, and logo design services in Toronto & GTA. Custom websites, e-commerce solutions, and digital marketing for small businesses.",
+    keywords: "web design toronto, web development gta, business cards toronto, logo design gta, website design mississauga, digital marketing toronto",
+    canonical: "https://auradesigns.net/services"
+  });
   
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const [imageVisibleItems, setImageVisibleItems] = useState<number[]>([]);
