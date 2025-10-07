@@ -40,7 +40,7 @@ export const SecurityProvider: React.FC<SecurityProviderProps> = ({ children }) 
       const securityMetas = [
         { name: 'referrer', content: 'strict-origin-when-cross-origin' },
         { name: 'format-detection', content: 'telephone=no' },
-        { name: 'robots', content: 'index, follow, noarchive, nosnippet, noimageindex' },
+        { name: 'robots', content: 'index, follow, noarchive' },
       ];
 
       securityMetas.forEach(({ name, content }) => {
