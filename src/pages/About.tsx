@@ -31,17 +31,17 @@ const About = () => {
 
   const team = useMemo((): TeamMember[] => [
     {
-      name: "Pratik Mistry",
+      name: "Alex Johnson",
       role: "Lead Developer", 
       bio: "4-5 years of experience in software engineering with a strong foundation in computer science. Passionate about building scalable and efficient web applications."
     },
     {
-      name: "Kavin Mural",
+      name: "Sarah Chen",
       role: "Lead Developer",
       bio: "4-5 years of experience in software engineering with a computer science background. Specializes in modern web technologies and full-stack development."
     },
     {
-      name: "Ryan Honeybone", 
+      name: "Marcus Rodriguez", 
       role: "UX/UI Designer",
       bio: "3 years of experience in design with a strong educational background in design principles. Creates intuitive and beautiful user experiences that drive engagement."
     }

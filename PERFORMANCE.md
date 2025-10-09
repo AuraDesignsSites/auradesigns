@@ -236,7 +236,7 @@ const slogans = useMemo(() => ['Modern', 'Fast', 'Secure'], []);
 // From src/pages/About.tsx
 const team = useMemo((): TeamMember[] => [
   {
-    name: "Pratik Mistry",
+    name: "Alex Johnson",
     role: "Founder & Lead Developer",
     bio: "Full-stack developer with 8+ years of experience building scalable web applications."
   },
